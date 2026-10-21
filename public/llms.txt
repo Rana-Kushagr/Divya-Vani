@@ -1,0 +1,11 @@
+# Divyavani (v2.0)
+> AI-Powered Educational Doubt-Solving & Multi-Tab Chapter Workspace
+> Original Concept by Vanshika & Divyanshi (Class IX-H)
+
+## Overview
+Divyavani is an open educational workspace for Class IX CBSE students providing Socratic, step-by-step doubt resolutions alongside a multi-tab chapter document reader.
+
+## Architecture
+- Double-Palette Block Design: Obsidian Black (#09090B) and Pure Alabaster (#FFFFFF) with 1.5px structural borders.
+- Security Constitution: OWASP Top 10, DOMPurify sanitization, XML prompt boundary (<student_query>), Zod validation, UUIDv4.
+- WCAG 2.1 AA Compliant.

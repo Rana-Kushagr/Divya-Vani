@@ -1,0 +1,9 @@
+# Divyavani Cursor Security & Architecture Rules
+# Enforces Vibecoded Constitution Security & Double-Palette Block Rules
+
+- Always validate inputs with Zod schemas.
+- Sanitize HTML/KaTeX output with DOMPurify.
+- Always use UUIDv4 for entity IDs.
+- Never place API secrets in client-side code.
+- Double-Palette: #09090B Obsidian vs #FFFFFF Alabaster with 1.5px structural borders.
+- Keep focus rings visible for WCAG 2.1 AA keyboard accessibility.
