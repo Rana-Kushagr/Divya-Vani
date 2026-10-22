@@ -401,7 +401,11 @@ export default function LearnWorkspaceClient({ routeParams, initialModule = 'HUB
                       type="button"
                       onClick={() => {
                         setShowClassDropdown(false);
-                        router.push(`/learn/${c.id}/${currentSubject}?module=${activeModule}`);
+                        try {
+                          localStorage.setItem('divyavani_selected_class', c.id);
+                        } catch {}
+                        const basePath = process.env.NEXT_PUBLIC_BASE_PATH || (typeof window !== 'undefined' && window.location.pathname.startsWith('/Divya-Vani') ? '/Divya-Vani' : '');
+                        window.location.href = `${basePath}/learn/${c.id}/${currentSubject}?module=${activeModule}`;
                       }}
                       className={`w-full px-3 py-1.5 text-left text-xs font-semibold flex items-center justify-between hover:bg-zinc-100 ${
                         c.id === currentClass ? 'text-royal font-bold bg-royal/5' : 'text-zinc-700'
@@ -435,7 +439,11 @@ export default function LearnWorkspaceClient({ routeParams, initialModule = 'HUB
                       type="button"
                       onClick={() => {
                         setShowSubjectDropdown(false);
-                        router.push(`/learn/${currentClass}/${s.id}?module=${activeModule}`);
+                        try {
+                          localStorage.setItem('divyavani_selected_subject', s.id);
+                        } catch {}
+                        const basePath = process.env.NEXT_PUBLIC_BASE_PATH || (typeof window !== 'undefined' && window.location.pathname.startsWith('/Divya-Vani') ? '/Divya-Vani' : '');
+                        window.location.href = `${basePath}/learn/${currentClass}/${s.id}?module=${activeModule}`;
                       }}
                       className={`w-full px-3 py-1.5 text-left text-xs font-semibold flex items-center justify-between hover:bg-zinc-100 ${
                         s.id === currentSubject ? 'text-royal font-bold bg-royal/5' : 'text-zinc-700'
@@ -543,6 +551,60 @@ export default function LearnWorkspaceClient({ routeParams, initialModule = 'HUB
                 <p className="text-xs sm:text-sm text-zinc-400 mt-1 max-w-2xl">
                   Welcome, <span className="text-white font-bold">{userName}</span>! Select your active chapter below, then launch any of the 6 core study modules with 100% verified solutions.
                 </p>
+              </div>
+
+              {/* Quick Class & Subject Dropdowns on Stage 3 */}
+              <div className="flex items-center gap-3 flex-wrap">
+                <div>
+                  <label htmlFor="hubClassSelect" className="block text-[10px] font-bold uppercase text-zinc-400 mb-1">Class</label>
+                  <select
+                    id="hubClassSelect"
+                    value={currentClass}
+                    onChange={(e) => {
+                      const newClass = e.target.value;
+                      try {
+                        localStorage.setItem('divyavani_selected_class', newClass);
+                      } catch {}
+                      const basePath = process.env.NEXT_PUBLIC_BASE_PATH || (typeof window !== 'undefined' && window.location.pathname.startsWith('/Divya-Vani') ? '/Divya-Vani' : '');
+                      window.location.href = `${basePath}/learn/${newClass}/${currentSubject}?module=${activeModule}`;
+                    }}
+                    className="bg-obsidian-elevated text-white text-xs font-bold px-3 py-2 rounded-xl border border-structural-dark cursor-pointer focus:outline-none focus:border-royal"
+                  >
+                    {CLASS_LEVELS.map((c) => (
+                      <option key={`hub-sel-${c.id}`} value={c.id}>{c.name}</option>
+                    ))}
+                  </select>
+                </div>
+
+                <div>
+                  <label htmlFor="hubSubjectSelect" className="block text-[10px] font-bold uppercase text-zinc-400 mb-1">Subject</label>
+                  <select
+                    id="hubSubjectSelect"
+                    value={currentSubject}
+                    onChange={(e) => {
+                      const newSubject = e.target.value;
+                      try {
+                        localStorage.setItem('divyavani_selected_subject', newSubject);
+                      } catch {}
+                      const basePath = process.env.NEXT_PUBLIC_BASE_PATH || (typeof window !== 'undefined' && window.location.pathname.startsWith('/Divya-Vani') ? '/Divya-Vani' : '');
+                      window.location.href = `${basePath}/learn/${currentClass}/${newSubject}?module=${activeModule}`;
+                    }}
+                    className="bg-obsidian-elevated text-white text-xs font-bold px-3 py-2 rounded-xl border border-structural-dark cursor-pointer focus:outline-none focus:border-royal"
+                  >
+                    {SUBJECTS.map((s) => (
+                      <option key={`hub-sel-${s.id}`} value={s.id}>{s.name}</option>
+                    ))}
+                  </select>
+                </div>
+
+                <div className="self-end pt-1">
+                  <Link
+                    href="/select-class"
+                    className="px-3 py-2 rounded-xl bg-royal/20 hover:bg-royal text-royal-light hover:text-white border border-royal/40 text-xs font-bold transition flex items-center gap-1.5"
+                  >
+                    <span>Change Grid &rarr;</span>
+                  </Link>
+                </div>
               </div>
 
               {/* Status Metric */}
