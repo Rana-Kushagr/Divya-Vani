@@ -164,6 +164,14 @@ export default function SecureDocumentUploader({
           onDragLeave={handleDrag}
           onDragOver={handleDrag}
           onDrop={handleDrop}
+          role="button"
+          tabIndex={0}
+          onKeyDown={(e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+              e.preventDefault();
+              fileInputRef.current?.click();
+            }
+          }}
           onClick={() => fileInputRef.current?.click()}
           className={`mt-5 border-2 border-dashed rounded-xl p-8 flex flex-col items-center justify-center text-center cursor-pointer transition-all ${
             dragActive

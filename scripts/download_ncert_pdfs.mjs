@@ -1,8 +1,8 @@
 // scripts/download_ncert_pdfs.mjs
 // Run via: node scripts/download_ncert_pdfs.mjs
-import fs from 'fs';
-import path from 'path';
-import https from 'https';
+import fs from 'node:fs';
+import path from 'node:path';
+import https from 'node:https';
 
 const NCERT_BOOK_CODES = {
   'class-6':  { science: 'fesc1', mathematics: 'femh1', 'social-science': 'fess1', english: 'fehl1', hindi: 'fhvs1', sanskrit: 'fssk1' },
@@ -51,11 +51,10 @@ function downloadFile(url, destPath) {
 
 async function run() {
   console.log('Starting automated NCERT PDF Downloader...');
-  // Download key priority chapters first to keep build light and fast
-  const priorityClasses = ['class-9', 'class-10'];
+  const priorityClasses = new Set(['class-9', 'class-10']);
   
   for (const [clsSlug, subjects] of Object.entries(NCERT_BOOK_CODES)) {
-    if (!priorityClasses.includes(clsSlug)) continue; // priority download
+    if (!priorityClasses.has(clsSlug)) continue; // priority download
     for (const [subSlug, bookCode] of Object.entries(subjects)) {
       for (let ch = 1; ch <= 3; ch++) {
         const chCode = ch < 10 ? `0${ch}` : `${ch}`;
@@ -69,4 +68,4 @@ async function run() {
   console.log('Automated NCERT PDF sync completed!');
 }
 
-run();
+await run();

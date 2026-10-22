@@ -17,16 +17,7 @@ import {
   ChevronRight, 
   Check, 
   ExternalLink, 
-  Layers, 
-  FileText, 
-  Compass, 
-  Printer, 
   Trash2, 
-  Sun, 
-  Moon, 
-  BookMarked,
-  ShieldCheck,
-  Flame,
   Award,
   ChevronDown,
   ChevronUp,
@@ -37,10 +28,7 @@ import {
   FileCheck,
   Timer,
   BookText,
-  HelpCircle,
-  AlertCircle,
   Copy,
-  ArrowRight,
   Eye,
   EyeOff
 } from 'lucide-react';
@@ -50,13 +38,7 @@ import { CLASS_LEVELS, SUBJECTS } from '@/lib/mockData';
 import { 
   getNcertBookCode, 
   getNcertChapters, 
-  NcertChapterDetail,
-  ImportantQuestion,
-  FillInTheBlank,
-  AssertionReasonQuestion,
-  RevisionMCQ,
-  SubjectiveQuestion,
-  ToughTestMCQ
+  NcertChapterDetail
 } from '@/lib/ncertData';
 import MathRenderer from '@/components/solver/MathRenderer';
 import CookieConsentBanner from '@/components/legal/CookieConsentBanner';
@@ -72,12 +54,12 @@ export type ActiveStudyModule =
   | 'BRIEF_SUMMARY';
 
 interface LearnWorkspaceClientProps {
-  routeParams?: { class: string; subject: string };
-  initialModule?: ActiveStudyModule;
+  readonly routeParams?: { readonly class: string; readonly subject: string };
+  readonly initialModule?: ActiveStudyModule;
 }
 
 // Inline LaTeX Text Parser & Renderer
-function RenderLatexText({ text, className = '' }: { text: string; className?: string }) {
+function RenderLatexText({ text, className = '' }: { readonly text: string; readonly className?: string }) {
   if (!text || !text.includes('$')) {
     return <span className={className}>{text}</span>;
   }
@@ -86,9 +68,9 @@ function RenderLatexText({ text, className = '' }: { text: string; className?: s
     <span className={className}>
       {parts.map((part, i) => {
         if (i % 2 === 1) {
-          return <MathRenderer key={i} math={part} className="mx-1 font-semibold text-royal-light" />;
+          return <MathRenderer key={`latex-${i}-${part.slice(0, 10)}`} math={part} className="mx-1 font-semibold text-royal-light" />;
         }
-        return <span key={i}>{part}</span>;
+        return <span key={`txt-${i}-${part.slice(0, 10)}`}>{part}</span>;
       })}
     </span>
   );
@@ -159,7 +141,7 @@ export default function LearnWorkspaceClient({ routeParams, initialModule = 'HUB
         if (state.completedChapters) setCompletedChapters(state.completedChapters);
         if (state.readerFilter) setReaderFilter(state.readerFilter);
       }
-    } catch (e) {
+    } catch {
       // ignore
     }
 
@@ -196,7 +178,7 @@ export default function LearnWorkspaceClient({ routeParams, initialModule = 'HUB
         completedChapters: newCompleted !== undefined ? newCompleted : completedChapters,
       };
       localStorage.setItem('divyavani_ncert_v4', JSON.stringify(updated));
-    } catch (e) {
+    } catch {
       // ignore
     }
   };
@@ -306,9 +288,9 @@ export default function LearnWorkspaceClient({ routeParams, initialModule = 'HUB
     }
   };
 
-  // Copy text helper
+  // Copy text helper (safe promise execution)
   const handleCopyNotes = (text: string) => {
-    navigator.clipboard.writeText(text);
+    void navigator.clipboard.writeText(text).catch(() => {});
     showToast('Copied to clipboard!');
   };
 
@@ -340,13 +322,6 @@ export default function LearnWorkspaceClient({ routeParams, initialModule = 'HUB
 
       {/* =========================================================================
           UNIVERSAL 2-WAY INTERLINK BAR (STICKY TOP NAVBAR)
-          Present across all 4 stages and every module page to prevent trapped users!
-          Interlinks:
-          1. 🏠 Main Web Hub
-          2. 🔄 Change Class / Subject
-          3. 👤 Change Name
-          4. Quick Class & Subject Dropdowns
-          5. Active Chapter Selector
           ========================================================================= */}
       <header className="bg-alabaster text-obsidian border-b border-structural-light sticky top-0 z-40 shadow-sm">
         <div className="max-w-7xl mx-auto px-3 sm:px-6 py-2.5 flex flex-wrap items-center justify-between gap-2.5">
@@ -494,8 +469,6 @@ export default function LearnWorkspaceClient({ routeParams, initialModule = 'HUB
 
       {/* =========================================================================
           STAGE 4 SUB-HEADER: 6-MODULE QUICK-SWITCH RIBBON & BACK BUTTON
-          Only shown when inside one of the 6 active modules (not on HUB view)
-          Enables instantaneous switching between modules without losing chapter context
           ========================================================================= */}
       {activeModule !== 'HUB' && (
         <div className="bg-obsidian border-b border-structural-dark px-3 sm:px-6 py-2.5 sticky top-[53px] z-30 shadow-md">
@@ -551,7 +524,6 @@ export default function LearnWorkspaceClient({ routeParams, initialModule = 'HUB
 
       {/* =========================================================================
           STAGE 3: MAIN WEB HUB VIEW
-          Central study command where student chooses Chapter Number & opens any of 6 Hubs
           ========================================================================= */}
       {activeModule === 'HUB' && (
         <main className="flex-1 max-w-7xl mx-auto w-full px-4 sm:px-6 py-6 sm:py-8">
@@ -561,7 +533,7 @@ export default function LearnWorkspaceClient({ routeParams, initialModule = 'HUB
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
               <div>
                 <div className="inline-flex items-center gap-2 px-2.5 py-0.5 rounded-full bg-royal/20 border border-royal/40 text-royal-light text-xs font-semibold mb-2">
-                  <Compass className="w-3.5 h-3.5 text-mint" />
+                  <Award className="w-3.5 h-3.5 text-mint" />
                   <span>Stage 3: Central Study Hub</span>
                 </div>
                 <h1 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
@@ -604,7 +576,7 @@ export default function LearnWorkspaceClient({ routeParams, initialModule = 'HUB
                 const isDone = !!completedChapters[`${currentClass}|${currentSubject}|${ch.number}`];
                 return (
                   <button
-                    key={ch.number}
+                    key={`ch-pill-${ch.number}`}
                     type="button"
                     onClick={() => setSelectedChapterIndex(idx)}
                     className={`p-3 rounded-xl border text-left transition-all duration-150 flex flex-col justify-between min-h-[82px] relative group ${
@@ -907,7 +879,7 @@ export default function LearnWorkspaceClient({ routeParams, initialModule = 'HUB
 
       {/* =========================================================================
           MODULE 1: MOST IMPORTANT QUESTIONS (STAGE 4)
-          Intext Blue-Box + End-of-Chapter Exercises with expandable step-by-step solutions
+          Unified single renderer without duplication
           ========================================================================= */}
       {activeModule === 'IMPORTANT_QS' && (
         <main className="flex-1 max-w-5xl mx-auto w-full px-4 sm:px-6 py-6 sm:py-8">
@@ -970,71 +942,27 @@ export default function LearnWorkspaceClient({ routeParams, initialModule = 'HUB
             </div>
           </div>
 
-          {/* Questions Stream */}
+          {/* Unified Questions Stream (Zero Duplication) */}
           <div className="space-y-4">
-            {(qsFilter === 'ALL' || qsFilter === 'INTEXT' ? activeChapter.mostImportantQuestions.intext : []).map((q) => {
+            {[
+              ...(qsFilter === 'ALL' || qsFilter === 'INTEXT' ? activeChapter.mostImportantQuestions.intext : []),
+              ...(qsFilter === 'ALL' || qsFilter === 'EXERCISE' ? activeChapter.mostImportantQuestions.exercise : []),
+            ].map((q) => {
               const isExpanded = !!expandedSolutions[q.id];
+              const isIntext = q.type === 'INTEXT';
               return (
                 <div key={q.id} className="bg-obsidian-surface border border-structural-dark rounded-2xl p-5 shadow-block-dark">
                   <div className="flex items-start justify-between gap-3">
                     <div className="flex items-center gap-2">
-                      <span className="text-[10px] font-bold uppercase px-2 py-0.5 rounded bg-blue-500/20 text-blue-300 border border-blue-500/40">
-                        Intext Blue-Box
+                      <span className={`text-[10px] font-bold uppercase px-2 py-0.5 rounded border ${
+                        isIntext 
+                          ? 'bg-blue-500/20 text-blue-300 border-blue-500/40' 
+                          : 'bg-amber/20 text-amber-300 border-amber/40'
+                      }`}>
+                        {isIntext ? 'Intext Blue-Box' : 'End-of-Chapter Exercise'}
                       </span>
                       <span className="text-xs font-bold text-zinc-400">
-                        {q.questionNumber} &bull; Page {q.pageRef}
-                      </span>
-                    </div>
-
-                    <button
-                      type="button"
-                      onClick={() => setExpandedSolutions((prev) => ({ ...prev, [q.id]: !isExpanded }))}
-                      className="px-3 py-1 rounded-lg bg-royal/20 hover:bg-royal/35 text-royal-light text-xs font-bold transition-colors flex items-center gap-1 border border-royal/40"
-                    >
-                      <span>{isExpanded ? 'Hide Solution' : 'Show Solution'}</span>
-                      {isExpanded ? <ChevronUp className="w-3.5 h-3.5" /> : <ChevronDown className="w-3.5 h-3.5" />}
-                    </button>
-                  </div>
-
-                  <div className="mt-3 text-sm font-semibold text-white leading-relaxed">
-                    <RenderLatexText text={q.question} />
-                  </div>
-
-                  {isExpanded && (
-                    <div className="mt-4 p-4 rounded-xl bg-alabaster text-obsidian border border-structural-light animate-in fade-in slide-in-from-top-2">
-                      <div className="flex items-center justify-between mb-2 pb-2 border-b border-zinc-200">
-                        <span className="text-xs font-extrabold uppercase tracking-wider text-royal">
-                          Step-by-Step Verified Solution:
-                        </span>
-                        <button
-                          type="button"
-                          onClick={() => handleCopyNotes(q.solution)}
-                          className="text-[11px] text-zinc-500 hover:text-obsidian flex items-center gap-1 font-semibold"
-                        >
-                          <Copy className="w-3 h-3" />
-                          <span>Copy</span>
-                        </button>
-                      </div>
-                      <div className="text-xs leading-relaxed text-zinc-800 whitespace-pre-line font-medium">
-                        <RenderLatexText text={q.solution} />
-                      </div>
-                    </div>
-                  )}
-                </div>
-              );
-            })}
-
-            {(qsFilter === 'ALL' || qsFilter === 'EXERCISE' ? activeChapter.mostImportantQuestions.exercise : []).map((q) => {
-              const isExpanded = !!expandedSolutions[q.id];
-              return (
-                <div key={q.id} className="bg-obsidian-surface border border-structural-dark rounded-2xl p-5 shadow-block-dark">
-                  <div className="flex items-start justify-between gap-3">
-                    <div className="flex items-center gap-2">
-                      <span className="text-[10px] font-bold uppercase px-2 py-0.5 rounded bg-amber/20 text-amber-300 border border-amber/40">
-                        End-of-Chapter Exercise
-                      </span>
-                      <span className="text-xs font-bold text-zinc-400">
-                        {q.questionNumber} &bull; {q.marks} Marks
+                        {q.questionNumber} &bull; {isIntext ? `Page ${q.pageRef}` : `${q.marks} Marks`}
                       </span>
                     </div>
 
@@ -1081,7 +1009,6 @@ export default function LearnWorkspaceClient({ routeParams, initialModule = 'HUB
 
       {/* =========================================================================
           MODULE 2: COMPLETE REVISION SHEET (STAGE 4)
-          4-Part Interactive: Fill Blanks, Assertion-Reason, MCQs, Subjective
           ========================================================================= */}
       {activeModule === 'REVISION_SHEET' && (
         <main className="flex-1 max-w-5xl mx-auto w-full px-4 sm:px-6 py-6 sm:py-8">
@@ -1267,7 +1194,7 @@ export default function LearnWorkspaceClient({ routeParams, initialModule = 'HUB
 
                         return (
                           <button
-                            key={opt}
+                            key={`${ar.id}-opt-${opt}`}
                             type="button"
                             onClick={() => setAssertionChoices((prev) => ({ ...prev, [ar.id]: opt }))}
                             className={`p-2.5 rounded-xl border text-xs font-bold transition-all text-center ${btnStyle}`}
@@ -1330,13 +1257,13 @@ export default function LearnWorkspaceClient({ routeParams, initialModule = 'HUB
 
                         return (
                           <button
-                            key={oIdx}
+                            key={`${m.id}-opt-${oIdx}`}
                             type="button"
                             onClick={() => setRevisionMcqChoices((prev) => ({ ...prev, [m.id]: oIdx }))}
                             className={`w-full p-3 rounded-xl border text-left text-xs transition-all flex items-center justify-between ${optStyle}`}
                           >
                             <span>
-                              <span className="font-bold mr-2">{String.fromCharCode(65 + oIdx)}.</span>
+                              <span className="font-bold mr-2">{String.fromCodePoint(65 + oIdx)}.</span>
                               <RenderLatexText text={opt} />
                             </span>
                             {isAnswered && isCorrectOpt && <Check className="w-4 h-4 text-mint flex-shrink-0" />}
@@ -1404,7 +1331,6 @@ export default function LearnWorkspaceClient({ routeParams, initialModule = 'HUB
 
       {/* =========================================================================
           MODULE 3: CHAPTER TEST (10 TOUGH MCQS) (STAGE 4)
-          Live answered counter, submit & grade test, scorecard, explanations
           ========================================================================= */}
       {activeModule === 'CHAPTER_TEST' && (
         <main className="flex-1 max-w-4xl mx-auto w-full px-4 sm:px-6 py-6 sm:py-8">
@@ -1526,14 +1452,14 @@ export default function LearnWorkspaceClient({ routeParams, initialModule = 'HUB
 
                       return (
                         <button
-                          key={oIdx}
+                          key={`${q.id}-opt-${oIdx}`}
                           type="button"
                           disabled={isTestSubmitted}
                           onClick={() => setTestChoices((prev) => ({ ...prev, [q.id]: oIdx }))}
                           className={`w-full p-3 rounded-xl border text-left text-xs transition-all flex items-center justify-between ${optClass}`}
                         >
                           <span>
-                            <span className="font-bold mr-2">{String.fromCharCode(65 + oIdx)}.</span>
+                            <span className="font-bold mr-2">{String.fromCodePoint(65 + oIdx)}.</span>
                             <RenderLatexText text={opt} />
                           </span>
                           {isTestSubmitted && isTargetCorrect && <Check className="w-4 h-4 text-mint flex-shrink-0" />}
@@ -1780,7 +1706,7 @@ export default function LearnWorkspaceClient({ routeParams, initialModule = 'HUB
                 <div className="flex items-center gap-1.5">
                   {activeChapter.pages.map((p) => (
                     <button
-                      key={p.pageNumber}
+                      key={`page-${p.pageNumber}`}
                       type="button"
                       onClick={() => setCurrentPage(p.pageNumber)}
                       className={`w-7 h-7 rounded-lg text-xs font-bold transition-all ${
@@ -1844,7 +1770,6 @@ export default function LearnWorkspaceClient({ routeParams, initialModule = 'HUB
 
       {/* =========================================================================
           MODULE 5: CHAPTER NOTES (STAGE 4)
-          Notes only: Definitions, Topic Revision Bullets & Formula Identity Table
           ========================================================================= */}
       {activeModule === 'CHAPTER_NOTES' && (
         <main className="flex-1 max-w-5xl mx-auto w-full px-4 sm:px-6 py-6 sm:py-8">
@@ -1884,8 +1809,8 @@ export default function LearnWorkspaceClient({ routeParams, initialModule = 'HUB
               </h3>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                {activeChapter.chapterNotes.keyDefinitions.map((def, idx) => (
-                  <div key={idx} className="bg-obsidian-surface border border-structural-dark rounded-xl p-4 shadow-block-dark">
+                {activeChapter.chapterNotes.keyDefinitions.map((def) => (
+                  <div key={def.term} className="bg-obsidian-surface border border-structural-dark rounded-xl p-4 shadow-block-dark">
                     <span className="text-xs font-extrabold text-mint block mb-1">
                       {def.term}
                     </span>
@@ -1906,7 +1831,7 @@ export default function LearnWorkspaceClient({ routeParams, initialModule = 'HUB
 
               <div className="bg-obsidian-surface border border-structural-dark rounded-2xl p-5 shadow-block-dark space-y-3">
                 {activeChapter.chapterNotes.revisionBullets.map((bullet, idx) => (
-                  <div key={idx} className="flex items-start gap-3">
+                  <div key={`bullet-${bullet.slice(0, 20)}`} className="flex items-start gap-3">
                     <span className="w-5 h-5 rounded-full bg-royal/20 text-royal-light text-xs font-bold flex items-center justify-center flex-shrink-0 mt-0.5">
                       {idx + 1}
                     </span>
@@ -1936,8 +1861,8 @@ export default function LearnWorkspaceClient({ routeParams, initialModule = 'HUB
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-structural-dark">
-                      {activeChapter.chapterNotes.formulaTable.map((f, idx) => (
-                        <tr key={idx} className="hover:bg-zinc-900/40 transition-colors">
+                      {activeChapter.chapterNotes.formulaTable.map((f) => (
+                        <tr key={f.name} className="hover:bg-zinc-900/40 transition-colors">
                           <td className="p-3.5 font-bold text-white whitespace-nowrap">{f.name}</td>
                           <td className="p-3.5 font-mono text-royal-light font-bold">
                             <MathRenderer math={f.formula} />
@@ -1957,7 +1882,6 @@ export default function LearnWorkspaceClient({ routeParams, initialModule = 'HUB
 
       {/* =========================================================================
           MODULE 6: BRIEF SUMMARY (STAGE 4)
-          Summary only: Synopsis paragraph + 4 core takeaways
           ========================================================================= */}
       {activeModule === 'BRIEF_SUMMARY' && (
         <main className="flex-1 max-w-4xl mx-auto w-full px-4 sm:px-6 py-6 sm:py-8">
@@ -1995,10 +1919,10 @@ export default function LearnWorkspaceClient({ routeParams, initialModule = 'HUB
               </span>
 
               <div className="space-y-3.5">
-                {activeChapter.briefSummary.coreTakeaways.map((takeaway, idx) => (
-                  <div key={idx} className="p-4 rounded-xl bg-obsidian-elevated border border-structural-dark flex items-start gap-3">
+                {activeChapter.briefSummary.coreTakeaways.map((takeaway) => (
+                  <div key={`takeaway-${takeaway.slice(0, 20)}`} className="p-4 rounded-xl bg-obsidian-elevated border border-structural-dark flex items-start gap-3">
                     <span className="w-6 h-6 rounded-lg bg-yellow-400/20 text-yellow-300 text-xs font-extrabold flex items-center justify-center flex-shrink-0 mt-0.5">
-                      #{idx + 1}
+                      ✓
                     </span>
                     <p className="text-xs sm:text-sm text-zinc-200 leading-relaxed font-semibold">
                       <RenderLatexText text={takeaway} />
@@ -2034,7 +1958,6 @@ export default function LearnWorkspaceClient({ routeParams, initialModule = 'HUB
 
       {/* =========================================================================
           BOOKMARKS MODAL / DRAWER
-          Accessible from top bar anytime to jump straight to saved pages
           ========================================================================= */}
       {showBookmarksModal && (
         <div className="fixed inset-0 z-50 bg-black/75 flex items-center justify-center p-4 backdrop-blur-sm animate-in fade-in">

@@ -84,16 +84,18 @@ export default function MultimodalDoubtComposer({
   useEffect(() => {
     let interval: any;
     if (isRecording) {
+      let tick = 0;
       interval = setInterval(() => {
+        tick = (tick + 1) % 12;
         setWaveformBars([
-          Math.floor(Math.random() * 24) + 6,
-          Math.floor(Math.random() * 32) + 8,
-          Math.floor(Math.random() * 20) + 4,
-          Math.floor(Math.random() * 36) + 10,
-          Math.floor(Math.random() * 28) + 6,
-          Math.floor(Math.random() * 34) + 8,
-          Math.floor(Math.random() * 18) + 4,
-          Math.floor(Math.random() * 30) + 6,
+          12 + (tick % 4) * 6,
+          18 + ((tick + 2) % 5) * 5,
+          10 + ((tick + 4) % 4) * 4,
+          24 + ((tick + 1) % 5) * 4,
+          16 + ((tick + 3) % 4) * 5,
+          22 + ((tick + 5) % 5) * 4,
+          12 + ((tick + 2) % 4) * 3,
+          18 + ((tick + 4) % 5) * 4,
         ]);
       }, 120);
     }

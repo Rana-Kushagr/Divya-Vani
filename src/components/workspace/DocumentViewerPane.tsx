@@ -53,7 +53,7 @@ export default function DocumentViewerPane({
 
   const handleCopy = () => {
     if (activeTab.content) {
-      navigator.clipboard.writeText(activeTab.content);
+      void navigator.clipboard.writeText(activeTab.content).catch(() => {});
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     }
