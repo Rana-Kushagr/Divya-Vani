@@ -16,9 +16,57 @@ export type SubjectId =
   | 'social_science' 
   | 'sanskrit';
 
+export interface BookmarkItem {
+  key: string; // "${class}|${subject}|${chapterIndex}"
+  classLevel: string;
+  subjectCode: SubjectCode | SubjectId;
+  subjectName: string;
+  chapterIndex: number;
+  chapterNumber: number;
+  chapterTitle: string;
+  page: number;
+  pdfUrl: string;
+  savedAt: string;
+}
+
+export interface ChapterSummary {
+  chapterNumber: number;
+  chapterTitle: string;
+  overview: string;
+  coreConcepts: Array<{
+    title: string;
+    description: string;
+    latexFormula?: string;
+  }>;
+  formulaAndTheorems: Array<{
+    name: string;
+    statement: string;
+    formulaLatex: string;
+    siUnitsOrConditions?: string;
+  }>;
+  highWeightageQuestions: Array<{
+    type: '1-Mark' | '2-Mark' | '3-Mark Derivation' | '5-Mark Case Study';
+    question: string;
+    solutionHint: string;
+  }>;
+}
+
+export interface DivyavaniClientState {
+  userName: string;
+  selectedClass: string;
+  selectedSubject: SubjectId;
+  selectedChapterIndex: number;
+  currentPage: number;
+  zoomLevel: number;
+  readerMode: 'INTERACTIVE' | 'OFFICIAL_EMBED';
+  readerTheme: 'light' | 'sepia' | 'dark';
+  bookmarks: BookmarkItem[];
+  completedChapters: Record<string, boolean>;
+}
+
 export interface UserProfile {
   id: string; // UUIDv4
-  email: string;
+  email?: string;
   fullName: string;
   role: Role;
   selectedClass?: string; // e.g. "class-9" or "Class 9"
@@ -83,6 +131,9 @@ export interface Chapter {
   subjectId: SubjectId;
   description: string;
   formulaCount: number;
+  bookCode?: string;
+  pdfUrl?: string;
+  pageCount?: number;
 }
 
 export type DocumentType = 'pdf' | 'markdown' | 'video' | 'image' | 'text';

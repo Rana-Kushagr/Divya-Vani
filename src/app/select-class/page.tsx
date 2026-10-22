@@ -13,32 +13,40 @@ import {
   Scroll, 
   ArrowRight, 
   CheckCircle2, 
-  GraduationCap, 
+  Bookmark, 
+  Check, 
   Compass,
-  Check,
-  ChevronRight
+  FileText
 } from 'lucide-react';
-import { CLASS_LEVELS, SUBJECTS, ClassLevel } from '@/lib/mockData';
-import { SubjectId } from '@/lib/types';
+import { CLASS_LEVELS, SUBJECTS } from '@/lib/mockData';
+import { SubjectId, BookmarkItem } from '@/lib/types';
+import { getNcertBookCode } from '@/lib/ncertData';
 
 export default function SelectClassPage() {
   const router = useRouter();
+  const [userName, setUserName] = useState<string>('Student');
   const [selectedClass, setSelectedClass] = useState<string>('class-9');
   const [selectedSubject, setSelectedSubject] = useState<SubjectId>('science');
-  const [isLoading, setIsLoading] = useState(false);
-  const [userName, setUserName] = useState<string>('Student');
+  const [activeBookmark, setActiveBookmark] = useState<BookmarkItem | null>(null);
 
   useEffect(() => {
     try {
-      const stored = localStorage.getItem('divyavani_user');
+      const stored = localStorage.getItem('divyavani_ncert_v4');
       if (stored) {
-        const user = JSON.parse(stored);
-        if (user.fullName) setUserName(user.fullName);
+        const state = JSON.parse(stored);
+        if (state.userName) setUserName(state.userName);
+        if (state.selectedClass) setSelectedClass(state.selectedClass);
+        if (state.selectedSubject) setSelectedSubject(state.selectedSubject);
+        if (state.bookmarks && state.bookmarks.length > 0) {
+          setActiveBookmark(state.bookmarks[0]);
+        }
+      } else {
+        const legacyUser = localStorage.getItem('divyavani_user');
+        if (legacyUser) {
+          const user = JSON.parse(legacyUser);
+          if (user.fullName) setUserName(user.fullName);
+        }
       }
-      const prevClass = localStorage.getItem('divyavani_selected_class');
-      const prevSub = localStorage.getItem('divyavani_selected_subject') as SubjectId;
-      if (prevClass) setSelectedClass(prevClass);
-      if (prevSub) setSelectedSubject(prevSub);
     } catch (e) {
       // ignore
     }
@@ -56,36 +64,37 @@ export default function SelectClassPage() {
     }
   };
 
-  const handleProceed = async () => {
-    setIsLoading(true);
+  const handleProceed = () => {
     try {
+      const stored = localStorage.getItem('divyavani_ncert_v4');
+      const existing = stored ? JSON.parse(stored) : {};
+      const updated = {
+        ...existing,
+        userName,
+        selectedClass,
+        selectedSubject,
+      };
+      localStorage.setItem('divyavani_ncert_v4', JSON.stringify(updated));
       localStorage.setItem('divyavani_selected_class', selectedClass);
       localStorage.setItem('divyavani_selected_subject', selectedSubject);
 
-      const res = await fetch('/api/user/select-class-subject', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          classLevel: selectedClass,
-          subject: selectedSubject,
-        }),
-      });
-
-      const data = await res.json();
-      if (data.redirectUrl) {
-        router.push(data.redirectUrl);
-      } else {
-        router.push(`/learn/${selectedClass}/${selectedSubject}`);
-      }
-    } catch (err) {
       router.push(`/learn/${selectedClass}/${selectedSubject}`);
-    } finally {
-      setIsLoading(false);
+    } catch (e) {
+      router.push(`/learn/${selectedClass}/${selectedSubject}`);
+    }
+  };
+
+  const handleResumeBookmark = () => {
+    if (activeBookmark) {
+      const normClass = activeBookmark.classLevel.toLowerCase().replace(/\s+/g, '-');
+      const normSub = activeBookmark.subjectCode.toLowerCase();
+      router.push(`/learn/${normClass}/${normSub}`);
     }
   };
 
   const currentClassObj = CLASS_LEVELS.find((c) => c.id === selectedClass) || CLASS_LEVELS[3];
   const currentSubjectObj = SUBJECTS.find((s) => s.id === selectedSubject) || SUBJECTS[0];
+  const activeBookCode = getNcertBookCode(selectedClass, selectedSubject);
 
   return (
     <div className="min-h-screen bg-obsidian text-alabaster flex flex-col justify-between selection:bg-royal selection:text-white">
@@ -104,29 +113,61 @@ export default function SelectClassPage() {
       </header>
 
       {/* Main Container */}
-      <main className="flex-1 max-w-5xl mx-auto w-full px-4 py-8 sm:py-12">
-        {/* Step Banner */}
-        <div className="text-center mb-8 sm:mb-10">
+      <main className="flex-1 max-w-5xl mx-auto w-full px-4 py-8 sm:py-10">
+        
+        {/* Animated Welcome Banner */}
+        <div className="text-center mb-8">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-royal/20 border border-royal/40 text-royal-light text-xs font-semibold mb-3">
             <Compass className="w-3.5 h-3.5 text-mint" />
-            <span>Targeted Learning Gateway (Gate 2 of 3)</span>
+            <span>Gate 2: NCERT Selection Gateway</span>
           </div>
-          <h1 className="text-2xl sm:text-4xl font-extrabold text-white tracking-tight">
-            Personalize Your Study Stream
+          <h1 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+            Welcome, {userName}! 👋
           </h1>
           <p className="text-sm text-zinc-400 mt-2 max-w-lg mx-auto">
-            Choose your current grade and subject to land directly into your verified syllabus repository with zero clutter.
+            Select your grade and subject to open the official NCERT textbook PDF reader and revision summary hub.
           </p>
         </div>
 
-        {/* STEP A: Which Class are you in? */}
+        {/* Smart Bookmark Resume Banner (if saved bookmark exists) */}
+        {activeBookmark && (
+          <div className="mb-8 p-4 rounded-2xl bg-amber/10 border border-amber/30 text-white flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 shadow-lg">
+            <div className="flex items-start sm:items-center gap-3">
+              <div className="w-10 h-10 rounded-xl bg-amber text-obsidian flex items-center justify-center font-bold flex-shrink-0">
+                <Bookmark className="w-5 h-5 text-white" />
+              </div>
+              <div>
+                <div className="flex items-center gap-2">
+                  <span className="font-bold text-amber-400 text-sm">Resume Where You Left Off</span>
+                  <span className="text-[10px] uppercase font-bold px-2 py-0.5 rounded bg-amber/20 text-amber-200">
+                    Saved Bookmark
+                  </span>
+                </div>
+                <p className="text-xs text-zinc-300 mt-0.5">
+                  {activeBookmark.classLevel} &bull; {activeBookmark.subjectName} &bull; Ch {activeBookmark.chapterNumber}: {activeBookmark.chapterTitle} (Page {activeBookmark.page})
+                </p>
+              </div>
+            </div>
+
+            <button
+              type="button"
+              onClick={handleResumeBookmark}
+              className="w-full sm:w-auto px-4 py-2.5 rounded-xl bg-amber hover:bg-amber-hover text-obsidian font-bold text-xs shadow-md transition-colors flex items-center justify-center gap-2"
+            >
+              <span>Resume Reading</span>
+              <ArrowRight className="w-3.5 h-3.5" />
+            </button>
+          </div>
+        )}
+
+        {/* Step 1: Select Your Class (Classes 6 to 12) */}
         <section className="mb-10">
           <div className="flex items-center justify-between mb-3">
             <h2 className="text-xs font-bold uppercase tracking-wider text-zinc-400 flex items-center gap-2">
               <span className="w-5 h-5 rounded-full bg-zinc-800 text-alabaster flex items-center justify-center text-[11px] font-mono">1</span>
-              <span>Which Class are you in?</span>
+              <span>Select Your Class</span>
             </h2>
-            <span className="text-xs text-zinc-500 font-medium">CBSE Curriculum (Grades 6–12)</span>
+            <span className="text-xs text-zinc-500 font-medium">Official NCERT Grades 6–12</span>
           </div>
 
           <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-7 gap-2.5">
@@ -169,19 +210,20 @@ export default function SelectClassPage() {
           </div>
         </section>
 
-        {/* STEP B: Select Your Subject */}
+        {/* Step 2: Select Your Subject (6 Subjects) */}
         <section className="mb-10">
           <div className="flex items-center justify-between mb-3">
             <h2 className="text-xs font-bold uppercase tracking-wider text-zinc-400 flex items-center gap-2">
               <span className="w-5 h-5 rounded-full bg-zinc-800 text-alabaster flex items-center justify-center text-[11px] font-mono">2</span>
-              <span>Select Your Core Subject</span>
+              <span>Select Your Subject</span>
             </h2>
-            <span className="text-xs text-zinc-500 font-medium">Chapter Notes & Socratic AI</span>
+            <span className="text-xs text-zinc-500 font-medium">Textbook PDFs & Summaries</span>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
             {SUBJECTS.map((sub) => {
               const isSelected = selectedSubject === sub.id;
+              const bookCode = getNcertBookCode(selectedClass, sub.id);
               return (
                 <button
                   key={sub.id}
@@ -213,16 +255,18 @@ export default function SelectClassPage() {
                       </span>
                     </div>
 
-                    <p className={`text-xs mt-1 truncate ${
-                      isSelected ? 'text-zinc-600' : 'text-zinc-400'
-                    }`}>
-                      {sub.id === 'science' && 'Motion, Laws, Gravitation & Cell'}
-                      {sub.id === 'maths' && 'Number Systems, Polynomials, Triangles'}
-                      {sub.id === 'social_science' && 'Revolutions, Maps & Contemporary India'}
-                      {sub.id === 'english' && 'Prose, Poetry & Grammar Mastery'}
-                      {sub.id === 'hindi' && 'क्षितिज, कृतिका एवं व्याकरण'}
-                      {sub.id === 'sanskrit' && 'शेमुषी, शब्दरूप एवं श्लोक अर्थ'}
-                    </p>
+                    <div className="flex items-center gap-2 mt-1.5">
+                      <span className={`text-[10px] font-mono px-1.5 py-0.5 rounded font-semibold ${
+                        isSelected ? 'bg-zinc-200 text-zinc-800' : 'bg-zinc-800 text-zinc-400'
+                      }`}>
+                        NCERT: {bookCode}
+                      </span>
+                      <span className={`text-[11px] truncate ${
+                        isSelected ? 'text-zinc-500' : 'text-zinc-400'
+                      }`}>
+                        Official Textbook PDF
+                      </span>
+                    </div>
                   </div>
 
                   {isSelected && (
@@ -246,22 +290,21 @@ export default function SelectClassPage() {
                 Ready to Enter
               </span>
               <span className="text-xs text-zinc-400">&bull;</span>
-              <span className="text-xs font-semibold text-zinc-600">
-                {currentClassObj.name} &bull; {currentSubjectObj.name} ({currentSubjectObj.hindiName})
+              <span className="text-xs font-semibold text-zinc-700">
+                {currentClassObj.name} &bull; {currentSubjectObj.name} (Code: {activeBookCode})
               </span>
             </div>
             <p className="text-xs text-zinc-500 mt-0.5">
-              Instant access to verified chapter vault, formula sheets, and 24/7 Socratic AI Tutor.
+              Opens the distraction-free NCERT textbook reader with zoom, page navigation, and chapter summaries.
             </p>
           </div>
 
           <button
             type="button"
             onClick={handleProceed}
-            disabled={isLoading}
-            className="w-full sm:w-auto px-6 py-3.5 rounded-xl bg-royal hover:bg-royal-hover text-white font-bold text-sm shadow-md transition-all flex items-center justify-center gap-2.5 group disabled:opacity-50 min-h-[48px]"
+            className="w-full sm:w-auto px-6 py-3.5 rounded-xl bg-royal hover:bg-royal-hover text-white font-bold text-sm shadow-md transition-all flex items-center justify-center gap-2.5 group min-h-[48px]"
           >
-            <span>{isLoading ? 'Entering Classroom...' : `Enter ${currentClassObj.name} ${currentSubjectObj.name} Classroom`}</span>
+            <span>Open NCERT Book PDFs</span>
             <ArrowRight className="w-4 h-4 group-hover:translate-x-1.5 transition-transform" />
           </button>
         </div>
@@ -269,7 +312,7 @@ export default function SelectClassPage() {
 
       {/* Footer */}
       <footer className="py-3 px-6 text-center text-xs text-zinc-500 border-t border-structural-dark">
-        Divyavani AI Educational Platform &bull; Conceived by Vanshika & Divyanshi (Class IX-H)
+        Divyavani AI Educational Platform &bull; Conceived by Vanshika & Divyanshi (Class IX-H) &bull; Master NCERT Reader Edition
       </footer>
     </div>
   );
