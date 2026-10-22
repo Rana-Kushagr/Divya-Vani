@@ -1,3 +1,13 @@
+export type Role = 'STUDENT' | 'TEACHER' | 'ADMIN';
+
+export type SubjectCode = 
+  | 'SCIENCE'
+  | 'MATHEMATICS'
+  | 'SOCIAL_SCIENCE'
+  | 'ENGLISH'
+  | 'HINDI'
+  | 'SANSKRIT';
+
 export type SubjectId = 
   | 'science' 
   | 'maths' 
@@ -6,8 +16,59 @@ export type SubjectId =
   | 'social_science' 
   | 'sanskrit';
 
+export interface UserProfile {
+  id: string; // UUIDv4
+  email: string;
+  fullName: string;
+  role: Role;
+  selectedClass?: string; // e.g. "class-9" or "Class 9"
+  selectedSubject?: SubjectId | SubjectCode;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface ChapterDocumentModel {
+  id: string; // UUIDv4
+  classLevel: string; // e.g. "class-9" or "Class 9"
+  subject: SubjectCode | SubjectId;
+  chapterNumber: number;
+  chapterTitle: string;
+  fileTitle: string;
+  fileUrl: string;
+  fileType: 'PDF' | 'VIDEO' | 'NOTES' | 'FORMULA';
+  pageCount?: number;
+  uploadedAt: string;
+}
+
+export interface DoubtModel {
+  id: string; // UUIDv4
+  userId: string;
+  documentId?: string;
+  queryText: string;
+  imageUrl?: string;
+  solutionSteps: Array<{
+    step: number;
+    title: string;
+    detail: string;
+    mathLatex?: string;
+  }>;
+  formulaUsed?: string;
+  finalAnswer: string;
+  isResolved: boolean;
+  createdAt: string;
+}
+
+export interface BookmarkModel {
+  id: string;
+  userId: string;
+  documentId: string;
+  pageNumber?: number;
+  createdAt: string;
+}
+
 export interface SubjectMeta {
   id: SubjectId;
+  code?: SubjectCode;
   name: string;
   hindiName: string;
   icon: string;

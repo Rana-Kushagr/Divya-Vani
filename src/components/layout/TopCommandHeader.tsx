@@ -7,117 +7,128 @@ import {
   Sparkles, 
   Mic, 
   MicOff, 
-  GraduationCap, 
-  Users, 
   History, 
-  BookMarked,
-  ShieldCheck
+  Users, 
+  ChevronRight, 
+  Compass, 
+  ShieldCheck, 
+  GraduationCap 
 } from 'lucide-react';
 import { SubjectId } from '@/lib/types';
-import { SUBJECTS, CHAPTERS } from '@/lib/mockData';
+import { SUBJECTS, CLASS_LEVELS } from '@/lib/mockData';
 
 interface TopCommandHeaderProps {
-  currentSubject: SubjectId;
-  onSubjectChange: (sub: SubjectId) => void;
-  currentChapterId: string;
-  onChapterChange: (chId: string) => void;
-  listenerActive: boolean;
-  onToggleListener: () => void;
+  currentClass?: string;
+  currentSubject?: SubjectId;
+  currentChapterTitle?: string;
+  listenerActive?: boolean;
+  onToggleListener?: () => void;
+  theme?: 'white' | 'dark';
 }
 
 export default function TopCommandHeader({
-  currentSubject,
-  onSubjectChange,
-  currentChapterId,
-  onChapterChange,
-  listenerActive,
+  currentClass = 'class-9',
+  currentSubject = 'science',
+  currentChapterTitle = 'Motion',
+  listenerActive = false,
   onToggleListener,
+  theme = 'white',
 }: TopCommandHeaderProps) {
   const pathname = usePathname();
-  const availableChapters = CHAPTERS[currentSubject] || [];
+
+  const classObj = CLASS_LEVELS.find((c) => c.id === currentClass) || { name: 'Class 9', id: 'class-9' };
+  const subjectObj = SUBJECTS.find((s) => s.id === currentSubject) || SUBJECTS[0];
+
+  const isWhite = theme === 'white';
 
   return (
-    <header className="w-full bg-obsidian border-b-1.5 border-structural-dark sticky top-0 z-50 px-4 lg:px-6 py-2.5">
+    <header className={`w-full sticky top-0 z-50 px-4 lg:px-6 py-2.5 transition-colors ${
+      isWhite 
+        ? 'bg-alabaster text-obsidian border-b border-structural-light shadow-sm' 
+        : 'bg-obsidian text-alabaster border-b-1.5 border-structural-dark'
+    }`}>
       <div className="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-3">
         
-        {/* Brand & Concept Attribution */}
+        {/* Left: Brand & Breadcrumbs */}
         <div className="flex items-center gap-3">
           <Link href="/" className="flex items-center gap-2.5 group">
-            <div className="w-9 h-9 rounded-lg bg-royal flex items-center justify-center text-white shadow-block-dark group-hover:scale-105 transition-transform">
-              <Sparkles className="w-5 h-5 text-mint" />
+            <div className="w-8 h-8 rounded-lg bg-royal flex items-center justify-center text-white shadow-md group-hover:scale-105 transition-transform">
+              <Sparkles className="w-4 h-4 text-mint" />
             </div>
-            <div>
-              <div className="flex items-center gap-2">
-                <span className="font-bold text-lg text-alabaster tracking-tight">Divyavani</span>
-                <span className="text-[10px] font-semibold uppercase tracking-wider bg-royal/40 text-royal-light border border-royal/60 px-1.5 py-0.5 rounded">
-                  Class IX-H
+            <div className="hidden sm:block">
+              <div className="flex items-center gap-1.5">
+                <span className={`font-extrabold text-base tracking-tight ${isWhite ? 'text-obsidian' : 'text-white'}`}>
+                  Divyavani
+                </span>
+                <span className="text-[10px] font-bold uppercase tracking-wider bg-royal/10 text-royal border border-royal/30 px-1.5 py-0.5 rounded">
+                  v2.0
                 </span>
               </div>
-              <p className="text-[11px] text-zinc-400 font-medium">
-                Concept: Vanshika & Divyanshi
-              </p>
             </div>
           </Link>
 
-          {/* Subject & Chapter Selectors */}
-          <div className="hidden md:flex items-center gap-2 ml-4 pl-4 border-l border-structural-dark">
-            {/* Subject Selector */}
-            <label htmlFor="subject-select" className="sr-only">Select Subject</label>
-            <select
-              id="subject-select"
-              value={currentSubject}
-              onChange={(e) => {
-                const newSub = e.target.value as SubjectId;
-                onSubjectChange(newSub);
-                const firstCh = CHAPTERS[newSub]?.[0]?.id || '';
-                onChapterChange(firstCh);
-              }}
-              className="bg-obsidian-elevated text-alabaster text-xs font-semibold px-2.5 py-1.5 rounded-md border border-structural-dark hover:border-zinc-600 focus:border-royal transition-colors cursor-pointer"
+          {/* Breadcrumbs Trail */}
+          <nav aria-label="Breadcrumb" className={`flex items-center gap-1.5 text-xs font-semibold pl-3 border-l ${
+            isWhite ? 'border-zinc-200 text-zinc-500' : 'border-structural-dark text-zinc-400'
+          }`}>
+            <Link 
+              href="/" 
+              className={`hover:text-royal transition-colors ${isWhite ? 'text-zinc-600' : 'text-zinc-400'}`}
             >
-              {SUBJECTS.map((sub) => (
-                <option key={sub.id} value={sub.id} className="bg-obsidian">
-                  {sub.name} ({sub.hindiName})
-                </option>
-              ))}
-            </select>
-
-            <span className="text-zinc-600 text-xs">/</span>
-
-            {/* Chapter Selector */}
-            <label htmlFor="chapter-select" className="sr-only">Select Chapter</label>
-            <select
-              id="chapter-select"
-              value={currentChapterId}
-              onChange={(e) => onChapterChange(e.target.value)}
-              className="bg-obsidian-elevated text-alabaster text-xs font-semibold px-2.5 py-1.5 rounded-md border border-structural-dark hover:border-zinc-600 focus:border-royal transition-colors cursor-pointer max-w-[200px] truncate"
+              Home
+            </Link>
+            <ChevronRight className="w-3.5 h-3.5 text-zinc-400" />
+            
+            <Link 
+              href="/select-class" 
+              className="px-2 py-0.5 rounded bg-zinc-100 hover:bg-zinc-200 text-zinc-800 transition-colors"
+              title="Click to change class"
             >
-              {availableChapters.map((ch) => (
-                <option key={ch.id} value={ch.id} className="bg-obsidian">
-                  Ch {ch.number}: {ch.title}
-                </option>
-              ))}
-            </select>
-          </div>
+              {classObj.name}
+            </Link>
+            
+            <ChevronRight className="w-3.5 h-3.5 text-zinc-400" />
+
+            <Link 
+              href="/select-class" 
+              className="px-2 py-0.5 rounded bg-royal/10 text-royal hover:bg-royal/20 transition-colors"
+              title="Click to change subject"
+            >
+              {subjectObj.name}
+            </Link>
+
+            {currentChapterTitle && (
+              <>
+                <ChevronRight className="w-3.5 h-3.5 text-zinc-400 hidden md:inline" />
+                <span className={`hidden md:inline font-bold truncate max-w-[180px] ${
+                  isWhite ? 'text-obsidian' : 'text-white'
+                }`}>
+                  {currentChapterTitle}
+                </span>
+              </>
+            )}
+          </nav>
         </div>
 
         {/* Center / Navigation Links */}
-        <nav className="flex items-center gap-1 sm:gap-2 text-xs font-medium">
+        <nav className="hidden lg:flex items-center gap-2 text-xs font-medium">
           <Link
-            href="/"
-            className={`px-3 py-1.5 rounded-md transition-colors ${
-              pathname === '/' 
-                ? 'bg-zinc-800 text-alabaster font-semibold' 
+            href="/select-class"
+            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-md transition-colors ${
+              isWhite 
+                ? 'text-zinc-600 hover:text-obsidian hover:bg-zinc-100' 
                 : 'text-zinc-400 hover:text-alabaster hover:bg-zinc-900'
             }`}
           >
-            Workspace
+            <Compass className="w-3.5 h-3.5 text-royal" />
+            <span>Switch Subject</span>
           </Link>
           <Link
             href="/revision"
             className={`flex items-center gap-1.5 px-3 py-1.5 rounded-md transition-colors ${
               pathname === '/revision' 
-                ? 'bg-zinc-800 text-alabaster font-semibold' 
-                : 'text-zinc-400 hover:text-alabaster hover:bg-zinc-900'
+                ? 'bg-zinc-200 text-obsidian font-bold' 
+                : isWhite ? 'text-zinc-600 hover:text-obsidian hover:bg-zinc-100' : 'text-zinc-400 hover:text-alabaster hover:bg-zinc-900'
             }`}
           >
             <History className="w-3.5 h-3.5 text-amber" />
@@ -127,8 +138,8 @@ export default function TopCommandHeader({
             href="/teacher"
             className={`flex items-center gap-1.5 px-3 py-1.5 rounded-md transition-colors ${
               pathname === '/teacher' 
-                ? 'bg-zinc-800 text-alabaster font-semibold' 
-                : 'text-zinc-400 hover:text-alabaster hover:bg-zinc-900'
+                ? 'bg-zinc-200 text-obsidian font-bold' 
+                : isWhite ? 'text-zinc-600 hover:text-obsidian hover:bg-zinc-100' : 'text-zinc-400 hover:text-alabaster hover:bg-zinc-900'
             }`}
           >
             <Users className="w-3.5 h-3.5 text-mint" />
@@ -136,41 +147,43 @@ export default function TopCommandHeader({
           </Link>
         </nav>
 
-        {/* Right Tools: Smart Lecture Listener & Security Badge */}
-        <div className="flex items-center gap-2.5">
-          {/* Smart Listener Toggle */}
-          <button
-            onClick={onToggleListener}
-            type="button"
-            className={`flex items-center gap-1.5 text-xs font-semibold px-3 py-1.5 rounded-md border transition-all ${
-              listenerActive
-                ? 'bg-mint text-obsidian border-mint font-bold shadow-[0_0_12px_rgba(16,185,129,0.35)]'
-                : 'bg-obsidian-surface text-zinc-400 border-structural-dark hover:border-zinc-600 hover:text-alabaster'
-            }`}
-            title="Classroom Smart Listener: Detects syllabus terms and offers 1-click explainers"
-          >
-            {listenerActive ? (
-              <>
-                <span className="w-2 h-2 rounded-full bg-obsidian animate-ping" />
-                <Mic className="w-3.5 h-3.5" />
-                <span>Listener Active</span>
-              </>
-            ) : (
-              <>
-                <MicOff className="w-3.5 h-3.5 text-zinc-500" />
-                <span>Lecture Listener</span>
-              </>
-            )}
-          </button>
+        {/* Right Tools: Switch Gateway & Concept badge */}
+        <div className="flex items-center gap-2">
+          {onToggleListener && (
+            <button
+              onClick={onToggleListener}
+              type="button"
+              className={`flex items-center gap-1.5 text-xs font-semibold px-2.5 py-1.5 rounded-md border transition-all ${
+                listenerActive
+                  ? 'bg-mint text-obsidian border-mint font-bold shadow-sm'
+                  : isWhite
+                    ? 'bg-white text-zinc-600 border-zinc-200 hover:bg-zinc-50'
+                    : 'bg-obsidian-surface text-zinc-400 border-structural-dark hover:border-zinc-600 hover:text-alabaster'
+              }`}
+              title="Classroom Smart Listener"
+            >
+              {listenerActive ? (
+                <>
+                  <span className="w-2 h-2 rounded-full bg-obsidian animate-ping" />
+                  <Mic className="w-3.5 h-3.5" />
+                  <span className="hidden sm:inline">Listening</span>
+                </>
+              ) : (
+                <>
+                  <MicOff className="w-3.5 h-3.5 text-zinc-400" />
+                  <span className="hidden sm:inline">Lecture Mic</span>
+                </>
+              )}
+            </button>
+          )}
 
-          {/* Privacy & Constitution Badge */}
-          <div 
-            className="hidden sm:flex items-center gap-1 text-[11px] text-zinc-400 bg-obsidian-surface px-2.5 py-1.5 rounded-md border border-structural-dark"
-            title="Constitution Hardened: OWASP Top 10, DOMPurify, Zod Guarded"
+          <Link
+            href="/select-class"
+            className="flex items-center gap-1 text-xs font-bold px-3 py-1.5 rounded-md bg-royal text-white hover:bg-royal-hover transition-colors shadow-sm"
           >
-            <ShieldCheck className="w-3.5 h-3.5 text-mint" />
-            <span>Vibecoded Shield</span>
-          </div>
+            <GraduationCap className="w-3.5 h-3.5" />
+            <span>Change Grade</span>
+          </Link>
         </div>
 
       </div>

@@ -4,14 +4,13 @@ import React, { useState, useEffect, useRef } from 'react';
 import { 
   Send, 
   Mic, 
-  MicOff, 
   Image as ImageIcon, 
   FileText, 
   Sparkles, 
   X, 
-  HelpCircle,
   Lightbulb,
-  CheckCircle2
+  CheckCircle2,
+  ScanText
 } from 'lucide-react';
 import { DoubtQuerySchema } from '@/lib/validation';
 import { SubjectId } from '@/lib/types';
@@ -40,7 +39,9 @@ export default function MultimodalDoubtComposer({
   const [isRecording, setIsRecording] = useState(false);
   const [waveformBars, setWaveformBars] = useState<number[]>([12, 24, 8, 30, 16, 28, 10, 22]);
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
+  const [selectedImageName, setSelectedImageName] = useState<string | null>(null);
   const recognitionRef = useRef<any>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     if (initialQuery) {
@@ -119,6 +120,17 @@ export default function MultimodalDoubtComposer({
     }
   };
 
+  const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    setSelectedImageName(file.name);
+    // Simulate high-speed OCR extraction
+    setTimeout(() => {
+      setQuery(`[OCR Scanned Question from ${file.name}]: Calculate the force required to impart to a car with mass 1500 kg a velocity of 30 m/s in 10 seconds starting from rest.`);
+    }, 400);
+  };
+
   const handleSubmit = (e?: React.FormEvent) => {
     if (e) e.preventDefault();
     setErrorMsg(null);
@@ -127,7 +139,7 @@ export default function MultimodalDoubtComposer({
       studentQuery: query,
       subjectId: currentSubject,
       chapterId: currentChapterId,
-      inputMode: isRecording ? 'voice' : 'text',
+      inputMode: isRecording ? 'voice' : selectedImageName ? 'image' : 'text',
       attachedTabContext: attachTabContext ? activeTabTitle : undefined,
     });
 
@@ -147,11 +159,20 @@ export default function MultimodalDoubtComposer({
   return (
     <div className="bg-obsidian-surface border-1.5 border-structural-dark rounded-xl p-4 shadow-block-dark text-alabaster">
       
+      {/* Hidden file input for Image OCR */}
+      <input
+        ref={fileInputRef}
+        type="file"
+        accept="image/*"
+        onChange={handleImageUpload}
+        className="hidden"
+      />
+
       {/* Header & Active Tab Context Chip */}
       <div className="flex flex-wrap items-center justify-between gap-2 mb-3">
         <div className="flex items-center gap-2">
           <Sparkles className="w-4 h-4 text-royal" />
-          <h3 className="font-bold text-sm text-alabaster">Ask Your Doubt Your Way</h3>
+          <h3 className="font-bold text-sm text-alabaster">Socratic AI Doubt Solver</h3>
         </div>
 
         {/* Context Attachment Chip */}
@@ -174,6 +195,23 @@ export default function MultimodalDoubtComposer({
           </button>
         )}
       </div>
+
+      {/* Image OCR Banner */}
+      {selectedImageName && (
+        <div className="mb-3 px-3 py-2 rounded-lg bg-zinc-900 border border-royal/40 flex items-center justify-between text-xs">
+          <div className="flex items-center gap-2 text-zinc-300">
+            <ScanText className="w-4 h-4 text-mint" />
+            <span>OCR Extracted: <strong>{selectedImageName}</strong></span>
+          </div>
+          <button
+            type="button"
+            onClick={() => setSelectedImageName(null)}
+            className="text-zinc-500 hover:text-white"
+          >
+            <X className="w-3.5 h-3.5" />
+          </button>
+        </div>
+      )}
 
       {/* Voice Assistant Waveform HUD (Active when recording) */}
       {isRecording && (
@@ -221,12 +259,22 @@ export default function MultimodalDoubtComposer({
               onClick={toggleRecording}
               className={`p-2 rounded-lg border transition-all ${
                 isRecording
-                  ? 'bg-mint text-obsidian border-mint font-bold'
+                  ? 'bg-mint text-obsidian border-mint font-bold shadow-sm'
                   : 'bg-obsidian border-structural-dark hover:border-zinc-600 text-zinc-400 hover:text-alabaster'
               }`}
               title="Speak your doubt (Web Speech API)"
             >
-              {isRecording ? <Mic className="w-4 h-4 animate-bounce" /> : <Mic className="w-4 h-4" />}
+              <Mic className={`w-4 h-4 ${isRecording ? 'animate-bounce' : ''}`} />
+            </button>
+
+            {/* OCR Image Upload button */}
+            <button
+              type="button"
+              onClick={() => fileInputRef.current?.click()}
+              className="p-2 rounded-lg border bg-obsidian border-structural-dark hover:border-zinc-600 text-zinc-400 hover:text-alabaster transition-colors"
+              title="Upload question photo for OCR extraction"
+            >
+              <ImageIcon className="w-4 h-4" />
             </button>
 
             {/* Quick Prompt Suggester */}

@@ -21,13 +21,43 @@ export const FileUploadSchema = z.object({
   }, 'Blocked file MIME type for security reasons'),
 });
 
+// Auth Login Schema
+export const LoginSchema = z.object({
+  authMode: z.enum(['email', 'phone', 'google']).default('email'),
+  email: z.string().email('Please enter a valid student email').optional(),
+  password: z.string().min(6, 'Password must be at least 6 characters').optional(),
+  phone: z.string().regex(/^\+?[1-9]\d{9,13}$/, 'Please enter a valid phone number').optional(),
+  otp: z.string().length(6, 'OTP must be 6 digits').optional(),
+  rememberMe: z.boolean().optional(),
+}).refine((data) => {
+  if (data.authMode === 'email') {
+    return !!data.email && !!data.password;
+  }
+  if (data.authMode === 'phone') {
+    return !!data.phone;
+  }
+  return true;
+}, {
+  message: 'Required credentials missing for selected login method',
+});
+
+// Class and Subject Selection Schema
+export const SelectClassSubjectSchema = z.object({
+  userId: z.string().optional(),
+  classLevel: z.string().min(1, 'Class selection is required'), // e.g. "class-9" or "Class 9"
+  subject: z.enum(['science', 'maths', 'english', 'hindi', 'social_science', 'sanskrit', 'SCIENCE', 'MATHEMATICS', 'SOCIAL_SCIENCE', 'ENGLISH', 'HINDI', 'SANSKRIT']),
+});
+
 // Doubt Submission Schema
 export const DoubtQuerySchema = z.object({
+  userId: z.string().optional(),
+  documentId: z.string().optional(),
   studentQuery: z.string().min(3, 'Please enter at least 3 characters for your doubt').max(1500, 'Query too long'),
-  subjectId: z.enum(['science', 'maths', 'english', 'hindi', 'social_science', 'sanskrit']),
+  subjectId: z.string().min(1, 'Subject is required'),
   chapterId: z.string().min(1, 'Chapter selection is required'),
-  inputMode: z.enum(['text', 'voice', 'image']),
+  inputMode: z.enum(['text', 'voice', 'image']).default('text'),
   attachedTabContext: z.string().max(2000).optional(),
+  imageBase64: z.string().optional(),
 });
 
 // Cookie Consent Schema
