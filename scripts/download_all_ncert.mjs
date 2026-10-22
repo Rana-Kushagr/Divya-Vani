@@ -81,7 +81,6 @@ async function fetchPdfBuffer(url) {
     if (!res.ok) {
       return null;
     }
-    const contentType = res.headers.get('content-type') || '';
     const arrayBuffer = await res.arrayBuffer();
     const buffer = Buffer.from(arrayBuffer);
 
