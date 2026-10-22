@@ -30,7 +30,8 @@ import {
   BookText,
   Copy,
   Eye,
-  EyeOff
+  EyeOff,
+  Download
 } from 'lucide-react';
 
 import { SubjectId, BookmarkItem } from '@/lib/types';
@@ -123,7 +124,7 @@ export default function LearnWorkspaceClient({ routeParams, initialModule = 'HUB
   const [testScore, setTestScore] = useState<number>(0);
 
   // ==================== Module 4: NCERT Books Reader State ====================
-  const [readerMode, setReaderMode] = useState<'INTERACTIVE' | 'LOCAL_PDF'>('INTERACTIVE');
+  const [readerMode, setReaderMode] = useState<'INTERACTIVE' | 'LOCAL_PDF'>('LOCAL_PDF');
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [zoomLevel, setZoomLevel] = useState<number>(100);
   const [readerFilter, setReaderFilter] = useState<'light' | 'sepia' | 'dark'>('light');
@@ -1735,35 +1736,50 @@ export default function LearnWorkspaceClient({ routeParams, initialModule = 'HUB
           )}
 
           {/* Local System PDF Viewer (iframe) */}
-          {readerMode === 'LOCAL_PDF' && (
-            <div className="bg-obsidian-surface border border-structural-dark rounded-2xl p-4 shadow-block-dark">
-              <div className="mb-3 flex items-center justify-between">
-                <span className="text-xs font-bold text-zinc-300">
-                  Embedding Local PDF: <code className="font-mono text-mint">{activeChapter.localPdfUrl}</code>
-                </span>
-                <a
-                  href={activeChapter.localPdfUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="px-3 py-1 rounded-lg bg-royal text-white text-xs font-bold hover:bg-royal-hover transition-colors"
-                >
-                  Direct Open &rarr;
-                </a>
-              </div>
+          {readerMode === 'LOCAL_PDF' && (() => {
+            const basePath = process.env.NEXT_PUBLIC_BASE_PATH || (typeof window !== 'undefined' && window.location.pathname.startsWith('/Divya-Vani') ? '/Divya-Vani' : '');
+            const localPdfUrl = `${basePath}/${activeChapter.localPdfUrl}`;
+            return (
+              <div className="bg-obsidian-surface border border-structural-dark rounded-2xl p-4 shadow-block-dark">
+                <div className="mb-4 flex items-center justify-between flex-wrap gap-2">
+                  <span className="text-xs font-bold text-zinc-300">
+                    Official NCERT PDF: <code className="font-mono text-mint">/{activeChapter.localPdfUrl}</code>
+                  </span>
+                  <div className="flex items-center gap-2">
+                    <a
+                      href={localPdfUrl}
+                      download={`NCERT_${currentClass}_${currentSubject}_Ch${activeChapter.number}.pdf`}
+                      className="px-3.5 py-1.5 rounded-xl bg-royal text-white text-xs font-bold hover:bg-royal-hover transition-colors flex items-center gap-1.5 shadow-sm"
+                    >
+                      <Download className="w-3.5 h-3.5" />
+                      <span>Download Book PDF</span>
+                    </a>
+                    <a
+                      href={localPdfUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="px-3 py-1.5 rounded-xl bg-obsidian-elevated text-zinc-300 border border-structural-dark text-xs font-bold hover:text-white transition-colors flex items-center gap-1"
+                    >
+                      <span>Direct Open</span>
+                      <ExternalLink className="w-3.5 h-3.5" />
+                    </a>
+                  </div>
+                </div>
 
-              <div className="w-full h-[650px] bg-zinc-900 rounded-xl overflow-hidden border border-structural-dark">
-                <iframe
-                  src={activeChapter.localPdfUrl}
-                  className="w-full h-full"
-                  title={`NCERT Ch ${activeChapter.number} PDF`}
-                />
-              </div>
+                <div className="w-full h-[800px] bg-zinc-900 rounded-2xl overflow-hidden border border-structural-dark shadow-lg">
+                  <iframe
+                    src={localPdfUrl}
+                    className="w-full h-[800px] border-0 rounded-2xl shadow-lg"
+                    title={`NCERT Class ${currentClass} ${currentSubject} Ch ${activeChapter.number} PDF`}
+                  />
+                </div>
 
-              <p className="text-[11px] text-zinc-400 mt-2 text-center">
-                Downloaded into repository at <code className="text-zinc-300 font-mono">public/{activeChapter.localPdfUrl}</code> via official NCERT downloader.
-              </p>
-            </div>
-          )}
+                <p className="text-[11px] text-zinc-400 mt-3 text-center">
+                  Official authentic textbook PDF loaded directly from repository archive with zero CORS restrictions.
+                </p>
+              </div>
+            );
+          })()}
 
         </main>
       )}

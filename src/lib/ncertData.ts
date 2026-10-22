@@ -14,16 +14,16 @@ export function getNcertPdfUrl(bookCode: string, chapterNumber: number): string 
   return `https://ncert.nic.in/textbook/pdf/${bookCode}${chFormatted}.pdf`;
 }
 
-export function getLocalNcertPdfUrl(classLevel: string, subject: SubjectId, bookCode: string, chapterNumber: number): string {
+export function getLocalNcertPdfUrl(classLevel: string, subject: SubjectId, _bookCode: string, chapterNumber: number): string {
   const normClass = classLevel.toLowerCase().replace(/\s+/g, '-');
   const chFormatted = String(chapterNumber).padStart(2, '0');
   let subFolder: string = subject;
   if (subject === 'maths') {
-    subFolder = 'mathematics';
+    subFolder = 'maths';
   } else if (subject === 'social_science') {
     subFolder = 'social-science';
   }
-  return `ncert-pdfs/${normClass}/${subFolder}/${bookCode}${chFormatted}.pdf`;
+  return `books/${normClass}/${subFolder}/ch-${chFormatted}.pdf`;
 }
 
 // Interfaces for 6 Core Modules
