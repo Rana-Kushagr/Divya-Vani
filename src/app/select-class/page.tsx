@@ -12,11 +12,11 @@ import {
   Languages, 
   Scroll, 
   ArrowRight, 
-  CheckCircle2, 
   Bookmark, 
   Check, 
   Compass,
-  FileText
+  User,
+  Home
 } from 'lucide-react';
 import { CLASS_LEVELS, SUBJECTS } from '@/lib/mockData';
 import { SubjectId, BookmarkItem } from '@/lib/types';
@@ -78,9 +78,9 @@ export default function SelectClassPage() {
       localStorage.setItem('divyavani_selected_class', selectedClass);
       localStorage.setItem('divyavani_selected_subject', selectedSubject);
 
-      router.push(`/learn/${selectedClass}/${selectedSubject}`);
+      router.push(`/learn/${selectedClass}/${selectedSubject}?module=HUB`);
     } catch (e) {
-      router.push(`/learn/${selectedClass}/${selectedSubject}`);
+      router.push(`/learn/${selectedClass}/${selectedSubject}?module=HUB`);
     }
   };
 
@@ -98,17 +98,38 @@ export default function SelectClassPage() {
 
   return (
     <div className="min-h-screen bg-obsidian text-alabaster flex flex-col justify-between selection:bg-royal selection:text-white">
-      {/* Header */}
-      <header className="px-6 py-4 flex items-center justify-between border-b border-structural-dark bg-obsidian sticky top-0 z-20">
+      {/* Header with Universal Interlink Bar */}
+      <header className="px-4 sm:px-6 py-3.5 flex items-center justify-between border-b border-structural-dark bg-obsidian sticky top-0 z-20">
         <Link href="/" className="flex items-center gap-2.5">
           <div className="w-8 h-8 rounded-lg bg-royal flex items-center justify-center text-white shadow-block-dark">
             <Sparkles className="w-4 h-4 text-mint" />
           </div>
           <span className="font-bold text-base tracking-tight text-white">Divyavani</span>
         </Link>
-        <div className="flex items-center gap-2 text-xs text-zinc-400">
-          <span>Student:</span>
-          <span className="text-zinc-200 font-semibold">{userName}</span>
+
+        {/* 2-Way Navigation & Profile Interlinks */}
+        <div className="flex items-center gap-2">
+          <Link
+            href="/login"
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-obsidian-surface hover:bg-obsidian-elevated text-zinc-300 hover:text-white border border-structural-dark text-xs font-semibold transition-colors"
+          >
+            <User className="w-3.5 h-3.5 text-zinc-400" />
+            <span>&larr; Change Name</span>
+          </Link>
+
+          <button
+            type="button"
+            onClick={handleProceed}
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-royal/20 hover:bg-royal/35 text-royal-light border border-royal/40 text-xs font-bold transition-colors"
+          >
+            <Home className="w-3.5 h-3.5 text-mint" />
+            <span>🏠 Go to Main Web Hub &rarr;</span>
+          </button>
+
+          <div className="hidden sm:flex items-center gap-1.5 text-xs text-zinc-400 border-l border-structural-dark pl-2.5 ml-1">
+            <span>Student:</span>
+            <span className="text-zinc-200 font-bold">{userName}</span>
+          </div>
         </div>
       </header>
 
@@ -119,13 +140,13 @@ export default function SelectClassPage() {
         <div className="text-center mb-8">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-royal/20 border border-royal/40 text-royal-light text-xs font-semibold mb-3">
             <Compass className="w-3.5 h-3.5 text-mint" />
-            <span>Gate 2: NCERT Selection Gateway</span>
+            <span>Stage 2: Class &amp; Subject Gateway</span>
           </div>
           <h1 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
             Welcome, {userName}! 👋
           </h1>
           <p className="text-sm text-zinc-400 mt-2 max-w-lg mx-auto">
-            Select your grade and subject to open the official NCERT textbook PDF reader and revision summary hub.
+            Select your grade and subject to unlock all 6 core study modules: Questions, Revision Sheet, Test, NCERT Books, Notes, and Summary.
           </p>
         </div>
 
@@ -217,7 +238,7 @@ export default function SelectClassPage() {
               <span className="w-5 h-5 rounded-full bg-zinc-800 text-alabaster flex items-center justify-center text-[11px] font-mono">2</span>
               <span>Select Your Subject</span>
             </h2>
-            <span className="text-xs text-zinc-500 font-medium">Textbook PDFs & Summaries</span>
+            <span className="text-xs text-zinc-500 font-medium">Textbook PDFs &amp; 6-Hub Modules</span>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
@@ -248,7 +269,7 @@ export default function SelectClassPage() {
                       }`}>
                         {sub.name}
                       </span>
-                      <span className={`text-xs font-medium ${
+                      <span className={`text-xs font-medium font-devanagari ${
                         isSelected ? 'text-royal' : 'text-zinc-400'
                       }`}>
                         {sub.hindiName}
@@ -264,7 +285,7 @@ export default function SelectClassPage() {
                       <span className={`text-[11px] truncate ${
                         isSelected ? 'text-zinc-500' : 'text-zinc-400'
                       }`}>
-                        Official Textbook PDF
+                        6 Core Study Hubs
                       </span>
                     </div>
                   </div>
@@ -295,7 +316,7 @@ export default function SelectClassPage() {
               </span>
             </div>
             <p className="text-xs text-zinc-500 mt-0.5">
-              Opens the distraction-free NCERT textbook reader with zoom, page navigation, and chapter summaries.
+              Opens the complete 6-Hub study space with chapter questions, revision sheets, test, book reader, notes, and summary.
             </p>
           </div>
 
@@ -304,7 +325,7 @@ export default function SelectClassPage() {
             onClick={handleProceed}
             className="w-full sm:w-auto px-6 py-3.5 rounded-xl bg-royal hover:bg-royal-hover text-white font-bold text-sm shadow-md transition-all flex items-center justify-center gap-2.5 group min-h-[48px]"
           >
-            <span>Open NCERT Book PDFs</span>
+            <span>🚀 Enter Main Web Hub &rarr;</span>
             <ArrowRight className="w-4 h-4 group-hover:translate-x-1.5 transition-transform" />
           </button>
         </div>
@@ -312,7 +333,7 @@ export default function SelectClassPage() {
 
       {/* Footer */}
       <footer className="py-3 px-6 text-center text-xs text-zinc-500 border-t border-structural-dark">
-        Divyavani AI Educational Platform &bull; Conceived by Vanshika & Divyanshi (Class IX-H) &bull; Master NCERT Reader Edition
+        Divyavani AI Educational Platform &bull; Conceived by Vanshika &amp; Divyanshi (Class IX-H) &bull; Master 6-Hub Edition
       </footer>
     </div>
   );

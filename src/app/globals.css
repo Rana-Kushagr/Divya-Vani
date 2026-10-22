@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Outfit:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Noto+Sans+Devanagari:wght@400;500;600;700;800&family=Outfit:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap');
 @import 'katex/dist/katex.min.css';
 
 @tailwind base;
@@ -27,6 +27,10 @@
     outline: none !important;
     box-shadow: 0 0 0 2px #6D28D9, 0 0 0 4px rgba(109, 40, 217, 0.4) !important;
   }
+}
+
+.font-devanagari, .font-hindi {
+  font-family: 'Noto Sans Devanagari', 'Inter', system-ui, sans-serif;
 }
 
 /* Custom Scrollbars */

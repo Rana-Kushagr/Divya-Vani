@@ -159,7 +159,7 @@ export default function LoginPage() {
                 Quick Select:
               </span>
               <div className="flex items-center gap-1.5 flex-wrap">
-                {['Aarav', 'Vanshika', 'Divyanshi', 'Kushagr', 'Ananya'].map((n) => (
+                {['Aarav', 'Vanshika', 'Divyanshi', 'Kushagr', 'Ananya', 'Rohan'].map((n) => (
                   <button
                     key={n}
                     type="button"
@@ -176,7 +176,7 @@ export default function LoginPage() {
               type="submit"
               className="w-full py-3.5 px-4 rounded-xl bg-royal hover:bg-royal-hover text-white font-bold text-sm shadow-md transition-all flex items-center justify-center gap-2 group mt-2"
             >
-              <span>Continue to Website</span>
+              <span>Continue to Select Class &amp; Subject &rarr;</span>
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1.5 transition-transform" />
             </button>
           </form>
