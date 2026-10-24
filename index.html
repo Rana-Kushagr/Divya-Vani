@@ -43,7 +43,7 @@
             box-shadow: 0 8px 0px #09090B;
         }
         .block-card-hover {
-            transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s cubic-bezier(0.16, 1, 0.3, 1);
         }
         .block-card-hover:hover {
             transform: translateY(-4px);
@@ -145,7 +145,7 @@
 
                 <!-- Class Selection (Classes 6 through 12) -->
                 <div class="mb-8">
-                    <label class="block text-xs font-outfit font-extrabold uppercase tracking-wider text-zinc-500 mb-3">1. Select Your Class (Grades 6 &ndash; 12)</label>
+                    <span class="block text-xs font-outfit font-extrabold uppercase tracking-wider text-zinc-500 mb-3">1. Select Your Class (Grades 6 &ndash; 12)</span>
                     <div class="grid grid-cols-4 sm:grid-cols-7 gap-2.5" id="classSelectorGrid">
                         <button type="button" onclick="selectClass('class-6')" class="class-btn p-3 rounded-xl font-outfit font-bold text-sm border-2 border-zinc-200 hover:border-indigo-600 bg-zinc-50 text-zinc-700 transition cursor-pointer" data-class="class-6">Class 6</button>
                         <button type="button" onclick="selectClass('class-7')" class="class-btn p-3 rounded-xl font-outfit font-bold text-sm border-2 border-zinc-200 hover:border-indigo-600 bg-zinc-50 text-zinc-700 transition cursor-pointer" data-class="class-7">Class 7</button>
@@ -159,7 +159,7 @@
 
                 <!-- Subject Selection (5 Core NCERT Subjects) -->
                 <div class="mb-10">
-                    <label class="block text-xs font-outfit font-extrabold uppercase tracking-wider text-zinc-500 mb-3">2. Select Your Subject</label>
+                    <span class="block text-xs font-outfit font-extrabold uppercase tracking-wider text-zinc-500 mb-3">2. Select Your Subject</span>
                     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3" id="subjectSelectorGrid">
                         <button type="button" onclick="selectSubject('science')" class="subject-btn p-4 rounded-xl font-outfit font-bold text-sm border-2 border-zinc-200 hover:border-indigo-600 bg-zinc-50 text-zinc-700 text-left transition flex items-center justify-between cursor-pointer" data-subject="science">
                             <span>🧪 Science</span> <span class="text-xs text-zinc-400">Physics/Bio/Chem</span>

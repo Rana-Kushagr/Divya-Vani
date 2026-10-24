@@ -537,7 +537,7 @@ This is the position-time relation.`,
       `Differentiate Scalar vs Vector: Distance and speed are scalars; displacement, velocity, and acceleration are vectors.`,
       String.raw`Interpret Graphical Areas & Slopes: Slope of v-t curve gives acceleration ($a = \Delta v / \Delta t$); area under v-t curve gives displacement.`,
       String.raw`Master the Big Three Equations: $v = u + at$, $s = ut + \frac{1}{2}at^2$, and $2as = v^2 - u^2$ (valid strictly for uniform acceleration).`,
-      String.raw`Understand Circular Motion Invariance: Uniform speed in a circle still constitutes accelerated motion due to continuous direction changes ($a_c = v^2 / r$).`,
+      `Understand Circular Motion Invariance: Uniform speed in a circle still constitutes accelerated motion due to continuous direction changes ($a_c = v^2 / r$).`,
     ],
   };
 

@@ -30,26 +30,23 @@ export default function SelectClassPage() {
   const [activeBookmark, setActiveBookmark] = useState<BookmarkItem | null>(null);
 
   useEffect(() => {
-    try {
-      const stored = localStorage.getItem('divyavani_ncert_v4');
-      if (stored) {
-        const state = JSON.parse(stored);
-        if (state.userName) setUserName(state.userName);
-        if (state.selectedClass) setSelectedClass(state.selectedClass);
-        if (state.selectedSubject) setSelectedSubject(state.selectedSubject);
-        if (state.bookmarks && state.bookmarks.length > 0) {
-          setActiveBookmark(state.bookmarks[0]);
-        }
-      } else {
-        const legacyUser = localStorage.getItem('divyavani_user');
-        if (legacyUser) {
-          const user = JSON.parse(legacyUser);
-          if (user.fullName) setUserName(user.fullName);
-        }
+    const parseUserState = () => {
+      try {
+        const stored = localStorage.getItem('divyavani_ncert_v4');
+        if (stored) return JSON.parse(stored);
+        const legacy = localStorage.getItem('divyavani_user');
+        return legacy ? { userName: JSON.parse(legacy).fullName } : null;
+      } catch {
+        return null;
       }
-    } catch (e) {
-      // ignore
-    }
+    };
+
+    const state = parseUserState();
+    if (!state) return;
+    if (state.userName) setUserName(state.userName);
+    if (state.selectedClass) setSelectedClass(state.selectedClass);
+    if (state.selectedSubject) setSelectedSubject(state.selectedSubject);
+    if (state.bookmarks?.[0]) setActiveBookmark(state.bookmarks[0]);
   }, []);
 
   const handleSubjectIcon = (id: SubjectId) => {

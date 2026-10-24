@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { Sparkles, Loader2, BookOpen } from 'lucide-react';
+import { Loader2, BookOpen } from 'lucide-react';
 
 export default function RootPage() {
   const router = useRouter();

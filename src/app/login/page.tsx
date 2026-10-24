@@ -148,7 +148,6 @@ export default function LoginPage() {
                   onChange={(e) => setName(e.target.value)}
                   placeholder="Enter your name (e.g. Aarav, Vanshika)"
                   className="w-full pl-10 pr-3 py-3 rounded-xl border border-zinc-300 text-sm font-medium text-obsidian focus:border-royal focus:ring-2 focus:ring-royal/20 transition-all outline-none"
-                  autoFocus
                 />
               </div>
             </div>
