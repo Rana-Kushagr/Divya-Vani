@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Noto+Sans+Devanagari:wght@400;500;600;700;800&family=Outfit:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Noto+Sans+Devanagari:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;0,800;0,900;1,600;1,700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
 @import 'katex/dist/katex.min.css';
 
 @tailwind base;
@@ -9,65 +9,59 @@
   :root {
     --obsidian: #09090B;
     --alabaster: #FFFFFF;
-    --royal: #6D28D9;
-    --mint: #10B981;
-    --amber: #F59E0B;
+    --zinc-soft: #F4F4F5;
+    --zinc-border: #E4E4E7;
   }
 
   body {
-    background-color: #09090B;
-    color: #FAFAFA;
-    font-family: 'Plus Jakarta Sans', 'Inter', system-ui, -apple-system, sans-serif;
+    background-color: #FFFFFF;
+    color: #09090B;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     -webkit-font-smoothing: antialiased;
     overflow-x: hidden;
   }
 
-  /* Keyboard Navigation WCAG 2.1 AA Compliant Focus Rings */
+  /* Accessibility Compliant Focus Rings */
   *:focus-visible {
     outline: none !important;
-    box-shadow: 0 0 0 2px #6D28D9, 0 0 0 4px rgba(109, 40, 217, 0.4) !important;
+    box-shadow: 0 0 0 2px #09090B, 0 0 0 4px rgba(9, 9, 11, 0.2) !important;
   }
+}
+
+.font-serif {
+  font-family: 'Playfair Display', Georgia, serif;
 }
 
 .font-devanagari, .font-hindi {
   font-family: 'Noto Sans Devanagari', 'Inter', system-ui, sans-serif;
 }
 
-/* Custom Scrollbars */
+/* Subtle Monochrome Scrollbars */
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #121215;
+  background: #FAFAFA;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #27272A;
+  background: #D4D4D8;
   border-radius: 9999px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #3F3F46;
+  background: #A1A1AA;
 }
 
-/* Print Optimization for Revision Cheat Sheet */
+/* Print Optimization */
 @media print {
   body {
-    background-color: #ffffff !important;
+    background-color: #FFFFFF !important;
     color: #000000 !important;
   }
-  
-  header, footer, .no-print, .floating-bubble, .cookie-banner, .command-rail {
+  .no-print {
     display: none !important;
-  }
-  
-  .print-page {
-    width: 100% !important;
-    margin: 0 !important;
-    padding: 16px !important;
-    box-shadow: none !important;
-    border: none !important;
   }
 }

@@ -14,16 +14,32 @@ export function getNcertPdfUrl(bookCode: string, chapterNumber: number): string 
   return `https://ncert.nic.in/textbook/pdf/${bookCode}${chFormatted}.pdf`;
 }
 
-export function getLocalNcertPdfUrl(classLevel: string, subject: SubjectId, _bookCode: string, chapterNumber: number): string {
-  const normClass = classLevel.toLowerCase().replace(/\s+/g, '-');
+export function getLocalNcertPdfUrl(
+  classLevel: string | number,
+  subject: string,
+  _bookCode?: string,
+  chapterNumber: number = 1
+): string {
+  const rawClass = String(classLevel).trim().toLowerCase().replace(/\s+/g, '-');
+  const normClass = rawClass.startsWith('class-')
+    ? rawClass
+    : `class-${rawClass.replace(/^class/, '')}`;
   const chFormatted = String(chapterNumber).padStart(2, '0');
-  let subFolder: string = subject;
-  if (subject === 'maths') {
+
+  const normSub = String(subject).trim().toLowerCase().replace(/_/g, '-');
+  let subFolder = normSub;
+  if (normSub === 'mathematics' || normSub === 'math' || normSub === 'maths') {
     subFolder = 'maths';
-  } else if (subject === 'social_science') {
+  } else if (normSub === 'social-science' || normSub === 'sst') {
     subFolder = 'social-science';
   }
-  return `books/${normClass}/${subFolder}/ch-${chFormatted}.pdf`;
+
+  const basePath =
+    typeof window !== 'undefined' && window.location.pathname.startsWith('/Divya-Vani')
+      ? '/Divya-Vani'
+      : process.env.NEXT_PUBLIC_BASE_PATH || '';
+
+  return `${basePath}/books/${normClass}/${subFolder}/ch-${chFormatted}.pdf`;
 }
 
 // Interfaces for 6 Core Modules

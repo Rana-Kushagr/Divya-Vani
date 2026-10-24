@@ -41,6 +41,7 @@ const config: Config = {
       },
       fontFamily: {
         sans: ['Plus Jakarta Sans', 'Inter', 'system-ui', 'sans-serif'],
+        serif: ['Playfair Display', 'Georgia', 'serif'],
         heading: ['Plus Jakarta Sans', 'Space Grotesk', 'sans-serif'],
         grotesk: ['Space Grotesk', 'sans-serif'],
         outfit: ['Outfit', 'sans-serif'],

@@ -2,7 +2,8 @@
 
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { Loader2, BookOpen } from 'lucide-react';
+import { Loader2 } from 'lucide-react';
+import DivyaVaniLogo from '@/components/layout/DivyaVaniLogo';
 
 export default function RootPage() {
   const router = useRouter();
@@ -34,23 +35,19 @@ export default function RootPage() {
         return;
       }
 
-      // Default: Direct to Gate 1 (Name-Only Entry Screen)
+      // Default: Direct to Login
       setStatusText('Directing to Name Entry...');
       router.replace('/login');
-    } catch (e) {
+    } catch {
       router.replace('/login');
     }
   }, [router]);
 
   return (
-    <div className="min-h-screen bg-obsidian text-alabaster flex flex-col items-center justify-center p-4">
-      <div className="w-12 h-12 rounded-2xl bg-royal flex items-center justify-center text-white mb-4 shadow-lg animate-bounce">
-        <BookOpen className="w-6 h-6 text-mint" />
-      </div>
-      <h2 className="text-xl font-bold tracking-tight text-white mb-2">Divyavani</h2>
-      <p className="text-xs text-zinc-400 mb-3">Official NCERT Textbook Reader & Summary Hub</p>
-      <div className="flex items-center gap-2 text-xs text-zinc-400">
-        <Loader2 className="w-4 h-4 animate-spin text-royal" />
+    <div className="min-h-screen bg-white text-zinc-900 flex flex-col items-center justify-center p-4">
+      <DivyaVaniLogo size="lg" showSubtitle={true} className="mb-4" />
+      <div className="flex items-center gap-2 text-xs text-zinc-500 mt-4">
+        <Loader2 className="w-4 h-4 animate-spin text-zinc-800" />
         <span>{statusText}</span>
       </div>
     </div>
