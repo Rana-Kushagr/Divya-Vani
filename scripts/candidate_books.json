@@ -1,0 +1,3970 @@
+[
+  {
+    "class": "class-6",
+    "subject": "english",
+    "category": "English",
+    "title": "..Select Book Title..",
+    "code": "fepr1",
+    "chs": 5
+  },
+  {
+    "class": "class-6",
+    "subject": "english",
+    "category": "English",
+    "title": "Honeysuckle",
+    "code": "fehl1",
+    "chs": 8
+  },
+  {
+    "class": "class-6",
+    "subject": "english",
+    "category": "English",
+    "title": "A Pact With The Sun",
+    "code": "fepw1",
+    "chs": 7
+  },
+  {
+    "class": "class-6",
+    "subject": "hindi",
+    "category": "Hindi",
+    "title": "..Select Book Title..",
+    "code": "fhml1",
+    "chs": 13
+  },
+  {
+    "class": "class-6",
+    "subject": "hindi",
+    "category": "Hindi",
+    "title": "Vasant",
+    "code": "fhvs1",
+    "chs": 14
+  },
+  {
+    "class": "class-6",
+    "subject": "hindi",
+    "category": "Hindi",
+    "title": "Durva",
+    "code": "fhdv1",
+    "chs": 28
+  },
+  {
+    "class": "class-6",
+    "subject": "hindi",
+    "category": "Hindi",
+    "title": "Bal Ram Katha",
+    "code": "fhbr1",
+    "chs": 12
+  },
+  {
+    "class": "class-6",
+    "subject": "maths",
+    "category": "Mathematics",
+    "title": "..Select Book Title..",
+    "code": "fegp1",
+    "chs": 10
+  },
+  {
+    "class": "class-6",
+    "subject": "maths",
+    "category": "Mathematics",
+    "title": "Ganita Prakash (Hindi)",
+    "code": "fhgp1",
+    "chs": 10
+  },
+  {
+    "class": "class-6",
+    "subject": "maths",
+    "category": "Mathematics",
+    "title": "Ganita Prakash (Odia)",
+    "code": "forgp1",
+    "chs": 10
+  },
+  {
+    "class": "class-6",
+    "subject": "maths",
+    "category": "Mathematics",
+    "title": "Ganita Prakash (Bodo)",
+    "code": "fbdgp1",
+    "chs": 10
+  },
+  {
+    "class": "class-6",
+    "subject": "maths",
+    "category": "Mathematics",
+    "title": "Ganita Prakash (Malayalam)",
+    "code": "fmlgp1",
+    "chs": 10
+  },
+  {
+    "class": "class-6",
+    "subject": "maths",
+    "category": "Mathematics",
+    "title": "Ganita Prakash (Punjabi)",
+    "code": "fpngp1",
+    "chs": 10
+  },
+  {
+    "class": "class-6",
+    "subject": "maths",
+    "category": "Mathematics",
+    "title": "Ganita Prakash (Sanskrit)",
+    "code": "fskgp1",
+    "chs": 10
+  },
+  {
+    "class": "class-6",
+    "subject": "maths",
+    "category": "Mathematics",
+    "title": "Ganita Prakash (Kannada)",
+    "code": "fkngp1",
+    "chs": 10
+  },
+  {
+    "class": "class-6",
+    "subject": "maths",
+    "category": "Mathematics",
+    "title": "Ganita Prakash (Tamil)",
+    "code": "ftmgp1",
+    "chs": 10
+  },
+  {
+    "class": "class-6",
+    "subject": "maths",
+    "category": "Mathematics",
+    "title": "Ganita Prakash (Marathi)",
+    "code": "fmrgp1",
+    "chs": 10
+  },
+  {
+    "class": "class-6",
+    "subject": "maths",
+    "category": "Mathematics",
+    "title": "Ganita Prakash (Telugu)",
+    "code": "ftlgp1",
+    "chs": 10
+  },
+  {
+    "class": "class-6",
+    "subject": "maths",
+    "category": "Mathematics",
+    "title": "Ganita Prakash (Maithili)",
+    "code": "fmtgp1",
+    "chs": 10
+  },
+  {
+    "class": "class-6",
+    "subject": "maths",
+    "category": "Mathematics",
+    "title": "Ganita Prakash (Dogri)",
+    "code": "fdggp1",
+    "chs": 10
+  },
+  {
+    "class": "class-6",
+    "subject": "maths",
+    "category": "Mathematics",
+    "title": "Ganita Prakash (Nepali)",
+    "code": "fnpgp1",
+    "chs": 10
+  },
+  {
+    "class": "class-6",
+    "subject": "maths",
+    "category": "Mathematics",
+    "title": "Ganita Prakash (Assamese)",
+    "code": "fasgp1",
+    "chs": 10
+  },
+  {
+    "class": "class-6",
+    "subject": "maths",
+    "category": "Mathematics",
+    "title": "Ganita Prakash (Gujarati)",
+    "code": "fgjgp1",
+    "chs": 10
+  },
+  {
+    "class": "class-6",
+    "subject": "maths",
+    "category": "Mathematics",
+    "title": "Ganita Prakash (Manipuri)",
+    "code": "fmngp1",
+    "chs": 10
+  },
+  {
+    "class": "class-6",
+    "subject": "maths",
+    "category": "Mathematics",
+    "title": "Ganita Prakash (Konkani)",
+    "code": "fkogp1",
+    "chs": 10
+  },
+  {
+    "class": "class-6",
+    "subject": "maths",
+    "category": "Mathematics",
+    "title": "Ganita Prakash (Santhali)",
+    "code": "fsngp1",
+    "chs": 10
+  },
+  {
+    "class": "class-6",
+    "subject": "maths",
+    "category": "Mathematics",
+    "title": "Ganita Prakash (Sindhi)",
+    "code": "fsigp1",
+    "chs": 10
+  },
+  {
+    "class": "class-6",
+    "subject": "maths",
+    "category": "Mathematics",
+    "title": "Ganita Prakash (Kashmiri)",
+    "code": "fksgp1",
+    "chs": 10
+  },
+  {
+    "class": "class-6",
+    "subject": "maths",
+    "category": "Mathematics",
+    "title": "Exemplar Problem(English)",
+    "code": "feep1",
+    "chs": 9
+  },
+  {
+    "class": "class-6",
+    "subject": "maths",
+    "category": "Mathematics",
+    "title": "Exemplar Problem(Hindi)",
+    "code": "fhep1",
+    "chs": 9
+  },
+  {
+    "class": "class-6",
+    "subject": "science",
+    "category": "Science",
+    "title": "..Select Book Title..",
+    "code": "fecu1",
+    "chs": 12
+  },
+  {
+    "class": "class-6",
+    "subject": "science",
+    "category": "Science",
+    "title": "Jigyasa",
+    "code": "fhcu1",
+    "chs": 12
+  },
+  {
+    "class": "class-6",
+    "subject": "science",
+    "category": "Science",
+    "title": "Curiosity (Malayalam)",
+    "code": "fmlcu1",
+    "chs": 12
+  },
+  {
+    "class": "class-6",
+    "subject": "science",
+    "category": "Science",
+    "title": "Curiosity (Tamil)",
+    "code": "ftmcu1",
+    "chs": 12
+  },
+  {
+    "class": "class-6",
+    "subject": "science",
+    "category": "Science",
+    "title": "Curiosity (Kannada)",
+    "code": "fkncu1",
+    "chs": 12
+  },
+  {
+    "class": "class-6",
+    "subject": "science",
+    "category": "Science",
+    "title": "Curiosity (Maithili)",
+    "code": "fmtcu1",
+    "chs": 12
+  },
+  {
+    "class": "class-6",
+    "subject": "science",
+    "category": "Science",
+    "title": "Curiosity (Punjabi)",
+    "code": "fpncu1",
+    "chs": 12
+  },
+  {
+    "class": "class-6",
+    "subject": "science",
+    "category": "Science",
+    "title": "Curiosity (Odia)",
+    "code": "forcu1",
+    "chs": 12
+  },
+  {
+    "class": "class-6",
+    "subject": "science",
+    "category": "Science",
+    "title": "Curiosity (Konkani)",
+    "code": "fkocu1",
+    "chs": 12
+  },
+  {
+    "class": "class-6",
+    "subject": "science",
+    "category": "Science",
+    "title": "Curiosity (Manipuri)",
+    "code": "fmncu1",
+    "chs": 12
+  },
+  {
+    "class": "class-6",
+    "subject": "science",
+    "category": "Science",
+    "title": "Curiosity (Nepali)",
+    "code": "fnpcu1",
+    "chs": 12
+  },
+  {
+    "class": "class-6",
+    "subject": "science",
+    "category": "Science",
+    "title": "Curiosity (Sanskrit)",
+    "code": "fskcu1",
+    "chs": 12
+  },
+  {
+    "class": "class-6",
+    "subject": "science",
+    "category": "Science",
+    "title": "Curiosity (Telugu)",
+    "code": "ftlcu1",
+    "chs": 12
+  },
+  {
+    "class": "class-6",
+    "subject": "science",
+    "category": "Science",
+    "title": "Curiosity (Assamese)",
+    "code": "fascu1",
+    "chs": 12
+  },
+  {
+    "class": "class-6",
+    "subject": "science",
+    "category": "Science",
+    "title": "Curiosity (Marathi)",
+    "code": "fmrcu1",
+    "chs": 12
+  },
+  {
+    "class": "class-6",
+    "subject": "science",
+    "category": "Science",
+    "title": "Curiosity (Bodo)",
+    "code": "fbdcu1",
+    "chs": 12
+  },
+  {
+    "class": "class-6",
+    "subject": "science",
+    "category": "Science",
+    "title": "Curiosity (Dogri)",
+    "code": "fdgcu1",
+    "chs": 12
+  },
+  {
+    "class": "class-6",
+    "subject": "science",
+    "category": "Science",
+    "title": "Curiosity (Gujarati)",
+    "code": "fgjcu1",
+    "chs": 12
+  },
+  {
+    "class": "class-6",
+    "subject": "science",
+    "category": "Science",
+    "title": "Curiosity (Santhali)",
+    "code": "fsncu1",
+    "chs": 12
+  },
+  {
+    "class": "class-6",
+    "subject": "science",
+    "category": "Science",
+    "title": "Curiosity (Kashmiri)",
+    "code": "fkscu1",
+    "chs": 12
+  },
+  {
+    "class": "class-6",
+    "subject": "science",
+    "category": "Science",
+    "title": "Curiosity (Sindhi)",
+    "code": "fsicu1",
+    "chs": 12
+  },
+  {
+    "class": "class-6",
+    "subject": "science",
+    "category": "Science",
+    "title": "Vigyan",
+    "code": "fhsc1",
+    "chs": 11
+  },
+  {
+    "class": "class-6",
+    "subject": "science",
+    "category": "Science",
+    "title": "Science",
+    "code": "fesc1",
+    "chs": 11
+  },
+  {
+    "class": "class-6",
+    "subject": "science",
+    "category": "Science",
+    "title": "Exemplar Problem",
+    "code": "feep2",
+    "chs": 16
+  },
+  {
+    "class": "class-6",
+    "subject": "social-science",
+    "category": "Social Science",
+    "title": "..Select Book Title..",
+    "code": "fess1",
+    "chs": 10
+  },
+  {
+    "class": "class-6",
+    "subject": "social-science",
+    "category": "Social Science",
+    "title": "The Earth Our Habitat",
+    "code": "fess2",
+    "chs": 6
+  },
+  {
+    "class": "class-6",
+    "subject": "social-science",
+    "category": "Social Science",
+    "title": "Hamare Ateet",
+    "code": "fhss1",
+    "chs": 10
+  },
+  {
+    "class": "class-6",
+    "subject": "social-science",
+    "category": "Social Science",
+    "title": "Social And Political Life",
+    "code": "fess3",
+    "chs": 8
+  },
+  {
+    "class": "class-6",
+    "subject": "social-science",
+    "category": "Social Science",
+    "title": "Samajik Evem Rajnitik Jeevan",
+    "code": "fhss3",
+    "chs": 8
+  },
+  {
+    "class": "class-6",
+    "subject": "social-science",
+    "category": "Social Science",
+    "title": "Prithavi Hamara Avas (Bhugol)",
+    "code": "fhss2",
+    "chs": 6
+  },
+  {
+    "class": "class-6",
+    "subject": "social-science",
+    "category": "Social Science",
+    "title": "Exploring Society India and Beyond",
+    "code": "fees1",
+    "chs": 14
+  },
+  {
+    "class": "class-6",
+    "subject": "social-science",
+    "category": "Social Science",
+    "title": "Samaj Ka Aadhyan: Bharat or uske aage",
+    "code": "fhes1",
+    "chs": 14
+  },
+  {
+    "class": "class-6",
+    "subject": "social-science",
+    "category": "Social Science",
+    "title": "Exploring Society India and Beyond (Kannada)",
+    "code": "fknes1",
+    "chs": 14
+  },
+  {
+    "class": "class-6",
+    "subject": "social-science",
+    "category": "Social Science",
+    "title": "Exploring Society India and Beyond (Kashmiri)",
+    "code": "fkses1",
+    "chs": 14
+  },
+  {
+    "class": "class-6",
+    "subject": "social-science",
+    "category": "Social Science",
+    "title": "Exploring Society India and Beyond (Odia)",
+    "code": "fores1",
+    "chs": 14
+  },
+  {
+    "class": "class-6",
+    "subject": "social-science",
+    "category": "Social Science",
+    "title": "Exploring Society India and Beyond (Manipuri)",
+    "code": "fmnes1",
+    "chs": 14
+  },
+  {
+    "class": "class-6",
+    "subject": "social-science",
+    "category": "Social Science",
+    "title": "Exploring Society India and Beyond (Marathi)",
+    "code": "fmres1",
+    "chs": 14
+  },
+  {
+    "class": "class-6",
+    "subject": "social-science",
+    "category": "Social Science",
+    "title": "Exploring Society India and Beyond (Punjabi)",
+    "code": "fpnes1",
+    "chs": 14
+  },
+  {
+    "class": "class-6",
+    "subject": "social-science",
+    "category": "Social Science",
+    "title": "Exploring Society India and Beyond (Dogri)",
+    "code": "fdges1",
+    "chs": 14
+  },
+  {
+    "class": "class-6",
+    "subject": "social-science",
+    "category": "Social Science",
+    "title": "Exploring Society India and Beyond (Gujrati)",
+    "code": "fgjes1",
+    "chs": 14
+  },
+  {
+    "class": "class-6",
+    "subject": "social-science",
+    "category": "Social Science",
+    "title": "Exploring Society India and Beyond (Malayalam)",
+    "code": "fmles1",
+    "chs": 14
+  },
+  {
+    "class": "class-6",
+    "subject": "social-science",
+    "category": "Social Science",
+    "title": "Exploring Society India and Beyond (Sanskrit)",
+    "code": "fskes1",
+    "chs": 14
+  },
+  {
+    "class": "class-6",
+    "subject": "social-science",
+    "category": "Social Science",
+    "title": "Exploring Society India and Beyond (Bodo)",
+    "code": "fbdes1",
+    "chs": 14
+  },
+  {
+    "class": "class-6",
+    "subject": "social-science",
+    "category": "Social Science",
+    "title": "Exploring Society India and Beyond (Maithili)",
+    "code": "fmtes1",
+    "chs": 14
+  },
+  {
+    "class": "class-6",
+    "subject": "social-science",
+    "category": "Social Science",
+    "title": "Exploring Society India and Beyond (Nepali)",
+    "code": "fnpes1",
+    "chs": 14
+  },
+  {
+    "class": "class-6",
+    "subject": "social-science",
+    "category": "Social Science",
+    "title": "Exploring Society India and Beyond (Tamil)",
+    "code": "ftmes1",
+    "chs": 14
+  },
+  {
+    "class": "class-6",
+    "subject": "social-science",
+    "category": "Social Science",
+    "title": "Exploring Society India and Beyond (Telugu)",
+    "code": "ftles1",
+    "chs": 14
+  },
+  {
+    "class": "class-6",
+    "subject": "social-science",
+    "category": "Social Science",
+    "title": "Exploring Society India and Beyond (Santhali)",
+    "code": "fsnes1",
+    "chs": 14
+  },
+  {
+    "class": "class-6",
+    "subject": "social-science",
+    "category": "Social Science",
+    "title": "Exploring Society India and Beyond (Assamese)",
+    "code": "fases1",
+    "chs": 14
+  },
+  {
+    "class": "class-6",
+    "subject": "social-science",
+    "category": "Social Science",
+    "title": "Exploring Society India and Beyond (Konkani)",
+    "code": "fkoes1",
+    "chs": 14
+  },
+  {
+    "class": "class-6",
+    "subject": "social-science",
+    "category": "Social Science",
+    "title": "Exploring Society India and Beyond (Sindhi)",
+    "code": "fsies1",
+    "chs": 14
+  },
+  {
+    "class": "class-6",
+    "subject": "sanskrit",
+    "category": "Sanskrit",
+    "title": "..Select Book Title..",
+    "code": "fsde1",
+    "chs": 16
+  },
+  {
+    "class": "class-7",
+    "subject": "english",
+    "category": "English",
+    "title": "..Select Book Title..",
+    "code": "gepr1",
+    "chs": 5
+  },
+  {
+    "class": "class-7",
+    "subject": "english",
+    "category": "English",
+    "title": "Exemplar Problem(English)",
+    "code": "gemp1",
+    "chs": 13
+  },
+  {
+    "class": "class-7",
+    "subject": "hindi",
+    "category": "Hindi",
+    "title": "..Select Book Title..",
+    "code": "ghml1",
+    "chs": 10
+  },
+  {
+    "class": "class-7",
+    "subject": "hindi",
+    "category": "Hindi",
+    "title": "Exemplar Problem(English)",
+    "code": "gemp1",
+    "chs": 13
+  },
+  {
+    "class": "class-7",
+    "subject": "maths",
+    "category": "Mathematics",
+    "title": "..Select Book Title..",
+    "code": "gegp1",
+    "chs": 8
+  },
+  {
+    "class": "class-7",
+    "subject": "maths",
+    "category": "Mathematics",
+    "title": "Ganita Prakash-II",
+    "code": "gegp2",
+    "chs": 7
+  },
+  {
+    "class": "class-7",
+    "subject": "maths",
+    "category": "Mathematics",
+    "title": "Ganita Prakash(Hindi)",
+    "code": "ghgp1",
+    "chs": 8
+  },
+  {
+    "class": "class-7",
+    "subject": "maths",
+    "category": "Mathematics",
+    "title": "Ganita Prakash-II (Hindi)",
+    "code": "ghgp2",
+    "chs": 7
+  },
+  {
+    "class": "class-7",
+    "subject": "maths",
+    "category": "Mathematics",
+    "title": "Ganita Prakash(Bengali)",
+    "code": "gbngp1",
+    "chs": 8
+  },
+  {
+    "class": "class-7",
+    "subject": "maths",
+    "category": "Mathematics",
+    "title": "Ganita Prakash(Gujarati)",
+    "code": "ggjgp1",
+    "chs": 8
+  },
+  {
+    "class": "class-7",
+    "subject": "maths",
+    "category": "Mathematics",
+    "title": "Ganita Prakash(Punjabi)",
+    "code": "gpngp1",
+    "chs": 8
+  },
+  {
+    "class": "class-7",
+    "subject": "maths",
+    "category": "Mathematics",
+    "title": "Ganita Prakash(Nepali)",
+    "code": "gnpgp1",
+    "chs": 8
+  },
+  {
+    "class": "class-7",
+    "subject": "maths",
+    "category": "Mathematics",
+    "title": "Ganita Prakash(Dogri)",
+    "code": "gdggp1",
+    "chs": 8
+  },
+  {
+    "class": "class-7",
+    "subject": "maths",
+    "category": "Mathematics",
+    "title": "Ganita Prakash(Tamil)",
+    "code": "gtmgp1",
+    "chs": 8
+  },
+  {
+    "class": "class-7",
+    "subject": "maths",
+    "category": "Mathematics",
+    "title": "Ganita Prakash(Telugu)",
+    "code": "gtlgp1",
+    "chs": 8
+  },
+  {
+    "class": "class-7",
+    "subject": "maths",
+    "category": "Mathematics",
+    "title": "Ganita Prakash(Marathi)",
+    "code": "gmrgp1",
+    "chs": 8
+  },
+  {
+    "class": "class-7",
+    "subject": "maths",
+    "category": "Mathematics",
+    "title": "Ganita Prakash(Kannada)",
+    "code": "gkngp1",
+    "chs": 8
+  },
+  {
+    "class": "class-7",
+    "subject": "maths",
+    "category": "Mathematics",
+    "title": "Ganita Prakash(Bodo)",
+    "code": "gbdgp1",
+    "chs": 8
+  },
+  {
+    "class": "class-7",
+    "subject": "maths",
+    "category": "Mathematics",
+    "title": "Ganita Prakash(Odia)",
+    "code": "gorgp1",
+    "chs": 8
+  },
+  {
+    "class": "class-7",
+    "subject": "maths",
+    "category": "Mathematics",
+    "title": "Ganita Prakash(Assamese)",
+    "code": "gasgp1",
+    "chs": 8
+  },
+  {
+    "class": "class-7",
+    "subject": "maths",
+    "category": "Mathematics",
+    "title": "Ganita Prakash(Konkani)",
+    "code": "gkogp1",
+    "chs": 8
+  },
+  {
+    "class": "class-7",
+    "subject": "maths",
+    "category": "Mathematics",
+    "title": "Ganita Prakash(Manipuri)",
+    "code": "gmngp1",
+    "chs": 8
+  },
+  {
+    "class": "class-7",
+    "subject": "maths",
+    "category": "Mathematics",
+    "title": "Ganita Prakash(Sanskrit)",
+    "code": "gskgp1",
+    "chs": 8
+  },
+  {
+    "class": "class-7",
+    "subject": "maths",
+    "category": "Mathematics",
+    "title": "Ganita Prakash(Sindhi)",
+    "code": "gsigp1",
+    "chs": 8
+  },
+  {
+    "class": "class-7",
+    "subject": "maths",
+    "category": "Mathematics",
+    "title": "Ganita Prakash(Kashmiri)",
+    "code": "gksgp1",
+    "chs": 8
+  },
+  {
+    "class": "class-7",
+    "subject": "maths",
+    "category": "Mathematics",
+    "title": "Ganita Prakash(Maithili)",
+    "code": "gmtgp1",
+    "chs": 8
+  },
+  {
+    "class": "class-7",
+    "subject": "maths",
+    "category": "Mathematics",
+    "title": "Ganita Prakash(Malayalam)",
+    "code": "gmlgp1",
+    "chs": 8
+  },
+  {
+    "class": "class-7",
+    "subject": "maths",
+    "category": "Mathematics",
+    "title": "Ganita Prakash(Santhali)",
+    "code": "gsngp1",
+    "chs": 8
+  },
+  {
+    "class": "class-7",
+    "subject": "maths",
+    "category": "Mathematics",
+    "title": "Ganita Prakash-II (Gujarati)",
+    "code": "ggjgp2",
+    "chs": 7
+  },
+  {
+    "class": "class-7",
+    "subject": "maths",
+    "category": "Mathematics",
+    "title": "Ganita Prakash-II (Kannada)",
+    "code": "gkngp2",
+    "chs": 7
+  },
+  {
+    "class": "class-7",
+    "subject": "maths",
+    "category": "Mathematics",
+    "title": "Ganita Prakash-II (Marathi)",
+    "code": "gmrgp2",
+    "chs": 7
+  },
+  {
+    "class": "class-7",
+    "subject": "maths",
+    "category": "Mathematics",
+    "title": "Ganita Prakash-II (Odia)",
+    "code": "gorgp2",
+    "chs": 7
+  },
+  {
+    "class": "class-7",
+    "subject": "maths",
+    "category": "Mathematics",
+    "title": "Ganita Prakash-II (Punjabi)",
+    "code": "gpngp2",
+    "chs": 7
+  },
+  {
+    "class": "class-7",
+    "subject": "maths",
+    "category": "Mathematics",
+    "title": "Ganita Prakash-II (Assamese)",
+    "code": "gasgp2",
+    "chs": 7
+  },
+  {
+    "class": "class-7",
+    "subject": "maths",
+    "category": "Mathematics",
+    "title": "Ganita Prakash-II (Bengali)",
+    "code": "gbngp2",
+    "chs": 7
+  },
+  {
+    "class": "class-7",
+    "subject": "maths",
+    "category": "Mathematics",
+    "title": "Ganita Prakash-II (Tamil)",
+    "code": "gtmgp2",
+    "chs": 7
+  },
+  {
+    "class": "class-7",
+    "subject": "maths",
+    "category": "Mathematics",
+    "title": "Ganita Prakash-II (Malayalam)",
+    "code": "gmlgp2",
+    "chs": 7
+  },
+  {
+    "class": "class-7",
+    "subject": "maths",
+    "category": "Mathematics",
+    "title": "Ganita Prakash-II (Telugu)",
+    "code": "gtlgp2",
+    "chs": 7
+  },
+  {
+    "class": "class-7",
+    "subject": "maths",
+    "category": "Mathematics",
+    "title": "Ganita Prakash-II (Dogri)",
+    "code": "gdggp2",
+    "chs": 7
+  },
+  {
+    "class": "class-7",
+    "subject": "maths",
+    "category": "Mathematics",
+    "title": "Ganita Prakash-II (Bodo)",
+    "code": "gbdgp2",
+    "chs": 7
+  },
+  {
+    "class": "class-7",
+    "subject": "maths",
+    "category": "Mathematics",
+    "title": "Ganita Prakash-II (Nepali)",
+    "code": "gnpgp2",
+    "chs": 7
+  },
+  {
+    "class": "class-7",
+    "subject": "maths",
+    "category": "Mathematics",
+    "title": "Ganita Prakash-II (Sindhi)",
+    "code": "gsigp2",
+    "chs": 7
+  },
+  {
+    "class": "class-7",
+    "subject": "maths",
+    "category": "Mathematics",
+    "title": "Ganita Prakash-II (Manipuri)",
+    "code": "gmngp2",
+    "chs": 7
+  },
+  {
+    "class": "class-7",
+    "subject": "maths",
+    "category": "Mathematics",
+    "title": "Ganita Prakash-II (Maithili)",
+    "code": "gmtgp2",
+    "chs": 7
+  },
+  {
+    "class": "class-7",
+    "subject": "maths",
+    "category": "Mathematics",
+    "title": "Ganita Prakash-II (Konkani)",
+    "code": "gkogp2",
+    "chs": 7
+  },
+  {
+    "class": "class-7",
+    "subject": "maths",
+    "category": "Mathematics",
+    "title": "Ganita Prakash-II (Sanskrit)",
+    "code": "gskgp2",
+    "chs": 7
+  },
+  {
+    "class": "class-7",
+    "subject": "maths",
+    "category": "Mathematics",
+    "title": "Ganita Prakash-II (Santhali)",
+    "code": "gsngp2",
+    "chs": 7
+  },
+  {
+    "class": "class-7",
+    "subject": "maths",
+    "category": "Mathematics",
+    "title": "Ganita Prakash-II (Kashmiri)",
+    "code": "gksgp2",
+    "chs": 7
+  },
+  {
+    "class": "class-7",
+    "subject": "maths",
+    "category": "Mathematics",
+    "title": "Exemplar Problem(English)",
+    "code": "gemp1",
+    "chs": 13
+  },
+  {
+    "class": "class-7",
+    "subject": "science",
+    "category": "Science",
+    "title": "..Select Book Title..",
+    "code": "gecu1",
+    "chs": 12
+  },
+  {
+    "class": "class-7",
+    "subject": "science",
+    "category": "Science",
+    "title": "Jigyasa",
+    "code": "ghcu1",
+    "chs": 12
+  },
+  {
+    "class": "class-7",
+    "subject": "science",
+    "category": "Science",
+    "title": "Curiosity (Marathi)",
+    "code": "gmrcu1",
+    "chs": 12
+  },
+  {
+    "class": "class-7",
+    "subject": "science",
+    "category": "Science",
+    "title": "Curiosity (Odia)",
+    "code": "gorcu1",
+    "chs": 12
+  },
+  {
+    "class": "class-7",
+    "subject": "science",
+    "category": "Science",
+    "title": "Curiosity (Bengali)",
+    "code": "gbncu1",
+    "chs": 12
+  },
+  {
+    "class": "class-7",
+    "subject": "science",
+    "category": "Science",
+    "title": "Curiosity (Punjabi)",
+    "code": "gpncu1",
+    "chs": 12
+  },
+  {
+    "class": "class-7",
+    "subject": "science",
+    "category": "Science",
+    "title": "Curiosity (Assamese)",
+    "code": "gascu1",
+    "chs": 12
+  },
+  {
+    "class": "class-7",
+    "subject": "science",
+    "category": "Science",
+    "title": "Curiosity (Tamil)",
+    "code": "gtmcu1",
+    "chs": 12
+  },
+  {
+    "class": "class-7",
+    "subject": "science",
+    "category": "Science",
+    "title": "Curiosity (Nepali)",
+    "code": "gnpcu1",
+    "chs": 12
+  },
+  {
+    "class": "class-7",
+    "subject": "science",
+    "category": "Science",
+    "title": "Curiosity (Manipuri)",
+    "code": "gmncu1",
+    "chs": 12
+  },
+  {
+    "class": "class-7",
+    "subject": "science",
+    "category": "Science",
+    "title": "Curiosity (Telugu)",
+    "code": "gtlcu1",
+    "chs": 12
+  },
+  {
+    "class": "class-7",
+    "subject": "science",
+    "category": "Science",
+    "title": "Curiosity (Bodo)",
+    "code": "gbdcu1",
+    "chs": 12
+  },
+  {
+    "class": "class-7",
+    "subject": "science",
+    "category": "Science",
+    "title": "Curiosity (Santhali)",
+    "code": "gsncu1",
+    "chs": 12
+  },
+  {
+    "class": "class-7",
+    "subject": "science",
+    "category": "Science",
+    "title": "Curiosity (Kannada)",
+    "code": "gkncu1",
+    "chs": 12
+  },
+  {
+    "class": "class-7",
+    "subject": "science",
+    "category": "Science",
+    "title": "Curiosity (Dogri)",
+    "code": "gdgcu1",
+    "chs": 12
+  },
+  {
+    "class": "class-7",
+    "subject": "science",
+    "category": "Science",
+    "title": "Curiosity (Konkani)",
+    "code": "gkocu1",
+    "chs": 12
+  },
+  {
+    "class": "class-7",
+    "subject": "science",
+    "category": "Science",
+    "title": "Curiosity (Kashmiri)",
+    "code": "gkscu1",
+    "chs": 12
+  },
+  {
+    "class": "class-7",
+    "subject": "science",
+    "category": "Science",
+    "title": "Curiosity (Malayalam)",
+    "code": "gmlcu1",
+    "chs": 12
+  },
+  {
+    "class": "class-7",
+    "subject": "science",
+    "category": "Science",
+    "title": "Curiosity (Maithili)",
+    "code": "gmtcu1",
+    "chs": 12
+  },
+  {
+    "class": "class-7",
+    "subject": "science",
+    "category": "Science",
+    "title": "Curiosity (Sanskrit)",
+    "code": "gskcu1",
+    "chs": 12
+  },
+  {
+    "class": "class-7",
+    "subject": "science",
+    "category": "Science",
+    "title": "Curiosity (Sindhi)",
+    "code": "gsicu1",
+    "chs": 12
+  },
+  {
+    "class": "class-7",
+    "subject": "science",
+    "category": "Science",
+    "title": "Curiosity (Gujarati)",
+    "code": "ggjcu1",
+    "chs": 12
+  },
+  {
+    "class": "class-7",
+    "subject": "science",
+    "category": "Science",
+    "title": "Exemplar Problem(English)",
+    "code": "gemp1",
+    "chs": 13
+  },
+  {
+    "class": "class-7",
+    "subject": "social-science",
+    "category": "Social Science",
+    "title": "..Select Book Title..",
+    "code": "gees1",
+    "chs": 12
+  },
+  {
+    "class": "class-7",
+    "subject": "social-science",
+    "category": "Social Science",
+    "title": "Samaj Ka Aadhyan: Bharat or uske aage Part-I",
+    "code": "ghes1",
+    "chs": 12
+  },
+  {
+    "class": "class-7",
+    "subject": "social-science",
+    "category": "Social Science",
+    "title": "Exploring Society India and Beyond Part-II",
+    "code": "gees2",
+    "chs": 8
+  },
+  {
+    "class": "class-7",
+    "subject": "social-science",
+    "category": "Social Science",
+    "title": "Samaj Ka Aadhyan: Bharat or uske aage Part-II",
+    "code": "ghes2",
+    "chs": 8
+  },
+  {
+    "class": "class-7",
+    "subject": "social-science",
+    "category": "Social Science",
+    "title": "Exploring Society India and Beyond Part-I (Odia)",
+    "code": "gores1",
+    "chs": 12
+  },
+  {
+    "class": "class-7",
+    "subject": "social-science",
+    "category": "Social Science",
+    "title": "Exploring Society India and Beyond Part-I (Marathi)",
+    "code": "gmres1",
+    "chs": 12
+  },
+  {
+    "class": "class-7",
+    "subject": "social-science",
+    "category": "Social Science",
+    "title": "Exploring Society India and Beyond Part-I (Punjabi)",
+    "code": "gpnes1",
+    "chs": 12
+  },
+  {
+    "class": "class-7",
+    "subject": "social-science",
+    "category": "Social Science",
+    "title": "Exploring Society India and Beyond Part-I (Konkani)",
+    "code": "gkoes1",
+    "chs": 12
+  },
+  {
+    "class": "class-7",
+    "subject": "social-science",
+    "category": "Social Science",
+    "title": "Exploring Society India and Beyond Part-I (Malayalam)",
+    "code": "gmles1",
+    "chs": 12
+  },
+  {
+    "class": "class-7",
+    "subject": "social-science",
+    "category": "Social Science",
+    "title": "Exploring Society India and Beyond Part-I (Kannada)",
+    "code": "gknes1",
+    "chs": 12
+  },
+  {
+    "class": "class-7",
+    "subject": "social-science",
+    "category": "Social Science",
+    "title": "Exploring Society India and Beyond Part-I (Dogri)",
+    "code": "gdges1",
+    "chs": 12
+  },
+  {
+    "class": "class-7",
+    "subject": "social-science",
+    "category": "Social Science",
+    "title": "Exploring Society India and Beyond Part-I (Manipuri)",
+    "code": "gmnes1",
+    "chs": 12
+  },
+  {
+    "class": "class-7",
+    "subject": "social-science",
+    "category": "Social Science",
+    "title": "Exploring Society India and Beyond Part-I (Nepali)",
+    "code": "gnpes1",
+    "chs": 12
+  },
+  {
+    "class": "class-7",
+    "subject": "social-science",
+    "category": "Social Science",
+    "title": "Exploring Society India and Beyond Part-I (Sanskrit)",
+    "code": "gskes1",
+    "chs": 12
+  },
+  {
+    "class": "class-7",
+    "subject": "social-science",
+    "category": "Social Science",
+    "title": "Exploring Society India and Beyond Part-I (Maithili)",
+    "code": "gmtes1",
+    "chs": 12
+  },
+  {
+    "class": "class-7",
+    "subject": "social-science",
+    "category": "Social Science",
+    "title": "Exploring Society India and Beyond Part-I (Assamese)",
+    "code": "gases1",
+    "chs": 12
+  },
+  {
+    "class": "class-7",
+    "subject": "social-science",
+    "category": "Social Science",
+    "title": "Exploring Society India and Beyond Part-I (Bengali)",
+    "code": "gbnes1",
+    "chs": 12
+  },
+  {
+    "class": "class-7",
+    "subject": "social-science",
+    "category": "Social Science",
+    "title": "Exploring Society India and Beyond Part-I (Bodo)",
+    "code": "gbdes1",
+    "chs": 12
+  },
+  {
+    "class": "class-7",
+    "subject": "social-science",
+    "category": "Social Science",
+    "title": "Exploring Society India and Beyond Part-I (Gujarati)",
+    "code": "ggjes1",
+    "chs": 12
+  },
+  {
+    "class": "class-7",
+    "subject": "social-science",
+    "category": "Social Science",
+    "title": "Exploring Society India and Beyond Part-I (Tamil)",
+    "code": "gtmes1",
+    "chs": 12
+  },
+  {
+    "class": "class-7",
+    "subject": "social-science",
+    "category": "Social Science",
+    "title": "Exploring Society India and Beyond Part-I (Santhali)",
+    "code": "gsnes1",
+    "chs": 12
+  },
+  {
+    "class": "class-7",
+    "subject": "social-science",
+    "category": "Social Science",
+    "title": "Exploring Society India and Beyond Part-I (Sindhi)",
+    "code": "gsies1",
+    "chs": 12
+  },
+  {
+    "class": "class-7",
+    "subject": "social-science",
+    "category": "Social Science",
+    "title": "Exploring Society India and Beyond Part-I (Telugu)",
+    "code": "gtles1",
+    "chs": 12
+  },
+  {
+    "class": "class-7",
+    "subject": "social-science",
+    "category": "Social Science",
+    "title": "Exploring Society India and Beyond Part-I (Kashmiri)",
+    "code": "gkses1",
+    "chs": 12
+  },
+  {
+    "class": "class-7",
+    "subject": "social-science",
+    "category": "Social Science",
+    "title": "Exploring Society India and Beyond Part-II (Gujarati)",
+    "code": "ggjes2",
+    "chs": 8
+  },
+  {
+    "class": "class-7",
+    "subject": "social-science",
+    "category": "Social Science",
+    "title": "Exploring Society India and Beyond Part-II (Kannada)",
+    "code": "gknes2",
+    "chs": 8
+  },
+  {
+    "class": "class-7",
+    "subject": "social-science",
+    "category": "Social Science",
+    "title": "Exploring Society India and Beyond Part-II (Odia)",
+    "code": "gores2",
+    "chs": 8
+  },
+  {
+    "class": "class-7",
+    "subject": "social-science",
+    "category": "Social Science",
+    "title": "Exploring Society India and Beyond Part-II (Punjabi)",
+    "code": "gpnes2",
+    "chs": 8
+  },
+  {
+    "class": "class-7",
+    "subject": "social-science",
+    "category": "Social Science",
+    "title": "Exploring Society India and Beyond Part-II (Bengali)",
+    "code": "gbnes2",
+    "chs": 8
+  },
+  {
+    "class": "class-7",
+    "subject": "social-science",
+    "category": "Social Science",
+    "title": "Exploring Society India and Beyond Part-II (Tamil)",
+    "code": "gtmes2",
+    "chs": 8
+  },
+  {
+    "class": "class-7",
+    "subject": "social-science",
+    "category": "Social Science",
+    "title": "Exploring Society India and Beyond Part-II (Malayalam)",
+    "code": "gmles2",
+    "chs": 8
+  },
+  {
+    "class": "class-7",
+    "subject": "social-science",
+    "category": "Social Science",
+    "title": "Exploring Society India and Beyond Part-II (Assamese)",
+    "code": "gases2",
+    "chs": 8
+  },
+  {
+    "class": "class-7",
+    "subject": "social-science",
+    "category": "Social Science",
+    "title": "Exploring Society India and Beyond Part-II (Marathi)",
+    "code": "gmres2",
+    "chs": 8
+  },
+  {
+    "class": "class-7",
+    "subject": "social-science",
+    "category": "Social Science",
+    "title": "Exploring Society India and Beyond Part-II (Telugu)",
+    "code": "gtles2",
+    "chs": 8
+  },
+  {
+    "class": "class-7",
+    "subject": "social-science",
+    "category": "Social Science",
+    "title": "Exploring Society India and Beyond Part-II (Sanskrit)",
+    "code": "gskes2",
+    "chs": 8
+  },
+  {
+    "class": "class-7",
+    "subject": "social-science",
+    "category": "Social Science",
+    "title": "Exploring Society India and Beyond Part-II (Konkani)",
+    "code": "gkoes2",
+    "chs": 8
+  },
+  {
+    "class": "class-7",
+    "subject": "social-science",
+    "category": "Social Science",
+    "title": "Exploring Society India and Beyond Part-II (Manipuri)",
+    "code": "gmnes2",
+    "chs": 8
+  },
+  {
+    "class": "class-7",
+    "subject": "social-science",
+    "category": "Social Science",
+    "title": "Exploring Society India and Beyond Part-II (Sindhi)",
+    "code": "gsies2",
+    "chs": 8
+  },
+  {
+    "class": "class-7",
+    "subject": "social-science",
+    "category": "Social Science",
+    "title": "Exploring Society India and Beyond Part-II (Nepali)",
+    "code": "gnpes2",
+    "chs": 8
+  },
+  {
+    "class": "class-7",
+    "subject": "social-science",
+    "category": "Social Science",
+    "title": "Exploring Society India and Beyond Part-II (Bodo)",
+    "code": "gbdes2",
+    "chs": 8
+  },
+  {
+    "class": "class-7",
+    "subject": "social-science",
+    "category": "Social Science",
+    "title": "Exploring Society India and Beyond Part-II (Kashmiri)",
+    "code": "gkses2",
+    "chs": 8
+  },
+  {
+    "class": "class-7",
+    "subject": "social-science",
+    "category": "Social Science",
+    "title": "Exploring Society India and Beyond Part-II (Santhali)",
+    "code": "gsnes2",
+    "chs": 8
+  },
+  {
+    "class": "class-7",
+    "subject": "social-science",
+    "category": "Social Science",
+    "title": "Exploring Society India and Beyond Part-II (Dogri)",
+    "code": "gdges2",
+    "chs": 8
+  },
+  {
+    "class": "class-7",
+    "subject": "social-science",
+    "category": "Social Science",
+    "title": "Exploring Society India and Beyond Part-II (Maithili)",
+    "code": "gmtes2",
+    "chs": 8
+  },
+  {
+    "class": "class-7",
+    "subject": "social-science",
+    "category": "Social Science",
+    "title": "Exemplar Problem(English)",
+    "code": "gemp1",
+    "chs": 13
+  },
+  {
+    "class": "class-7",
+    "subject": "sanskrit",
+    "category": "Sanskrit",
+    "title": "..Select Book Title..",
+    "code": "gsde1",
+    "chs": 15
+  },
+  {
+    "class": "class-7",
+    "subject": "sanskrit",
+    "category": "Sanskrit",
+    "title": "Exemplar Problem(English)",
+    "code": "gemp1",
+    "chs": 13
+  },
+  {
+    "class": "class-8",
+    "subject": "english",
+    "category": "English",
+    "title": "..Select Book Title..",
+    "code": "hepr1",
+    "chs": 5
+  },
+  {
+    "class": "class-8",
+    "subject": "english",
+    "category": "English",
+    "title": "..Select Book Title..",
+    "code": "hehd1",
+    "chs": 8
+  },
+  {
+    "class": "class-8",
+    "subject": "english",
+    "category": "English",
+    "title": "It So Happend",
+    "code": "heih1",
+    "chs": 8
+  },
+  {
+    "class": "class-8",
+    "subject": "hindi",
+    "category": "Hindi",
+    "title": "..Select Book Title..",
+    "code": "hhml1",
+    "chs": 10
+  },
+  {
+    "class": "class-8",
+    "subject": "hindi",
+    "category": "Hindi",
+    "title": "..Select Book Title..",
+    "code": "hhvs1",
+    "chs": 13
+  },
+  {
+    "class": "class-8",
+    "subject": "hindi",
+    "category": "Hindi",
+    "title": "Durva",
+    "code": "hhdv1",
+    "chs": 19
+  },
+  {
+    "class": "class-8",
+    "subject": "hindi",
+    "category": "Hindi",
+    "title": "Bharat Ki Khoj",
+    "code": "hhbk1",
+    "chs": 9
+  },
+  {
+    "class": "class-8",
+    "subject": "hindi",
+    "category": "Hindi",
+    "title": "Sanshipt Budhcharit",
+    "code": "hhsb1",
+    "chs": 5
+  },
+  {
+    "class": "class-8",
+    "subject": "maths",
+    "category": "Mathematics",
+    "title": "..Select Book Title..",
+    "code": "hegp1",
+    "chs": 7
+  },
+  {
+    "class": "class-8",
+    "subject": "maths",
+    "category": "Mathematics",
+    "title": "Ganita Prakash Part-II",
+    "code": "hegp2",
+    "chs": 7
+  },
+  {
+    "class": "class-8",
+    "subject": "maths",
+    "category": "Mathematics",
+    "title": "Ganita Prakash Part-I (Hindi)",
+    "code": "hhgp1",
+    "chs": 7
+  },
+  {
+    "class": "class-8",
+    "subject": "maths",
+    "category": "Mathematics",
+    "title": "Ganita Prakash Part-II (Hindi)",
+    "code": "hhgp2",
+    "chs": 7
+  },
+  {
+    "class": "class-8",
+    "subject": "maths",
+    "category": "Mathematics",
+    "title": "Ganita Prakash Part-I (Punjabi)",
+    "code": "hpngp1",
+    "chs": 7
+  },
+  {
+    "class": "class-8",
+    "subject": "maths",
+    "category": "Mathematics",
+    "title": "Ganita Prakash Part-I (Maithili)",
+    "code": "hmtgp1",
+    "chs": 7
+  },
+  {
+    "class": "class-8",
+    "subject": "maths",
+    "category": "Mathematics",
+    "title": "Ganita Prakash Part-I (Marathi)",
+    "code": "hmrgp1",
+    "chs": 7
+  },
+  {
+    "class": "class-8",
+    "subject": "maths",
+    "category": "Mathematics",
+    "title": "Ganita Prakash Part-I (Bengali)",
+    "code": "hbngp1",
+    "chs": 7
+  },
+  {
+    "class": "class-8",
+    "subject": "maths",
+    "category": "Mathematics",
+    "title": "Ganita Prakash Part-I (Bodo)",
+    "code": "hbdgp1",
+    "chs": 7
+  },
+  {
+    "class": "class-8",
+    "subject": "maths",
+    "category": "Mathematics",
+    "title": "Ganita Prakash Part-I (Nepali)",
+    "code": "hnpgp1",
+    "chs": 7
+  },
+  {
+    "class": "class-8",
+    "subject": "maths",
+    "category": "Mathematics",
+    "title": "Ganita Prakash Part-I (Odia)",
+    "code": "horgp1",
+    "chs": 7
+  },
+  {
+    "class": "class-8",
+    "subject": "maths",
+    "category": "Mathematics",
+    "title": "Ganita Prakash Part-I (Kannada)",
+    "code": "hkngp1",
+    "chs": 7
+  },
+  {
+    "class": "class-8",
+    "subject": "maths",
+    "category": "Mathematics",
+    "title": "Ganita Prakash Part-I (Telugu)",
+    "code": "htlgp1",
+    "chs": 7
+  },
+  {
+    "class": "class-8",
+    "subject": "maths",
+    "category": "Mathematics",
+    "title": "Ganita Prakash Part-I (Dogri)",
+    "code": "hdggp1",
+    "chs": 7
+  },
+  {
+    "class": "class-8",
+    "subject": "maths",
+    "category": "Mathematics",
+    "title": "Ganita Prakash Part-I (Konkani)",
+    "code": "hkogp1",
+    "chs": 7
+  },
+  {
+    "class": "class-8",
+    "subject": "maths",
+    "category": "Mathematics",
+    "title": "Ganita Prakash Part-I (Tamil)",
+    "code": "htmgp1",
+    "chs": 7
+  },
+  {
+    "class": "class-8",
+    "subject": "maths",
+    "category": "Mathematics",
+    "title": "Ganita Prakash Part-I (Kashmiri)",
+    "code": "hksgp1",
+    "chs": 7
+  },
+  {
+    "class": "class-8",
+    "subject": "maths",
+    "category": "Mathematics",
+    "title": "Ganita Prakash Part-I (Manipuri)",
+    "code": "hmngp1",
+    "chs": 7
+  },
+  {
+    "class": "class-8",
+    "subject": "maths",
+    "category": "Mathematics",
+    "title": "Ganita Prakash Part-I (Sanskrit)",
+    "code": "hskgp1",
+    "chs": 7
+  },
+  {
+    "class": "class-8",
+    "subject": "maths",
+    "category": "Mathematics",
+    "title": "Ganita Prakash Part-I (Santhali)",
+    "code": "hsngp1",
+    "chs": 7
+  },
+  {
+    "class": "class-8",
+    "subject": "maths",
+    "category": "Mathematics",
+    "title": "Ganita Prakash Part-I (Malayalam)",
+    "code": "hmlgp1",
+    "chs": 7
+  },
+  {
+    "class": "class-8",
+    "subject": "maths",
+    "category": "Mathematics",
+    "title": "Ganita Prakash Part-I (Sindhi)",
+    "code": "hsigp1",
+    "chs": 7
+  },
+  {
+    "class": "class-8",
+    "subject": "maths",
+    "category": "Mathematics",
+    "title": "Ganita Prakash Part-I (Assamese)",
+    "code": "hasgp1",
+    "chs": 7
+  },
+  {
+    "class": "class-8",
+    "subject": "maths",
+    "category": "Mathematics",
+    "title": "Ganita Prakash Part-I (Gujarati)",
+    "code": "hgjgp1",
+    "chs": 7
+  },
+  {
+    "class": "class-8",
+    "subject": "maths",
+    "category": "Mathematics",
+    "title": "Ganita Prakash Part-II(Kannada)",
+    "code": "hkngp2",
+    "chs": 7
+  },
+  {
+    "class": "class-8",
+    "subject": "maths",
+    "category": "Mathematics",
+    "title": "Ganita Prakash Part-II(Odia)",
+    "code": "horgp2",
+    "chs": 7
+  },
+  {
+    "class": "class-8",
+    "subject": "maths",
+    "category": "Mathematics",
+    "title": "Ganita Prakash Part-II(Punjabi)",
+    "code": "hpngp2",
+    "chs": 7
+  },
+  {
+    "class": "class-8",
+    "subject": "maths",
+    "category": "Mathematics",
+    "title": "Ganita Prakash Part-II(Gujarati)",
+    "code": "hgjgp2",
+    "chs": 7
+  },
+  {
+    "class": "class-8",
+    "subject": "maths",
+    "category": "Mathematics",
+    "title": "Ganita Prakash Part-II(Tamil)",
+    "code": "htmgp2",
+    "chs": 7
+  },
+  {
+    "class": "class-8",
+    "subject": "maths",
+    "category": "Mathematics",
+    "title": "Ganita Prakash Part-II(Malayalam)",
+    "code": "hmlgp2",
+    "chs": 7
+  },
+  {
+    "class": "class-8",
+    "subject": "maths",
+    "category": "Mathematics",
+    "title": "Ganita Prakash Part-II(Assamese)",
+    "code": "hasgp2",
+    "chs": 7
+  },
+  {
+    "class": "class-8",
+    "subject": "maths",
+    "category": "Mathematics",
+    "title": "Ganita Prakash Part-II(Marathi)",
+    "code": "hmrgp2",
+    "chs": 7
+  },
+  {
+    "class": "class-8",
+    "subject": "maths",
+    "category": "Mathematics",
+    "title": "Ganita Prakash Part-II(Telugu)",
+    "code": "htlgp2",
+    "chs": 7
+  },
+  {
+    "class": "class-8",
+    "subject": "maths",
+    "category": "Mathematics",
+    "title": "Ganita Prakash Part-II(Bengali)",
+    "code": "hbngp2",
+    "chs": 7
+  },
+  {
+    "class": "class-8",
+    "subject": "maths",
+    "category": "Mathematics",
+    "title": "Ganita Prakash Part-II(Santhali)",
+    "code": "hsngp2",
+    "chs": 7
+  },
+  {
+    "class": "class-8",
+    "subject": "maths",
+    "category": "Mathematics",
+    "title": "Ganita Prakash Part-II(Sindhi)",
+    "code": "hsigp2",
+    "chs": 7
+  },
+  {
+    "class": "class-8",
+    "subject": "maths",
+    "category": "Mathematics",
+    "title": "Ganita Prakash Part-II(Manipuri)",
+    "code": "hmngp2",
+    "chs": 7
+  },
+  {
+    "class": "class-8",
+    "subject": "maths",
+    "category": "Mathematics",
+    "title": "Ganita Prakash Part-II(Bodo)",
+    "code": "hbdgp2",
+    "chs": 7
+  },
+  {
+    "class": "class-8",
+    "subject": "maths",
+    "category": "Mathematics",
+    "title": "Ganita Prakash Part-II(Dogri)",
+    "code": "hdggp2",
+    "chs": 7
+  },
+  {
+    "class": "class-8",
+    "subject": "maths",
+    "category": "Mathematics",
+    "title": "Ganita Prakash Part-II(Sanskrit)",
+    "code": "hskgp2",
+    "chs": 7
+  },
+  {
+    "class": "class-8",
+    "subject": "maths",
+    "category": "Mathematics",
+    "title": "Ganita Prakash Part-II(Nepali)",
+    "code": "hnpgp2",
+    "chs": 7
+  },
+  {
+    "class": "class-8",
+    "subject": "maths",
+    "category": "Mathematics",
+    "title": "Ganita Prakash Part-II(Konkani)",
+    "code": "hkogp2",
+    "chs": 7
+  },
+  {
+    "class": "class-8",
+    "subject": "maths",
+    "category": "Mathematics",
+    "title": "Ganita Prakash Part-II(Kashmiri)",
+    "code": "hksgp2",
+    "chs": 7
+  },
+  {
+    "class": "class-8",
+    "subject": "maths",
+    "category": "Mathematics",
+    "title": "Ganita Prakash Part-II(Maithili)",
+    "code": "hmtgp2",
+    "chs": 7
+  },
+  {
+    "class": "class-8",
+    "subject": "maths",
+    "category": "Mathematics",
+    "title": "..Select Book Title..",
+    "code": "hemh1",
+    "chs": 13
+  },
+  {
+    "class": "class-8",
+    "subject": "maths",
+    "category": "Mathematics",
+    "title": "Ganit",
+    "code": "hhmh1",
+    "chs": 13
+  },
+  {
+    "class": "class-8",
+    "subject": "maths",
+    "category": "Mathematics",
+    "title": "Exemplar Problem(English)",
+    "code": "heep2",
+    "chs": 13
+  },
+  {
+    "class": "class-8",
+    "subject": "maths",
+    "category": "Mathematics",
+    "title": "Exemplar Problem(Hindi)",
+    "code": "hhep2",
+    "chs": 13
+  },
+  {
+    "class": "class-8",
+    "subject": "science",
+    "category": "Science",
+    "title": "..Select Book Title..",
+    "code": "hecu1",
+    "chs": 13
+  },
+  {
+    "class": "class-8",
+    "subject": "science",
+    "category": "Science",
+    "title": "Jigyasa",
+    "code": "hhcu1",
+    "chs": 13
+  },
+  {
+    "class": "class-8",
+    "subject": "science",
+    "category": "Science",
+    "title": "Curiosity (Punjabi)",
+    "code": "hpncu1",
+    "chs": 13
+  },
+  {
+    "class": "class-8",
+    "subject": "science",
+    "category": "Science",
+    "title": "Curiosity (Tamil)",
+    "code": "htmcu1",
+    "chs": 13
+  },
+  {
+    "class": "class-8",
+    "subject": "science",
+    "category": "Science",
+    "title": "Curiosity (Odia)",
+    "code": "horcu1",
+    "chs": 13
+  },
+  {
+    "class": "class-8",
+    "subject": "science",
+    "category": "Science",
+    "title": "Curiosity (Assamese)",
+    "code": "hascu1",
+    "chs": 13
+  },
+  {
+    "class": "class-8",
+    "subject": "science",
+    "category": "Science",
+    "title": "Curiosity (Marathi)",
+    "code": "hmrcu1",
+    "chs": 13
+  },
+  {
+    "class": "class-8",
+    "subject": "science",
+    "category": "Science",
+    "title": "Curiosity (Bengali)",
+    "code": "hbncu1",
+    "chs": 13
+  },
+  {
+    "class": "class-8",
+    "subject": "science",
+    "category": "Science",
+    "title": "Curiosity (Dogri)",
+    "code": "hdgcu1",
+    "chs": 13
+  },
+  {
+    "class": "class-8",
+    "subject": "science",
+    "category": "Science",
+    "title": "Curiosity (Telugu)",
+    "code": "htlcu1",
+    "chs": 13
+  },
+  {
+    "class": "class-8",
+    "subject": "science",
+    "category": "Science",
+    "title": "Curiosity (Bodo)",
+    "code": "hbdcu1",
+    "chs": 13
+  },
+  {
+    "class": "class-8",
+    "subject": "science",
+    "category": "Science",
+    "title": "Curiosity (Gujarati)",
+    "code": "hgjcu1",
+    "chs": 13
+  },
+  {
+    "class": "class-8",
+    "subject": "science",
+    "category": "Science",
+    "title": "Curiosity (Manipuri)",
+    "code": "hmncu1",
+    "chs": 13
+  },
+  {
+    "class": "class-8",
+    "subject": "science",
+    "category": "Science",
+    "title": "Curiosity (Sanskrit)",
+    "code": "hskcu1",
+    "chs": 13
+  },
+  {
+    "class": "class-8",
+    "subject": "science",
+    "category": "Science",
+    "title": "Curiosity (Malayalam)",
+    "code": "hmlcu1",
+    "chs": 13
+  },
+  {
+    "class": "class-8",
+    "subject": "science",
+    "category": "Science",
+    "title": "Curiosity (Kannada)",
+    "code": "hkncu1",
+    "chs": 13
+  },
+  {
+    "class": "class-8",
+    "subject": "science",
+    "category": "Science",
+    "title": "Curiosity (Konkani)",
+    "code": "hkocu1",
+    "chs": 13
+  },
+  {
+    "class": "class-8",
+    "subject": "science",
+    "category": "Science",
+    "title": "Curiosity (Maithili)",
+    "code": "hmtcu1",
+    "chs": 13
+  },
+  {
+    "class": "class-8",
+    "subject": "science",
+    "category": "Science",
+    "title": "Curiosity (Nepali)",
+    "code": "hnpcu1",
+    "chs": 13
+  },
+  {
+    "class": "class-8",
+    "subject": "science",
+    "category": "Science",
+    "title": "Curiosity (Santhali)",
+    "code": "hsncu1",
+    "chs": 13
+  },
+  {
+    "class": "class-8",
+    "subject": "science",
+    "category": "Science",
+    "title": "Curiosity (Sindhi)",
+    "code": "hsicu1",
+    "chs": 13
+  },
+  {
+    "class": "class-8",
+    "subject": "science",
+    "category": "Science",
+    "title": "Curiosity (Kashmiri)",
+    "code": "hkscu1",
+    "chs": 13
+  },
+  {
+    "class": "class-8",
+    "subject": "science",
+    "category": "Science",
+    "title": "..Select Book Title..",
+    "code": "hesc1",
+    "chs": 13
+  },
+  {
+    "class": "class-8",
+    "subject": "science",
+    "category": "Science",
+    "title": "Vigyan",
+    "code": "hhsc1",
+    "chs": 13
+  },
+  {
+    "class": "class-8",
+    "subject": "science",
+    "category": "Science",
+    "title": "Exemplar Problems",
+    "code": "heep1",
+    "chs": 18
+  },
+  {
+    "class": "class-8",
+    "subject": "social-science",
+    "category": "Social Science",
+    "title": "..Select Book Title..",
+    "code": "hees1",
+    "chs": 7
+  },
+  {
+    "class": "class-8",
+    "subject": "social-science",
+    "category": "Social Science",
+    "title": "Samaj Ka Aadhyan: Bharat or uske aage Part-I",
+    "code": "hhes1",
+    "chs": 7
+  },
+  {
+    "class": "class-8",
+    "subject": "social-science",
+    "category": "Social Science",
+    "title": "Exploring Society India and Beyond Part-II",
+    "code": "hees2",
+    "chs": 8
+  },
+  {
+    "class": "class-8",
+    "subject": "social-science",
+    "category": "Social Science",
+    "title": "Exploring Society India and Beyond Part-I (Odia) ",
+    "code": "hores1",
+    "chs": 7
+  },
+  {
+    "class": "class-8",
+    "subject": "social-science",
+    "category": "Social Science",
+    "title": "Exploring Society India and Beyond Part-I (Sanskrit) ",
+    "code": "hskes1",
+    "chs": 7
+  },
+  {
+    "class": "class-8",
+    "subject": "social-science",
+    "category": "Social Science",
+    "title": "Exploring Society India and Beyond Part-I (Malayalam) ",
+    "code": "hmles1",
+    "chs": 7
+  },
+  {
+    "class": "class-8",
+    "subject": "social-science",
+    "category": "Social Science",
+    "title": "Exploring Society India and Beyond Part-I (Punjabi) ",
+    "code": "hpnes1",
+    "chs": 7
+  },
+  {
+    "class": "class-8",
+    "subject": "social-science",
+    "category": "Social Science",
+    "title": "Exploring Society India and Beyond Part-I (Gujarati) ",
+    "code": "hgjes1",
+    "chs": 7
+  },
+  {
+    "class": "class-8",
+    "subject": "social-science",
+    "category": "Social Science",
+    "title": "Exploring Society India and Beyond Part-I (Bengali) ",
+    "code": "hbnes1",
+    "chs": 7
+  },
+  {
+    "class": "class-8",
+    "subject": "social-science",
+    "category": "Social Science",
+    "title": "Exploring Society India and Beyond Part-I (Tamil) ",
+    "code": "htmes1",
+    "chs": 7
+  },
+  {
+    "class": "class-8",
+    "subject": "social-science",
+    "category": "Social Science",
+    "title": "Exploring Society India and Beyond Part-I (Nepali) ",
+    "code": "hnpes1",
+    "chs": 7
+  },
+  {
+    "class": "class-8",
+    "subject": "social-science",
+    "category": "Social Science",
+    "title": "Exploring Society India and Beyond Part-I (Manipuri) ",
+    "code": "hmnes1",
+    "chs": 7
+  },
+  {
+    "class": "class-8",
+    "subject": "social-science",
+    "category": "Social Science",
+    "title": "Exploring Society India and Beyond Part-I (Kannada) ",
+    "code": "hknes1",
+    "chs": 7
+  },
+  {
+    "class": "class-8",
+    "subject": "social-science",
+    "category": "Social Science",
+    "title": "Exploring Society India and Beyond Part-I (Marathi) ",
+    "code": "hmres1",
+    "chs": 7
+  },
+  {
+    "class": "class-8",
+    "subject": "social-science",
+    "category": "Social Science",
+    "title": "Exploring Society India and Beyond Part-I (Dogri) ",
+    "code": "hdges1",
+    "chs": 7
+  },
+  {
+    "class": "class-8",
+    "subject": "social-science",
+    "category": "Social Science",
+    "title": "Exploring Society India and Beyond Part-I (Assamese) ",
+    "code": "hases1",
+    "chs": 7
+  },
+  {
+    "class": "class-8",
+    "subject": "social-science",
+    "category": "Social Science",
+    "title": "Exploring Society India and Beyond Part-I (Konkani) ",
+    "code": "hkoes1",
+    "chs": 7
+  },
+  {
+    "class": "class-8",
+    "subject": "social-science",
+    "category": "Social Science",
+    "title": "Exploring Society India and Beyond Part-I (Maithili) ",
+    "code": "hmtes1",
+    "chs": 7
+  },
+  {
+    "class": "class-8",
+    "subject": "social-science",
+    "category": "Social Science",
+    "title": "Exploring Society India and Beyond Part-I (Bodo) ",
+    "code": "hbdes1",
+    "chs": 7
+  },
+  {
+    "class": "class-8",
+    "subject": "social-science",
+    "category": "Social Science",
+    "title": "Exploring Society India and Beyond Part-I (Kashmiri) ",
+    "code": "hkses1",
+    "chs": 7
+  },
+  {
+    "class": "class-8",
+    "subject": "social-science",
+    "category": "Social Science",
+    "title": "Exploring Society India and Beyond Part-I (Santhali) ",
+    "code": "hsnes1",
+    "chs": 7
+  },
+  {
+    "class": "class-8",
+    "subject": "social-science",
+    "category": "Social Science",
+    "title": "Exploring Society India and Beyond Part-I (Telugu) ",
+    "code": "htles1",
+    "chs": 7
+  },
+  {
+    "class": "class-8",
+    "subject": "social-science",
+    "category": "Social Science",
+    "title": "Exploring Society India and Beyond Part-I (Sindhi) ",
+    "code": "hsies1",
+    "chs": 7
+  },
+  {
+    "class": "class-8",
+    "subject": "social-science",
+    "category": "Social Science",
+    "title": "..Select Book Title..",
+    "code": "hess4",
+    "chs": 5
+  },
+  {
+    "class": "class-8",
+    "subject": "social-science",
+    "category": "Social Science",
+    "title": "Sansadhan Avam Vikas(Bhugol)",
+    "code": "hhss4",
+    "chs": 5
+  },
+  {
+    "class": "class-8",
+    "subject": "social-science",
+    "category": "Social Science",
+    "title": "Social And Political Life",
+    "code": "hess3",
+    "chs": 8
+  },
+  {
+    "class": "class-8",
+    "subject": "social-science",
+    "category": "Social Science",
+    "title": "Samajik Avam Rajnatik Jeevan",
+    "code": "hhss3",
+    "chs": 8
+  },
+  {
+    "class": "class-8",
+    "subject": "social-science",
+    "category": "Social Science",
+    "title": "Our-Pasts-III  ",
+    "code": "hess2",
+    "chs": 8
+  },
+  {
+    "class": "class-8",
+    "subject": "social-science",
+    "category": "Social Science",
+    "title": "Hamare Atit-III (Itihas) ",
+    "code": "hhss1",
+    "chs": 8
+  },
+  {
+    "class": "class-8",
+    "subject": "social-science",
+    "category": "Social Science",
+    "title": "Our-Pasts-III (Part-II) ",
+    "code": "hess2",
+    "chs": 6
+  },
+  {
+    "class": "class-8",
+    "subject": "social-science",
+    "category": "Social Science",
+    "title": "Hamare Atit-III (Bhag-II) ",
+    "code": "hhss2",
+    "chs": 6
+  },
+  {
+    "class": "class-8",
+    "subject": "sanskrit",
+    "category": "Sanskrit",
+    "title": "..Select Book Title..",
+    "code": "hsde1",
+    "chs": 16
+  },
+  {
+    "class": "class-8",
+    "subject": "sanskrit",
+    "category": "Sanskrit",
+    "title": "..Select Book Title..",
+    "code": "hhsk1",
+    "chs": 14
+  },
+  {
+    "class": "class-9",
+    "subject": "english",
+    "category": "English",
+    "title": "..Select Book Title..",
+    "code": "iebe1",
+    "chs": 8
+  },
+  {
+    "class": "class-9",
+    "subject": "english",
+    "category": "English",
+    "title": "Moments Supplementary Reader",
+    "code": "iemo1",
+    "chs": 9
+  },
+  {
+    "class": "class-9",
+    "subject": "english",
+    "category": "English",
+    "title": "Words and Expressions  1",
+    "code": "iewe1",
+    "chs": 9
+  },
+  {
+    "class": "class-9",
+    "subject": "hindi",
+    "category": "Hindi",
+    "title": "..Select Book Title..",
+    "code": "ihga1",
+    "chs": 12
+  },
+  {
+    "class": "class-9",
+    "subject": "hindi",
+    "category": "Hindi",
+    "title": "Reva",
+    "code": "reva1",
+    "chs": 10
+  },
+  {
+    "class": "class-9",
+    "subject": "hindi",
+    "category": "Hindi",
+    "title": "Kshitij",
+    "code": "ihks1",
+    "chs": 13
+  },
+  {
+    "class": "class-9",
+    "subject": "hindi",
+    "category": "Hindi",
+    "title": "Sprash",
+    "code": "ihsp1",
+    "chs": 10
+  },
+  {
+    "class": "class-9",
+    "subject": "hindi",
+    "category": "Hindi",
+    "title": "Kritika",
+    "code": "ihkr1",
+    "chs": 3
+  },
+  {
+    "class": "class-9",
+    "subject": "hindi",
+    "category": "Hindi",
+    "title": "Sanchayan",
+    "code": "ihsa1",
+    "chs": 4
+  },
+  {
+    "class": "class-9",
+    "subject": "maths",
+    "category": "Mathematics",
+    "title": "..Select Book Title..",
+    "code": "iemh1",
+    "chs": 8
+  },
+  {
+    "class": "class-9",
+    "subject": "maths",
+    "category": "Mathematics",
+    "title": "Ganita Manjari PART-II",
+    "code": "iemh2",
+    "chs": 6
+  },
+  {
+    "class": "class-9",
+    "subject": "maths",
+    "category": "Mathematics",
+    "title": "Ganita Manjari (Hindi)",
+    "code": "ihmh1",
+    "chs": 8
+  },
+  {
+    "class": "class-9",
+    "subject": "maths",
+    "category": "Mathematics",
+    "title": "Ganit Manjari (Urdu)",
+    "code": "iumh1",
+    "chs": 8
+  },
+  {
+    "class": "class-9",
+    "subject": "science",
+    "category": "Science",
+    "title": "..Select Book Title..",
+    "code": "iesc1",
+    "chs": 13
+  },
+  {
+    "class": "class-9",
+    "subject": "science",
+    "category": "Science",
+    "title": "Anveshan",
+    "code": "ihsc1",
+    "chs": 13
+  },
+  {
+    "class": "class-9",
+    "subject": "science",
+    "category": "Science",
+    "title": "Vigyan",
+    "code": "ihsc1",
+    "chs": 12
+  },
+  {
+    "class": "class-9",
+    "subject": "science",
+    "category": "Science",
+    "title": "Science (Urdu)",
+    "code": "iusc1",
+    "chs": 15
+  },
+  {
+    "class": "class-9",
+    "subject": "science",
+    "category": "Science",
+    "title": "Exemplar Problem(English)",
+    "code": "ieep1",
+    "chs": 17
+  },
+  {
+    "class": "class-9",
+    "subject": "science",
+    "category": "Science",
+    "title": "Exemplar Problem(Hindi)",
+    "code": "ihep1",
+    "chs": 17
+  },
+  {
+    "class": "class-9",
+    "subject": "science",
+    "category": "Science",
+    "title": "Lab Manual(English))",
+    "code": "ielm1",
+    "chs": 5
+  },
+  {
+    "class": "class-9",
+    "subject": "science",
+    "category": "Science",
+    "title": "Lab Manual(Hindi)",
+    "code": "ihlm1",
+    "chs": 5
+  },
+  {
+    "class": "class-9",
+    "subject": "social-science",
+    "category": "Social Science",
+    "title": "..Select Book Title..",
+    "code": "iest1",
+    "chs": 9
+  },
+  {
+    "class": "class-9",
+    "subject": "social-science",
+    "category": "Social Science",
+    "title": "Understanding Society India and Beyond PART-II",
+    "code": "iest2",
+    "chs": 6
+  },
+  {
+    "class": "class-9",
+    "subject": "social-science",
+    "category": "Social Science",
+    "title": "Loktantrik Rajniti-I",
+    "code": "ihss4",
+    "chs": 5
+  },
+  {
+    "class": "class-9",
+    "subject": "social-science",
+    "category": "Social Science",
+    "title": "Contemporary India-I",
+    "code": "iess1",
+    "chs": 6
+  },
+  {
+    "class": "class-9",
+    "subject": "social-science",
+    "category": "Social Science",
+    "title": "Samkalin Bharat-I",
+    "code": "ihss1",
+    "chs": 6
+  },
+  {
+    "class": "class-9",
+    "subject": "social-science",
+    "category": "Social Science",
+    "title": "Arthashastra",
+    "code": "ihss2",
+    "chs": 4
+  },
+  {
+    "class": "class-9",
+    "subject": "social-science",
+    "category": "Social Science",
+    "title": "Economics",
+    "code": "iess2",
+    "chs": 4
+  },
+  {
+    "class": "class-9",
+    "subject": "social-science",
+    "category": "Social Science",
+    "title": "India and the Contemporary World-I",
+    "code": "iess3",
+    "chs": 5
+  },
+  {
+    "class": "class-9",
+    "subject": "social-science",
+    "category": "Social Science",
+    "title": "Bharat Aur Samkalin Vishwa-I",
+    "code": "ihss3",
+    "chs": 5
+  },
+  {
+    "class": "class-9",
+    "subject": "social-science",
+    "category": "Social Science",
+    "title": "Jamhuri Syasat(Urdu)-I",
+    "code": "iuss4",
+    "chs": 6
+  },
+  {
+    "class": "class-9",
+    "subject": "social-science",
+    "category": "Social Science",
+    "title": "Hindustan Aur Asri Dunia-I(Urdu)",
+    "code": "iuhi1",
+    "chs": 5
+  },
+  {
+    "class": "class-9",
+    "subject": "social-science",
+    "category": "Social Science",
+    "title": "Aasri Hindustan (Urdu)-I",
+    "code": "iuss1",
+    "chs": 6
+  },
+  {
+    "class": "class-9",
+    "subject": "social-science",
+    "category": "Social Science",
+    "title": "Mashiyat (Urdu)",
+    "code": "iuss2",
+    "chs": 4
+  },
+  {
+    "class": "class-9",
+    "subject": "sanskrit",
+    "category": "Sanskrit",
+    "title": "..Select Book Title..",
+    "code": "ihsh1",
+    "chs": 16
+  },
+  {
+    "class": "class-9",
+    "subject": "sanskrit",
+    "category": "Sanskrit",
+    "title": "Risikulya(R2)",
+    "code": "isanskritr21",
+    "chs": 10
+  },
+  {
+    "class": "class-9",
+    "subject": "sanskrit",
+    "category": "Sanskrit",
+    "title": "Vyakaranavithi",
+    "code": "jhva1",
+    "chs": 12
+  },
+  {
+    "class": "class-9",
+    "subject": "sanskrit",
+    "category": "Sanskrit",
+    "title": "Abhyaswaan Bhav",
+    "code": "isab1",
+    "chs": 12
+  },
+  {
+    "class": "class-10",
+    "subject": "english",
+    "category": "English",
+    "title": "..Select Book Title..",
+    "code": "jeff1",
+    "chs": 9
+  },
+  {
+    "class": "class-10",
+    "subject": "english",
+    "category": "English",
+    "title": "Foot Prints Without feet Supp. Reader",
+    "code": "jefp1",
+    "chs": 9
+  },
+  {
+    "class": "class-10",
+    "subject": "english",
+    "category": "English",
+    "title": "Words and Expressions  2",
+    "code": "jewe2",
+    "chs": 9
+  },
+  {
+    "class": "class-10",
+    "subject": "hindi",
+    "category": "Hindi",
+    "title": "..Select Book Title..",
+    "code": "jhks1",
+    "chs": 12
+  },
+  {
+    "class": "class-10",
+    "subject": "hindi",
+    "category": "Hindi",
+    "title": "Sparsh",
+    "code": "jhsp1",
+    "chs": 14
+  },
+  {
+    "class": "class-10",
+    "subject": "hindi",
+    "category": "Hindi",
+    "title": "Sanchayan Bhag-2",
+    "code": "jhsy1",
+    "chs": 3
+  },
+  {
+    "class": "class-10",
+    "subject": "hindi",
+    "category": "Hindi",
+    "title": "Kritika",
+    "code": "jhkr1",
+    "chs": 3
+  },
+  {
+    "class": "class-10",
+    "subject": "maths",
+    "category": "Mathematics",
+    "title": "..Select Book Title..",
+    "code": "jemh1",
+    "chs": 14
+  },
+  {
+    "class": "class-10",
+    "subject": "maths",
+    "category": "Mathematics",
+    "title": "Ganit",
+    "code": "jhmh1",
+    "chs": 14
+  },
+  {
+    "class": "class-10",
+    "subject": "maths",
+    "category": "Mathematics",
+    "title": "Riyazi",
+    "code": "jumh1",
+    "chs": 15
+  },
+  {
+    "class": "class-10",
+    "subject": "maths",
+    "category": "Mathematics",
+    "title": "Exemplars Problem(English)",
+    "code": "jeep2",
+    "chs": 14
+  },
+  {
+    "class": "class-10",
+    "subject": "maths",
+    "category": "Mathematics",
+    "title": "Exemplars Problem(Hindi)",
+    "code": "jhep2",
+    "chs": 14
+  },
+  {
+    "class": "class-10",
+    "subject": "science",
+    "category": "Science",
+    "title": "..Select Book Title..",
+    "code": "jesc1",
+    "chs": 13
+  },
+  {
+    "class": "class-10",
+    "subject": "science",
+    "category": "Science",
+    "title": "Vigyan",
+    "code": "jhsc1",
+    "chs": 13
+  },
+  {
+    "class": "class-10",
+    "subject": "science",
+    "category": "Science",
+    "title": "Science(Urdu)",
+    "code": "jusc1",
+    "chs": 16
+  },
+  {
+    "class": "class-10",
+    "subject": "science",
+    "category": "Science",
+    "title": "Exemplar Problem(English)",
+    "code": "jeep1",
+    "chs": 18
+  },
+  {
+    "class": "class-10",
+    "subject": "science",
+    "category": "Science",
+    "title": "Exemplar Problem(Hindi)",
+    "code": "jhep1",
+    "chs": 18
+  },
+  {
+    "class": "class-10",
+    "subject": "science",
+    "category": "Science",
+    "title": "Lab Manual(English)",
+    "code": "jelm1",
+    "chs": 6
+  },
+  {
+    "class": "class-10",
+    "subject": "science",
+    "category": "Science",
+    "title": "Lab Manual(Hindi)",
+    "code": "jhlm1",
+    "chs": 6
+  },
+  {
+    "class": "class-10",
+    "subject": "social-science",
+    "category": "Social Science",
+    "title": "..Select Book Title..",
+    "code": "jess1",
+    "chs": 7
+  },
+  {
+    "class": "class-10",
+    "subject": "social-science",
+    "category": "Social Science",
+    "title": "Samkalin Bharat",
+    "code": "jhss1",
+    "chs": 7
+  },
+  {
+    "class": "class-10",
+    "subject": "social-science",
+    "category": "Social Science",
+    "title": "Aasri Hindustan-II",
+    "code": "juss1",
+    "chs": 7
+  },
+  {
+    "class": "class-10",
+    "subject": "social-science",
+    "category": "Social Science",
+    "title": "Understanding Economic Development",
+    "code": "jess2",
+    "chs": 5
+  },
+  {
+    "class": "class-10",
+    "subject": "social-science",
+    "category": "Social Science",
+    "title": "Arthik Vikas ki Samajh",
+    "code": "jhss2",
+    "chs": 5
+  },
+  {
+    "class": "class-10",
+    "subject": "social-science",
+    "category": "Social Science",
+    "title": "Maashi Taraqqui Ki Samajh",
+    "code": "juss2",
+    "chs": 5
+  },
+  {
+    "class": "class-10",
+    "subject": "social-science",
+    "category": "Social Science",
+    "title": "India and the Contemporary World-II ",
+    "code": "jess3",
+    "chs": 5
+  },
+  {
+    "class": "class-10",
+    "subject": "social-science",
+    "category": "Social Science",
+    "title": "Bharat Aur Samakalin Vishav-2",
+    "code": "jhss3",
+    "chs": 5
+  },
+  {
+    "class": "class-10",
+    "subject": "social-science",
+    "category": "Social Science",
+    "title": "Hindustan Aur Asri Duniya",
+    "code": "juss3",
+    "chs": 5
+  },
+  {
+    "class": "class-10",
+    "subject": "social-science",
+    "category": "Social Science",
+    "title": "Democratic Politics",
+    "code": "jess4",
+    "chs": 5
+  },
+  {
+    "class": "class-10",
+    "subject": "social-science",
+    "category": "Social Science",
+    "title": "Loktantrik Rajniti",
+    "code": "jhss4",
+    "chs": 5
+  },
+  {
+    "class": "class-10",
+    "subject": "social-science",
+    "category": "Social Science",
+    "title": "Jamhuri Siyasat-II ",
+    "code": "juss4",
+    "chs": 8
+  },
+  {
+    "class": "class-10",
+    "subject": "sanskrit",
+    "category": "Sanskrit",
+    "title": "..Select Book Title..",
+    "code": "jhsk1",
+    "chs": 10
+  },
+  {
+    "class": "class-10",
+    "subject": "sanskrit",
+    "category": "Sanskrit",
+    "title": "Vyakaranavithi",
+    "code": "jhva1",
+    "chs": 12
+  },
+  {
+    "class": "class-10",
+    "subject": "sanskrit",
+    "category": "Sanskrit",
+    "title": "Abhyaswaan Bhav-II",
+    "code": "jsab1",
+    "chs": 14
+  },
+  {
+    "class": "class-11",
+    "subject": "english",
+    "category": "English",
+    "title": "..Select Book Title..",
+    "code": "keww1",
+    "chs": 27
+  },
+  {
+    "class": "class-11",
+    "subject": "english",
+    "category": "English",
+    "title": "Hornbill",
+    "code": "kehb1",
+    "chs": 14
+  },
+  {
+    "class": "class-11",
+    "subject": "english",
+    "category": "English",
+    "title": "Snapshots Suppl.Reader English",
+    "code": "kesp1",
+    "chs": 5
+  },
+  {
+    "class": "class-11",
+    "subject": "hindi",
+    "category": "Hindi",
+    "title": "..Select Book Title..",
+    "code": "khat1",
+    "chs": 16
+  },
+  {
+    "class": "class-11",
+    "subject": "hindi",
+    "category": "Hindi",
+    "title": "Aroh",
+    "code": "khar1",
+    "chs": 16
+  },
+  {
+    "class": "class-11",
+    "subject": "hindi",
+    "category": "Hindi",
+    "title": "Vyavaharik Hindi",
+    "code": "khvt1",
+    "chs": 5
+  },
+  {
+    "class": "class-11",
+    "subject": "hindi",
+    "category": "Hindi",
+    "title": "Antral",
+    "code": "khan1",
+    "chs": 2
+  },
+  {
+    "class": "class-11",
+    "subject": "hindi",
+    "category": "Hindi",
+    "title": "Abhivyakti Aur Madhyam",
+    "code": "lham1",
+    "chs": 18
+  },
+  {
+    "class": "class-11",
+    "subject": "maths",
+    "category": "Mathematics",
+    "title": "..Select Book Title..",
+    "code": "kemh1",
+    "chs": 14
+  },
+  {
+    "class": "class-11",
+    "subject": "maths",
+    "category": "Mathematics",
+    "title": "Ganit",
+    "code": "khmh1",
+    "chs": 14
+  },
+  {
+    "class": "class-11",
+    "subject": "maths",
+    "category": "Mathematics",
+    "title": "Exemplar Problems(English)",
+    "code": "keep2",
+    "chs": 18
+  },
+  {
+    "class": "class-11",
+    "subject": "maths",
+    "category": "Mathematics",
+    "title": "Exemplar Problems(Hindi)",
+    "code": "khep2",
+    "chs": 18
+  },
+  {
+    "class": "class-11",
+    "subject": "science",
+    "category": "Physics",
+    "title": "..Select Book Title..",
+    "code": "keph1",
+    "chs": 7
+  },
+  {
+    "class": "class-11",
+    "subject": "science",
+    "category": "Physics",
+    "title": "Bhautiki-I",
+    "code": "khph1",
+    "chs": 7
+  },
+  {
+    "class": "class-11",
+    "subject": "science",
+    "category": "Physics",
+    "title": "Physics Part-II",
+    "code": "keph2",
+    "chs": 7
+  },
+  {
+    "class": "class-11",
+    "subject": "science",
+    "category": "Physics",
+    "title": "Bhautiki-II",
+    "code": "khph2",
+    "chs": 7
+  },
+  {
+    "class": "class-11",
+    "subject": "science",
+    "category": "Physics",
+    "title": "Exemplar Problems(English)",
+    "code": "keep3",
+    "chs": 17
+  },
+  {
+    "class": "class-11",
+    "subject": "science",
+    "category": "Physics",
+    "title": "Exemplar Problems(Hindi)",
+    "code": "khep3",
+    "chs": 17
+  },
+  {
+    "class": "class-11",
+    "subject": "science",
+    "category": "Physics",
+    "title": "Lab Manual(English)",
+    "code": "kelm1",
+    "chs": 14
+  },
+  {
+    "class": "class-11",
+    "subject": "science",
+    "category": "Chemistry",
+    "title": "..Select Book Title..",
+    "code": "kech1",
+    "chs": 6
+  },
+  {
+    "class": "class-11",
+    "subject": "science",
+    "category": "Chemistry",
+    "title": "Rasayan Vigyan bhag-I",
+    "code": "khch1",
+    "chs": 6
+  },
+  {
+    "class": "class-11",
+    "subject": "science",
+    "category": "Chemistry",
+    "title": "Chemistry Part II",
+    "code": "kech2",
+    "chs": 3
+  },
+  {
+    "class": "class-11",
+    "subject": "science",
+    "category": "Chemistry",
+    "title": "Rasayan Vigyan bhag-II",
+    "code": "khch2",
+    "chs": 3
+  },
+  {
+    "class": "class-11",
+    "subject": "science",
+    "category": "Chemistry",
+    "title": "Online Chemistry book Part I",
+    "code": "keep5",
+    "chs": 15
+  },
+  {
+    "class": "class-11",
+    "subject": "science",
+    "category": "Chemistry",
+    "title": "Exemplar Problems(Hindi)",
+    "code": "khep5",
+    "chs": 15
+  },
+  {
+    "class": "class-11",
+    "subject": "science",
+    "category": "Chemistry",
+    "title": "Lab Manual(English)",
+    "code": "kelm2",
+    "chs": 8
+  },
+  {
+    "class": "class-11",
+    "subject": "science",
+    "category": "Chemistry",
+    "title": "Lab Manual(Hindi)",
+    "code": "khlm2",
+    "chs": 8
+  },
+  {
+    "class": "class-11",
+    "subject": "science",
+    "category": "Biology",
+    "title": "..Select Book Title..",
+    "code": "kebo1",
+    "chs": 19
+  },
+  {
+    "class": "class-11",
+    "subject": "science",
+    "category": "Biology",
+    "title": "Jeev Vigyan",
+    "code": "khbo1",
+    "chs": 19
+  },
+  {
+    "class": "class-11",
+    "subject": "science",
+    "category": "Biology",
+    "title": "Human Ecology and Family Sciences Part I ",
+    "code": "kehe1",
+    "chs": 2
+  },
+  {
+    "class": "class-11",
+    "subject": "science",
+    "category": "Biology",
+    "title": "Human Ecology and Family Sciences Part II ",
+    "code": "kehe2",
+    "chs": 2
+  },
+  {
+    "class": "class-11",
+    "subject": "science",
+    "category": "Biology",
+    "title": "Exemplar Problems(English)",
+    "code": "keep4",
+    "chs": 25
+  },
+  {
+    "class": "class-11",
+    "subject": "science",
+    "category": "Biology",
+    "title": "Exemplar Problems(Hindi)",
+    "code": "khep4",
+    "chs": 25
+  },
+  {
+    "class": "class-11",
+    "subject": "science",
+    "category": "Biology",
+    "title": "Lab Manual(English)",
+    "code": "kelm3",
+    "chs": 17
+  },
+  {
+    "class": "class-11",
+    "subject": "social-science",
+    "category": "History",
+    "title": "..Select Book Title..",
+    "code": "kehs1",
+    "chs": 7
+  },
+  {
+    "class": "class-11",
+    "subject": "social-science",
+    "category": "History",
+    "title": "Vishwa Itihas Ke Kuch Vishay",
+    "code": "khhs1",
+    "chs": 7
+  },
+  {
+    "class": "class-11",
+    "subject": "social-science",
+    "category": "Geography",
+    "title": "..Select Book Title..",
+    "code": "kegy2",
+    "chs": 14
+  },
+  {
+    "class": "class-11",
+    "subject": "social-science",
+    "category": "Geography",
+    "title": "Bhautique Bhugol ke Mool Sidhant",
+    "code": "khgy2",
+    "chs": 14
+  },
+  {
+    "class": "class-11",
+    "subject": "social-science",
+    "category": "Geography",
+    "title": "Pratical Work in Geography",
+    "code": "kegy3",
+    "chs": 6
+  },
+  {
+    "class": "class-11",
+    "subject": "social-science",
+    "category": "Geography",
+    "title": "Bhugol Main Prayogatmak Karya",
+    "code": "khgy3",
+    "chs": 6
+  },
+  {
+    "class": "class-11",
+    "subject": "social-science",
+    "category": "Geography",
+    "title": "India Physical Environment",
+    "code": "kegy1",
+    "chs": 6
+  },
+  {
+    "class": "class-11",
+    "subject": "social-science",
+    "category": "Geography",
+    "title": "Bhart Bhautik Paryabaran",
+    "code": "khgy1",
+    "chs": 6
+  },
+  {
+    "class": "class-11",
+    "subject": "social-science",
+    "category": "Political Science",
+    "title": "..Select Book Title..",
+    "code": "keps1",
+    "chs": 8
+  },
+  {
+    "class": "class-11",
+    "subject": "social-science",
+    "category": "Political Science",
+    "title": "Raajneeti Sidhant",
+    "code": "khps1",
+    "chs": 8
+  },
+  {
+    "class": "class-11",
+    "subject": "social-science",
+    "category": "Political Science",
+    "title": "India Constitution at Work",
+    "code": "keps2",
+    "chs": 10
+  },
+  {
+    "class": "class-11",
+    "subject": "social-science",
+    "category": "Political Science",
+    "title": "Bharat ka Samvidhan Sidhant aur Vyavhar",
+    "code": "khps2",
+    "chs": 10
+  },
+  {
+    "class": "class-11",
+    "subject": "social-science",
+    "category": "Economics",
+    "title": "..Select Book Title..",
+    "code": "keec1",
+    "chs": 8
+  },
+  {
+    "class": "class-11",
+    "subject": "social-science",
+    "category": "Economics",
+    "title": "Statistics for Economics",
+    "code": "kest1",
+    "chs": 8
+  },
+  {
+    "class": "class-11",
+    "subject": "social-science",
+    "category": "Economics",
+    "title": "Sankhyiki",
+    "code": "khst1",
+    "chs": 8
+  },
+  {
+    "class": "class-11",
+    "subject": "social-science",
+    "category": "Economics",
+    "title": "Bhartiya Airthryavstha Ka Vikas ",
+    "code": "khec1",
+    "chs": 8
+  },
+  {
+    "class": "class-11",
+    "subject": "sanskrit",
+    "category": "Sanskrit",
+    "title": "..Select Book Title..",
+    "code": "khsk1",
+    "chs": 11
+  },
+  {
+    "class": "class-11",
+    "subject": "sanskrit",
+    "category": "Sanskrit",
+    "title": "Shashwati",
+    "code": "khsk2",
+    "chs": 11
+  },
+  {
+    "class": "class-12",
+    "subject": "english",
+    "category": "English",
+    "title": "..Select Book Title..",
+    "code": "lekl1",
+    "chs": 21
+  },
+  {
+    "class": "class-12",
+    "subject": "english",
+    "category": "English",
+    "title": "Flamingo",
+    "code": "lefl1",
+    "chs": 13
+  },
+  {
+    "class": "class-12",
+    "subject": "english",
+    "category": "English",
+    "title": "Vistas",
+    "code": "levt1",
+    "chs": 6
+  },
+  {
+    "class": "class-12",
+    "subject": "hindi",
+    "category": "Hindi",
+    "title": "..Select Book Title..",
+    "code": "lhat1",
+    "chs": 21
+  },
+  {
+    "class": "class-12",
+    "subject": "hindi",
+    "category": "Hindi",
+    "title": "Aroh",
+    "code": "lhar1",
+    "chs": 15
+  },
+  {
+    "class": "class-12",
+    "subject": "hindi",
+    "category": "Hindi",
+    "title": "Vitan",
+    "code": "lhvt1",
+    "chs": 3
+  },
+  {
+    "class": "class-12",
+    "subject": "hindi",
+    "category": "Hindi",
+    "title": "Abhivyakti Aur Madhyam",
+    "code": "lham1",
+    "chs": 18
+  },
+  {
+    "class": "class-12",
+    "subject": "hindi",
+    "category": "Hindi",
+    "title": "Antral Bhag 2",
+    "code": "lhan1",
+    "chs": 3
+  },
+  {
+    "class": "class-12",
+    "subject": "maths",
+    "category": "Mathematics",
+    "title": "..Select Book Title..",
+    "code": "lemh1",
+    "chs": 6
+  },
+  {
+    "class": "class-12",
+    "subject": "maths",
+    "category": "Mathematics",
+    "title": "Mathematics Part-II",
+    "code": "lemh2",
+    "chs": 7
+  },
+  {
+    "class": "class-12",
+    "subject": "maths",
+    "category": "Mathematics",
+    "title": "Ganit-I",
+    "code": "lhmh1",
+    "chs": 6
+  },
+  {
+    "class": "class-12",
+    "subject": "maths",
+    "category": "Mathematics",
+    "title": "Ganit-II",
+    "code": "lhmh2",
+    "chs": 7
+  },
+  {
+    "class": "class-12",
+    "subject": "maths",
+    "category": "Mathematics",
+    "title": "Exemplar Problems(English)",
+    "code": "leep2",
+    "chs": 16
+  },
+  {
+    "class": "class-12",
+    "subject": "maths",
+    "category": "Mathematics",
+    "title": "Exemplar Problems(Hindi)",
+    "code": "lhep2",
+    "chs": 15
+  },
+  {
+    "class": "class-12",
+    "subject": "science",
+    "category": "Physics",
+    "title": "..Select Book Title..",
+    "code": "leph1",
+    "chs": 8
+  },
+  {
+    "class": "class-12",
+    "subject": "science",
+    "category": "Physics",
+    "title": "Physics Part-II",
+    "code": "leph2",
+    "chs": 6
+  },
+  {
+    "class": "class-12",
+    "subject": "science",
+    "category": "Physics",
+    "title": "Bhautiki-I",
+    "code": "lhph1",
+    "chs": 8
+  },
+  {
+    "class": "class-12",
+    "subject": "science",
+    "category": "Physics",
+    "title": "Bhautiki-II",
+    "code": "lhph2",
+    "chs": 6
+  },
+  {
+    "class": "class-12",
+    "subject": "science",
+    "category": "Physics",
+    "title": "Examplar Prolems(English)",
+    "code": "leep6",
+    "chs": 17
+  },
+  {
+    "class": "class-12",
+    "subject": "science",
+    "category": "Physics",
+    "title": "Examplar Problems(Hindi)",
+    "code": "lhep6",
+    "chs": 17
+  },
+  {
+    "class": "class-12",
+    "subject": "science",
+    "category": "Physics",
+    "title": "Lab Manual(English)",
+    "code": "lelm3",
+    "chs": 7
+  },
+  {
+    "class": "class-12",
+    "subject": "science",
+    "category": "Physics",
+    "title": "Lab Manual(Hindi)",
+    "code": "lhlm3",
+    "chs": 16
+  },
+  {
+    "class": "class-12",
+    "subject": "science",
+    "category": "Chemistry",
+    "title": "..Select Book Title..",
+    "code": "lech1",
+    "chs": 5
+  },
+  {
+    "class": "class-12",
+    "subject": "science",
+    "category": "Chemistry",
+    "title": "Chemistry-II",
+    "code": "lech2",
+    "chs": 5
+  },
+  {
+    "class": "class-12",
+    "subject": "science",
+    "category": "Chemistry",
+    "title": "Rasayan vigyan bhag I",
+    "code": "lhch1",
+    "chs": 5
+  },
+  {
+    "class": "class-12",
+    "subject": "science",
+    "category": "Chemistry",
+    "title": "Rasayan vigyan bhag II",
+    "code": "lhch2",
+    "chs": 5
+  },
+  {
+    "class": "class-12",
+    "subject": "science",
+    "category": "Chemistry",
+    "title": "Exemplar Problems",
+    "code": "leep5",
+    "chs": 18
+  },
+  {
+    "class": "class-12",
+    "subject": "science",
+    "category": "Chemistry",
+    "title": "Exemplar Problems(Hindi)",
+    "code": "lhep4",
+    "chs": 17
+  },
+  {
+    "class": "class-12",
+    "subject": "science",
+    "category": "Chemistry",
+    "title": "Lab Manual(English)",
+    "code": "lelm1",
+    "chs": 11
+  },
+  {
+    "class": "class-12",
+    "subject": "science",
+    "category": "Chemistry",
+    "title": "Lab Manual(Hindi)",
+    "code": "lhlm1",
+    "chs": 11
+  },
+  {
+    "class": "class-12",
+    "subject": "science",
+    "category": "Biology",
+    "title": "..Select Book Title..",
+    "code": "lebo1",
+    "chs": 13
+  },
+  {
+    "class": "class-12",
+    "subject": "science",
+    "category": "Biology",
+    "title": "Jeev Vigyan",
+    "code": "lhbo1",
+    "chs": 13
+  },
+  {
+    "class": "class-12",
+    "subject": "science",
+    "category": "Biology",
+    "title": "Human Ecology and Family Sciences Part I ",
+    "code": "lehe1",
+    "chs": 10
+  },
+  {
+    "class": "class-12",
+    "subject": "science",
+    "category": "Biology",
+    "title": "Exemplar Problems",
+    "code": "leep4",
+    "chs": 19
+  },
+  {
+    "class": "class-12",
+    "subject": "science",
+    "category": "Biology",
+    "title": "Lab Manual(English)",
+    "code": "lelm2",
+    "chs": 16
+  },
+  {
+    "class": "class-12",
+    "subject": "social-science",
+    "category": "History",
+    "title": "..Select Book Title..",
+    "code": "lehs1",
+    "chs": 4
+  },
+  {
+    "class": "class-12",
+    "subject": "social-science",
+    "category": "History",
+    "title": "Bharatiya Itihas ke kuchh Vishay-I",
+    "code": "lhhs1",
+    "chs": 4
+  },
+  {
+    "class": "class-12",
+    "subject": "social-science",
+    "category": "History",
+    "title": "Themes in Indian History-II",
+    "code": "lehs2",
+    "chs": 4
+  },
+  {
+    "class": "class-12",
+    "subject": "social-science",
+    "category": "History",
+    "title": "Bharatiya Itihas ke kuchh Vishay-II ",
+    "code": "lhhs2",
+    "chs": 4
+  },
+  {
+    "class": "class-12",
+    "subject": "social-science",
+    "category": "History",
+    "title": "Themes in Indian History-III",
+    "code": "lehs3",
+    "chs": 4
+  },
+  {
+    "class": "class-12",
+    "subject": "social-science",
+    "category": "History",
+    "title": "Bharatiya Itihas ke kuchh Vishay-III",
+    "code": "lhhs3",
+    "chs": 4
+  },
+  {
+    "class": "class-12",
+    "subject": "social-science",
+    "category": "Geography",
+    "title": "..Select Book Title..",
+    "code": "legy1",
+    "chs": 8
+  },
+  {
+    "class": "class-12",
+    "subject": "social-science",
+    "category": "Geography",
+    "title": "Practical Work in Geography Part II",
+    "code": "legy3",
+    "chs": 4
+  },
+  {
+    "class": "class-12",
+    "subject": "social-science",
+    "category": "Geography",
+    "title": "Manav Bhugol Ke Mool Sidhant",
+    "code": "lhgy1",
+    "chs": 8
+  },
+  {
+    "class": "class-12",
+    "subject": "social-science",
+    "category": "Geography",
+    "title": "Bhugol main peryojnatmak pryogatmak karye",
+    "code": "lhgy3",
+    "chs": 4
+  },
+  {
+    "class": "class-12",
+    "subject": "social-science",
+    "category": "Geography",
+    "title": "India -People And Economy",
+    "code": "legy2",
+    "chs": 9
+  },
+  {
+    "class": "class-12",
+    "subject": "social-science",
+    "category": "Geography",
+    "title": "Bharat log aur arthvyasastha(Bhugol)",
+    "code": "lhgy2",
+    "chs": 9
+  },
+  {
+    "class": "class-12",
+    "subject": "social-science",
+    "category": "Political Science",
+    "title": "..Select Book Title..",
+    "code": "leps1",
+    "chs": 7
+  },
+  {
+    "class": "class-12",
+    "subject": "social-science",
+    "category": "Political Science",
+    "title": "Samkalin Vishwa Rajniti",
+    "code": "lhps1",
+    "chs": 7
+  },
+  {
+    "class": "class-12",
+    "subject": "social-science",
+    "category": "Political Science",
+    "title": "Politics in India Since Independence",
+    "code": "leps2",
+    "chs": 8
+  },
+  {
+    "class": "class-12",
+    "subject": "social-science",
+    "category": "Political Science",
+    "title": "Swatantra Bharat Mein Rajniti-II",
+    "code": "lhps2",
+    "chs": 8
+  },
+  {
+    "class": "class-12",
+    "subject": "social-science",
+    "category": "Economics",
+    "title": "..Select Book Title..",
+    "code": "leec2",
+    "chs": 5
+  },
+  {
+    "class": "class-12",
+    "subject": "social-science",
+    "category": "Economics",
+    "title": "Introductory Macroeconomics",
+    "code": "leec1",
+    "chs": 6
+  },
+  {
+    "class": "class-12",
+    "subject": "social-science",
+    "category": "Economics",
+    "title": "Vyashthi Arthshasrta",
+    "code": "lhec2",
+    "chs": 5
+  },
+  {
+    "class": "class-12",
+    "subject": "social-science",
+    "category": "Economics",
+    "title": "Samashty Arthshastra Ek Parichay",
+    "code": "lhec1",
+    "chs": 6
+  },
+  {
+    "class": "class-12",
+    "subject": "sanskrit",
+    "category": "Sanskrit",
+    "title": "..Select Book Title..",
+    "code": "lhsk1",
+    "chs": 10
+  },
+  {
+    "class": "class-12",
+    "subject": "sanskrit",
+    "category": "Sanskrit",
+    "title": "Shaswati",
+    "code": "lhsk2",
+    "chs": 11
+  }
+]
