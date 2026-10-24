@@ -13,6 +13,6 @@ export function generateStaticParams() {
   return params;
 }
 
-export default function LearnPage({ params }: { params: { class: string; subject: string } }) {
+export default function LearnPage({ params }: { readonly params: { readonly class: string; readonly subject: string } }) {
   return <LearnWorkspaceClient routeParams={params} />;
 }

@@ -9,7 +9,6 @@ import {
   RotateCcw, 
   ChevronLeft, 
   ChevronRight, 
-  ChevronDown,
   ChevronUp,
   User, 
   Star, 
@@ -56,9 +55,21 @@ interface TestAttempt {
   date: string;
 }
 
+function getQuestionDifficulty(idx: number): 'EASY' | 'MEDIUM' | 'HARD' {
+  if (idx % 3 === 0) return 'HARD';
+  if (idx % 3 === 1) return 'MEDIUM';
+  return 'EASY';
+}
+
+function getQuestionDifficultyLabel(idx: number): string {
+  if (idx % 3 === 0) return 'Hard';
+  if (idx % 3 === 1) return 'Medium';
+  return 'Easy';
+}
+
 // Inline LaTeX Text Parser & Renderer
 function RenderLatexText({ text, className = '' }: { readonly text: string; readonly className?: string }) {
-  if (!text || !text.includes('$')) {
+  if (!text?.includes('$')) {
     return <span className={className}>{text}</span>;
   }
   const parts = text.split('$');
@@ -142,12 +153,12 @@ export default function LearnWorkspaceClient({ routeParams, initialModule = 'HUB
       }
       const chParam = urlParams.get('ch');
       if (chParam) {
-        const chNum = parseInt(chParam, 10);
+        const chNum = Number.parseInt(chParam, 10);
         const idx = chapters.findIndex((c) => c.number === chNum);
         if (idx !== -1) setSelectedChapterIndex(idx);
       }
     }
-  }, [currentClass, currentSubject]);
+  }, [currentClass, currentSubject, chapters]);
 
   const showToast = (msg: string) => {
     setToastMessage(msg);
@@ -195,6 +206,8 @@ export default function LearnWorkspaceClient({ routeParams, initialModule = 'HUB
     setIsTestRunning(true);
     setTestScore(0);
   };
+
+  const maxReaderPages = readerMode === 'LOCAL_PDF' ? 20 : (activeChapter?.pages?.length || 6);
 
   return (
     <div className="min-h-screen bg-white text-zinc-900 flex flex-col font-sans">
@@ -290,7 +303,7 @@ export default function LearnWorkspaceClient({ routeParams, initialModule = 'HUB
                 const isActive = selectedChapterIndex === idx;
                 return (
                   <button
-                    key={ch.number}
+                    key={`ch-sidebar-${ch.number}`}
                     type="button"
                     onClick={() => {
                       setSelectedChapterIndex(idx);
@@ -329,7 +342,7 @@ export default function LearnWorkspaceClient({ routeParams, initialModule = 'HUB
 
               {/* Decorative Monochrome Graphic */}
               <div className="hidden sm:flex items-center justify-center w-28 h-28 bg-white rounded-2xl border border-zinc-200 shadow-sm flex-shrink-0 select-none">
-                <svg viewBox="0 0 100 100" className="w-20 h-20 text-zinc-900" fill="none">
+                <svg viewBox="0 0 100 100" className="w-20 h-20 text-zinc-900" fill="none" aria-hidden="true">
                   <circle cx="50" cy="50" r="38" stroke="currentColor" strokeWidth="1.5" strokeDasharray="3 3" opacity="0.4" />
                   <text x="30" y="42" fontSize="22" fontFamily="serif" fontWeight="bold" fill="currentColor">1</text>
                   <text x="56" y="56" fontSize="28" fontFamily="serif" fontWeight="bold" fill="currentColor">2</text>
@@ -348,7 +361,8 @@ export default function LearnWorkspaceClient({ routeParams, initialModule = 'HUB
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
                 
                 {/* 1. Most Important Questions */}
-                <div
+                <button
+                  type="button"
                   onClick={() => setActiveModule('IMPORTANT_QS')}
                   className="bg-white border border-zinc-200 hover:border-zinc-900 rounded-2xl p-6 text-center flex flex-col items-center justify-center cursor-pointer transition shadow-sm hover:shadow-md group"
                 >
@@ -357,10 +371,11 @@ export default function LearnWorkspaceClient({ routeParams, initialModule = 'HUB
                   </div>
                   <h3 className="font-bold text-sm text-zinc-900">Most Important Questions</h3>
                   <p className="text-xs text-zinc-500 mt-1">Hard questions included</p>
-                </div>
+                </button>
 
                 {/* 2. Revision Sheet */}
-                <div
+                <button
+                  type="button"
                   onClick={() => setActiveModule('REVISION_SHEET')}
                   className="bg-white border border-zinc-200 hover:border-zinc-900 rounded-2xl p-6 text-center flex flex-col items-center justify-center cursor-pointer transition shadow-sm hover:shadow-md group"
                 >
@@ -369,10 +384,11 @@ export default function LearnWorkspaceClient({ routeParams, initialModule = 'HUB
                   </div>
                   <h3 className="font-bold text-sm text-zinc-900">Revision Sheet</h3>
                   <p className="text-xs text-zinc-500 mt-1">Quick &amp; complete revision</p>
-                </div>
+                </button>
 
                 {/* 3. Test */}
-                <div
+                <button
+                  type="button"
                   onClick={() => setActiveModule('CHAPTER_TEST')}
                   className="bg-white border border-zinc-200 hover:border-zinc-900 rounded-2xl p-6 text-center flex flex-col items-center justify-center cursor-pointer transition shadow-sm hover:shadow-md group"
                 >
@@ -381,10 +397,11 @@ export default function LearnWorkspaceClient({ routeParams, initialModule = 'HUB
                   </div>
                   <h3 className="font-bold text-sm text-zinc-900">Test</h3>
                   <p className="text-xs text-zinc-500 mt-1">Check your understanding</p>
-                </div>
+                </button>
 
                 {/* 4. NCERT Book Reader */}
-                <div
+                <button
+                  type="button"
                   onClick={() => setActiveModule('NCERT_BOOKS')}
                   className="bg-white border border-zinc-200 hover:border-zinc-900 rounded-2xl p-6 text-center flex flex-col items-center justify-center cursor-pointer transition shadow-sm hover:shadow-md group"
                 >
@@ -393,10 +410,11 @@ export default function LearnWorkspaceClient({ routeParams, initialModule = 'HUB
                   </div>
                   <h3 className="font-bold text-sm text-zinc-900">NCERT Book Reader</h3>
                   <p className="text-xs text-zinc-500 mt-1">Read online</p>
-                </div>
+                </button>
 
                 {/* 5. Notes */}
-                <div
+                <button
+                  type="button"
                   onClick={() => setActiveModule('CHAPTER_NOTES')}
                   className="bg-white border border-zinc-200 hover:border-zinc-900 rounded-2xl p-6 text-center flex flex-col items-center justify-center cursor-pointer transition shadow-sm hover:shadow-md group"
                 >
@@ -405,10 +423,11 @@ export default function LearnWorkspaceClient({ routeParams, initialModule = 'HUB
                   </div>
                   <h3 className="font-bold text-sm text-zinc-900">Notes</h3>
                   <p className="text-xs text-zinc-500 mt-1">Short &amp; clear notes</p>
-                </div>
+                </button>
 
                 {/* 6. Summary */}
-                <div
+                <button
+                  type="button"
                   onClick={() => setActiveModule('BRIEF_SUMMARY')}
                   className="bg-white border border-zinc-200 hover:border-zinc-900 rounded-2xl p-6 text-center flex flex-col items-center justify-center cursor-pointer transition shadow-sm hover:shadow-md group"
                 >
@@ -417,7 +436,7 @@ export default function LearnWorkspaceClient({ routeParams, initialModule = 'HUB
                   </div>
                   <h3 className="font-bold text-sm text-zinc-900">Summary</h3>
                   <p className="text-xs text-zinc-500 mt-1">Key points at a glance</p>
-                </div>
+                </button>
 
               </div>
             </div>
@@ -453,7 +472,7 @@ export default function LearnWorkspaceClient({ routeParams, initialModule = 'HUB
                 const label = lvl === 'ALL' ? 'All' : lvl.charAt(0) + lvl.slice(1).toLowerCase();
                 return (
                   <button
-                    key={lvl}
+                    key={`diff-pill-${lvl}`}
                     type="button"
                     onClick={() => setQsDifficultyFilter(lvl)}
                     className={`rounded-full px-5 py-1.5 text-xs font-semibold transition ${
@@ -476,17 +495,17 @@ export default function LearnWorkspaceClient({ routeParams, initialModule = 'HUB
               ]
                 .filter((_, idx) => {
                   if (qsDifficultyFilter === 'ALL') return true;
-                  const diff = idx % 3 === 0 ? 'HARD' : idx % 3 === 1 ? 'MEDIUM' : 'EASY';
-                  return diff === qsDifficultyFilter;
+                  return getQuestionDifficulty(idx) === qsDifficultyFilter;
                 })
                 .map((q, idx) => {
                   const isExpanded = !!expandedSolutions[q.id];
-                  const diffLabel = idx % 3 === 0 ? 'Hard' : idx % 3 === 1 ? 'Medium' : 'Easy';
+                  const diffLabel = getQuestionDifficultyLabel(idx);
                   return (
-                    <div
-                      key={q.id}
+                    <button
+                      type="button"
+                      key={`qs-card-${q.id}`}
                       onClick={() => setExpandedSolutions((prev) => ({ ...prev, [q.id]: !prev[q.id] }))}
-                      className="rounded-2xl border border-zinc-200 bg-white p-4 sm:p-5 hover:border-zinc-400 transition cursor-pointer shadow-sm space-y-2.5"
+                      className="w-full text-left rounded-2xl border border-zinc-200 bg-white p-4 sm:p-5 hover:border-zinc-400 transition cursor-pointer shadow-sm space-y-2.5"
                     >
                       <div className="flex items-start justify-between gap-3">
                         <div className="flex-1">
@@ -517,7 +536,7 @@ export default function LearnWorkspaceClient({ routeParams, initialModule = 'HUB
                           </div>
                         </div>
                       )}
-                    </div>
+                    </button>
                   );
                 })}
             </div>
@@ -561,7 +580,7 @@ export default function LearnWorkspaceClient({ routeParams, initialModule = 'HUB
                 <h3 className="text-base font-bold text-zinc-900 mb-3">Key Points</h3>
                 <ul className="space-y-2.5 text-sm text-zinc-700 leading-relaxed">
                   {activeChapter.chapterNotes.revisionBullets.slice(0, 5).map((bullet, idx) => (
-                    <li key={idx} className="flex items-start gap-2">
+                    <li key={`keypoint-${activeChapter.number}-${idx}`} className="flex items-start gap-2">
                       <span className="text-zinc-900 font-bold">&bull;</span>
                       <span><RenderLatexText text={bullet} /></span>
                     </li>
@@ -590,7 +609,7 @@ export default function LearnWorkspaceClient({ routeParams, initialModule = 'HUB
                   {activeChapter.revisionSheet.subjective.slice(0, 3).map((sub, idx) => {
                     const isExpanded = !!expandedPractice[sub.id];
                     return (
-                      <div key={sub.id} className="border border-zinc-200 rounded-xl p-3.5 bg-white">
+                      <div key={`practice-${sub.id}`} className="border border-zinc-200 rounded-xl p-3.5 bg-white">
                         <button
                           type="button"
                           onClick={() => setExpandedPractice((prev) => ({ ...prev, [sub.id]: !prev[sub.id] }))}
@@ -685,10 +704,11 @@ export default function LearnWorkspaceClient({ routeParams, initialModule = 'HUB
                   ) : (
                     <div className="space-y-2.5">
                       {previousAttempts.map((att, i) => (
-                        <div
-                          key={att.id || i}
+                        <button
+                          type="button"
+                          key={`test-att-${att.id}-${i}`}
                           onClick={() => showToast(`Reviewing score for Attempt ${i + 1}: ${att.score}/${att.total}`)}
-                          className="rounded-2xl border border-zinc-200 bg-white p-4 flex items-center justify-between cursor-pointer hover:border-zinc-400 transition shadow-sm"
+                          className="w-full text-left rounded-2xl border border-zinc-200 bg-white p-4 flex items-center justify-between cursor-pointer hover:border-zinc-400 transition shadow-sm"
                         >
                           <div>
                             <div className="font-bold text-sm text-zinc-900">Attempt {i + 1}</div>
@@ -698,7 +718,7 @@ export default function LearnWorkspaceClient({ routeParams, initialModule = 'HUB
                             <span>{att.score}/{att.total || 10}</span>
                             <ChevronRight className="w-4 h-4 text-zinc-400" />
                           </div>
-                        </div>
+                        </button>
                       ))}
                     </div>
                   )}
@@ -724,7 +744,7 @@ export default function LearnWorkspaceClient({ routeParams, initialModule = 'HUB
 
                 <div className="space-y-5">
                   {activeChapter.toughTest.map((q, idx) => (
-                    <div key={q.id} className="rounded-2xl border border-zinc-200 bg-white p-5 space-y-3 shadow-sm">
+                    <div key={`tough-q-${q.id}`} className="rounded-2xl border border-zinc-200 bg-white p-5 space-y-3 shadow-sm">
                       <div className="flex items-start gap-2">
                         <span className="font-bold text-sm text-zinc-900">Q{idx + 1}.</span>
                         <div className="text-sm text-zinc-800 font-medium leading-relaxed">
@@ -737,7 +757,7 @@ export default function LearnWorkspaceClient({ routeParams, initialModule = 'HUB
                           const isSelected = testChoices[q.id] === optIdx;
                           return (
                             <button
-                              key={optIdx}
+                              key={`tough-opt-${q.id}-${optIdx}`}
                               type="button"
                               onClick={() => setTestChoices((prev) => ({ ...prev, [q.id]: optIdx }))}
                               className={`text-left p-3 rounded-xl border text-xs font-medium flex items-center gap-3 transition ${
@@ -749,7 +769,7 @@ export default function LearnWorkspaceClient({ routeParams, initialModule = 'HUB
                               <span className={`w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold border ${
                                 isSelected ? 'border-white text-white' : 'border-zinc-300 text-zinc-500'
                               }`}>
-                                {String.fromCharCode(65 + optIdx)}
+                                {String.fromCodePoint(65 + optIdx)}
                               </span>
                               <span className="flex-1"><RenderLatexText text={opt} /></span>
                             </button>
@@ -806,7 +826,7 @@ export default function LearnWorkspaceClient({ routeParams, initialModule = 'HUB
                     const userPick = testChoices[q.id];
                     const isCorrect = userPick === q.correctIndex;
                     return (
-                      <div key={q.id} className="rounded-2xl border border-zinc-200 bg-white p-5 space-y-3">
+                      <div key={`review-${q.id}`} className="rounded-2xl border border-zinc-200 bg-white p-5 space-y-3">
                         <div className="flex items-start justify-between gap-2">
                           <div className="font-bold text-sm text-zinc-900">Q{idx + 1}. {q.question}</div>
                           <span className={`text-xs px-2 py-0.5 rounded font-bold ${
@@ -905,7 +925,7 @@ export default function LearnWorkspaceClient({ routeParams, initialModule = 'HUB
                 className="w-full rounded-xl border border-zinc-200 bg-white px-4 py-3 text-sm font-semibold text-zinc-900 focus:outline-none focus:border-zinc-900 shadow-sm cursor-pointer"
               >
                 {chapters.map((ch, idx) => (
-                  <option key={ch.number} value={idx}>
+                  <option key={`reader-ch-${ch.number}`} value={idx}>
                     Chapter {ch.number}: {ch.title}
                   </option>
                 ))}
@@ -975,12 +995,12 @@ export default function LearnWorkspaceClient({ routeParams, initialModule = 'HUB
                 <ChevronLeft className="w-4 h-4" />
               </button>
               <span className="text-xs font-semibold text-zinc-800">
-                {currentPage} / {readerMode === 'LOCAL_PDF' ? 20 : (activeChapter.pages?.length || 6)}
+                {currentPage} / {maxReaderPages}
               </span>
               <button
                 type="button"
-                onClick={() => setCurrentPage((p) => Math.min(readerMode === 'LOCAL_PDF' ? 20 : (activeChapter.pages?.length || 6), p + 1))}
-                disabled={currentPage >= (readerMode === 'LOCAL_PDF' ? 20 : (activeChapter.pages?.length || 6))}
+                onClick={() => setCurrentPage((p) => Math.min(maxReaderPages, p + 1))}
+                disabled={currentPage >= maxReaderPages}
                 className="w-8 h-8 rounded-full border border-zinc-200 bg-white hover:bg-zinc-100 disabled:opacity-30 disabled:pointer-events-none flex items-center justify-center text-zinc-800 transition shadow-sm"
               >
                 <ChevronRight className="w-4 h-4" />
@@ -1026,7 +1046,7 @@ export default function LearnWorkspaceClient({ routeParams, initialModule = 'HUB
                   <h4 className="text-xs font-bold uppercase tracking-wider text-zinc-500 mb-2">Key Concepts &amp; Definitions</h4>
                   <ul className="space-y-2 text-sm text-zinc-700">
                     {activeChapter.chapterNotes.keyDefinitions.map((def) => (
-                      <li key={def.term} className="leading-relaxed">
+                      <li key={`def-${def.term}`} className="leading-relaxed">
                         <span className="font-bold text-zinc-950">&bull; {def.term}: </span>
                         <span><RenderLatexText text={def.definition} /></span>
                       </li>
@@ -1041,7 +1061,7 @@ export default function LearnWorkspaceClient({ routeParams, initialModule = 'HUB
                   <h4 className="text-xs font-bold uppercase tracking-wider text-zinc-500 mb-2">Summary Points</h4>
                   <ul className="space-y-2 text-sm text-zinc-700">
                     {activeChapter.chapterNotes.revisionBullets.map((bullet, idx) => (
-                      <li key={idx} className="leading-relaxed">
+                      <li key={`note-bullet-${activeChapter.number}-${idx}`} className="leading-relaxed">
                         <span className="font-bold text-zinc-950">&bull; </span>
                         <span><RenderLatexText text={bullet} /></span>
                       </li>
@@ -1057,7 +1077,7 @@ export default function LearnWorkspaceClient({ routeParams, initialModule = 'HUB
                       <h4 className="text-xs font-bold uppercase tracking-wider text-zinc-500 mb-2">Formulas &amp; Rules</h4>
                       <ul className="space-y-2 text-sm text-zinc-700">
                         {activeChapter.chapterNotes.formulaTable.map((f) => (
-                          <li key={f.name} className="leading-relaxed">
+                          <li key={`formula-${f.name}`} className="leading-relaxed">
                             <span className="font-bold text-zinc-950">&bull; {f.name}: </span>
                             <span className="font-mono font-medium"><MathRenderer math={f.formula} /></span>
                             {f.notes && <span className="text-xs text-zinc-500 ml-2">({f.notes})</span>}
@@ -1120,7 +1140,7 @@ export default function LearnWorkspaceClient({ routeParams, initialModule = 'HUB
                   <span><RenderLatexText text={activeChapter.briefSummary.synopsis} /></span>
                 </li>
                 {activeChapter.briefSummary.coreTakeaways.map((takeaway, idx) => (
-                  <li key={idx} className="flex items-start gap-2">
+                  <li key={`summary-takeaway-${activeChapter.number}-${idx}`} className="flex items-start gap-2">
                     <span className="text-zinc-900 font-bold">&bull;</span>
                     <span><RenderLatexText text={takeaway} /></span>
                   </li>

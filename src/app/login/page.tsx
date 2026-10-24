@@ -50,13 +50,13 @@ export default function LoginPage() {
     <main className="min-h-screen bg-[#09090B] text-white flex flex-col justify-between items-center p-6 sm:p-10 relative overflow-hidden selection:bg-zinc-800 selection:text-white">
       {/* Decorative Corner Arcs & Subtle Sparkle Stars */}
       <div className="absolute top-0 left-0 w-48 h-48 pointer-events-none opacity-20">
-        <svg viewBox="0 0 200 200" fill="none" className="w-full h-full stroke-white">
+        <svg viewBox="0 0 200 200" fill="none" className="w-full h-full stroke-white" aria-hidden="true">
           <circle cx="0" cy="0" r="140" strokeWidth="1" strokeDasharray="4 4" />
           <circle cx="0" cy="0" r="180" strokeWidth="0.75" />
         </svg>
       </div>
       <div className="absolute bottom-0 right-0 w-48 h-48 pointer-events-none opacity-20">
-        <svg viewBox="0 0 200 200" fill="none" className="w-full h-full stroke-white">
+        <svg viewBox="0 0 200 200" fill="none" className="w-full h-full stroke-white" aria-hidden="true">
           <circle cx="200" cy="200" r="140" strokeWidth="1" strokeDasharray="4 4" />
           <circle cx="200" cy="200" r="180" strokeWidth="0.75" />
         </svg>

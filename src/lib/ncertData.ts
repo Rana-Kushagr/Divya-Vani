@@ -26,7 +26,7 @@ export function getLocalNcertPdfUrl(
     : `class-${rawClass.replace(/^class/, '')}`;
   const chFormatted = String(chapterNumber).padStart(2, '0');
 
-  const normSub = String(subject).trim().toLowerCase().replace(/_/g, '-');
+  const normSub = String(subject).trim().toLowerCase().replaceAll('_', '-');
   let subFolder = normSub;
   if (normSub === 'mathematics' || normSub === 'math' || normSub === 'maths') {
     subFolder = 'maths';

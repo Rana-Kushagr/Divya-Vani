@@ -46,7 +46,7 @@ export default function SelectClassPage() {
         if (state.userName) setUserName(state.userName);
         if (state.selectedClass) setSelectedClass(state.selectedClass);
         if (state.selectedSubject) {
-          const s = state.selectedSubject.replace(/_/g, '-');
+          const s = state.selectedSubject.replaceAll('_', '-');
           setSelectedSubject(s);
         }
       } else {

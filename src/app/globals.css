@@ -23,8 +23,8 @@
 
   /* Accessibility Compliant Focus Rings */
   *:focus-visible {
-    outline: none !important;
-    box-shadow: 0 0 0 2px #09090B, 0 0 0 4px rgba(9, 9, 11, 0.2) !important;
+    outline: none;
+    box-shadow: 0 0 0 2px #09090B, 0 0 0 4px rgba(9, 9, 11, 0.2);
   }
 }
 
@@ -58,10 +58,10 @@
 /* Print Optimization */
 @media print {
   body {
-    background-color: #FFFFFF !important;
-    color: #000000 !important;
+    background-color: #FFFFFF;
+    color: #000000;
   }
   .no-print {
-    display: none !important;
+    display: none;
   }
 }
