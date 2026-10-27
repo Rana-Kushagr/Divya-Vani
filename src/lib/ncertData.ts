@@ -1,8 +1,8 @@
 import ncertCatalog from '@/data/ncertCatalog.json';
 import { SubjectId, ChapterSummary } from './types';
 
-export const NCERT_BOOK_CODES: Record<string, Record<SubjectId, string>> = ncertCatalog.bookCodes as Record<string, Record<SubjectId, string>>;
-export const OFFICIAL_SYLLABUS_TITLES: Record<string, Record<SubjectId, Array<{ number: number; title: string; hindiTitle?: string }>>> = ncertCatalog.syllabus as Record<string, Record<SubjectId, Array<{ number: number; title: string; hindiTitle?: string }>>>;
+export const NCERT_BOOK_CODES: Record<string, Record<SubjectId, string>> = ncertCatalog.bookCodes as any;
+export const OFFICIAL_SYLLABUS_TITLES: Record<string, Record<SubjectId, Array<{ number: number; title: string; hindiTitle?: string }>>> = ncertCatalog.syllabus as any;
 
 export function getNcertBookCode(classLevel: string, subject: SubjectId): string {
   const normClass = classLevel.toLowerCase().replace(/\s+/g, '-');

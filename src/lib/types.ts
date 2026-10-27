@@ -4,6 +4,7 @@ export type SubjectCode =
   | 'SCIENCE'
   | 'MATHEMATICS'
   | 'SOCIAL_SCIENCE'
+  | 'SST'
   | 'ENGLISH'
   | 'HINDI'
   | 'SANSKRIT';
@@ -14,12 +15,20 @@ export type SubjectId =
   | 'english' 
   | 'hindi' 
   | 'social_science' 
-  | 'sanskrit';
+  | 'sanskrit'
+  | 'sst'
+  | 'SCIENCE'
+  | 'MATHEMATICS'
+  | 'SST'
+  | 'SOCIAL_SCIENCE'
+  | 'ENGLISH'
+  | 'HINDI'
+  | 'SANSKRIT';
 
 export interface BookmarkItem {
-  key: string; // "${class}|${subject}|${chapterIndex}"
+  key: string;
   classLevel: string;
-  subjectCode: SubjectCode | SubjectId;
+  subjectCode: SubjectCode | SubjectId | string;
   subjectName: string;
   chapterIndex: number;
   chapterNumber: number;
@@ -54,7 +63,7 @@ export interface ChapterSummary {
 export interface DivyavaniClientState {
   userName: string;
   selectedClass: string;
-  selectedSubject: SubjectId;
+  selectedSubject: SubjectId | string;
   selectedChapterIndex: number;
   currentPage: number;
   zoomLevel: number;
@@ -69,16 +78,16 @@ export interface UserProfile {
   email?: string;
   fullName: string;
   role: Role;
-  selectedClass?: string; // e.g. "class-9" or "Class 9"
-  selectedSubject?: SubjectId | SubjectCode;
+  selectedClass?: string;
+  selectedSubject?: SubjectId | SubjectCode | string;
   createdAt: string;
   updatedAt: string;
 }
 
 export interface ChapterDocumentModel {
-  id: string; // UUIDv4
-  classLevel: string; // e.g. "class-9" or "Class 9"
-  subject: SubjectCode | SubjectId;
+  id: string;
+  classLevel: string;
+  subject: SubjectCode | SubjectId | string;
   chapterNumber: number;
   chapterTitle: string;
   fileTitle: string;
@@ -89,7 +98,7 @@ export interface ChapterDocumentModel {
 }
 
 export interface DoubtModel {
-  id: string; // UUIDv4
+  id: string;
   userId: string;
   documentId?: string;
   queryText: string;
@@ -115,42 +124,84 @@ export interface BookmarkModel {
 }
 
 export interface SubjectMeta {
-  id: SubjectId;
-  code?: SubjectCode;
+  id: SubjectId | string;
+  code: SubjectId;
   name: string;
   hindiName: string;
   icon: string;
-  color: string;
-  defaultChapterId: string;
+  color?: string;
+  defaultChapter?: string;
+  defaultChapterId?: string;
 }
 
 export interface Chapter {
   id: string;
   number: number;
   title: string;
-  subjectId: SubjectId;
-  description: string;
-  formulaCount: number;
+  subjectId: SubjectId | string;
+  description?: string;
+  formulaCount?: number;
   bookCode?: string;
   pdfUrl?: string;
   pageCount?: number;
 }
 
-export type DocumentType = 'pdf' | 'markdown' | 'video' | 'image' | 'text';
-export type TabStatus = 'reading' | 'annotated' | 'ai_indexed';
+export type ClassLevel = 'Class 9-H' | 'Class 10' | 'Class 11' | 'Class 12' | string;
+
+export type MaterialSubView = 'NOTES' | 'MINDMAP' | 'ANIMATION';
+
+export interface ChapterMeta {
+  id: string;
+  number: number;
+  title: string;
+  subjectCode: SubjectId | string;
+  notesPdfUrl?: string;
+  mindMapPdfUrl?: string;
+  animationVideoUrl?: string;
+  animationVideoUrl2?: string;
+  hasExtraMaterials: boolean;
+}
+
+export type DocumentType = 
+  | 'pdf' 
+  | 'markdown' 
+  | 'video' 
+  | 'image' 
+  | 'text' 
+  | 'DRIVE' 
+  | 'NOTES' 
+  | 'MINDMAP' 
+  | 'ANIMATION' 
+  | 'FORMULA' 
+  | 'PYQ' 
+  | 'DIAGRAM' 
+  | 'PDF' 
+  | 'VIDEO';
+
+export interface DriveCuratedItem {
+  name: string;
+  kind: string;
+  duration: string;
+  tag: string;
+}
 
 export interface DocumentTab {
-  id: string; // UUIDv4
+  id: string;
+  uuid?: string;
   title: string;
-  fileName: string;
+  fileName?: string;
   type: DocumentType;
+  status?: string;
+  badge?: string;
+  content?: string;
   sizeBytes?: number;
-  status: TabStatus;
+  fileUrl?: string;
+  videoUrl?: string;
+  driveFolderId?: string;
+  driveUrl?: string;
+  description?: string;
+  curatedItems?: DriveCuratedItem[];
   pinned?: boolean;
-  content?: string; // Markdown text or excerpt
-  fileUrl?: string; // Blob URL or static asset
-  videoUrl?: string; // YouTube or video embed URL
-  videoTimestamp?: number;
 }
 
 export interface FormulaItem {
@@ -177,7 +228,7 @@ export interface MicroQuiz {
 }
 
 export interface SocraticSolution {
-  id: string; // UUIDv4
+  id: string;
   doubtQuery: string;
   conceptLink: {
     chapter: string;
@@ -200,8 +251,8 @@ export interface SocraticSolution {
 export interface WeakTopic {
   id: string;
   subject: string;
-  topic: string;
   chapter: string;
+  topic: string;
   doubtCount: number;
   severity: 'high' | 'medium';
   recommendedAction: string;

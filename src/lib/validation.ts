@@ -1,8 +1,8 @@
 import { z } from 'zod';
 
 // Allowed file extensions
-export const ALLOWED_EXTENSIONS = ['.pdf', '.png', '.jpg', '.jpeg', '.webp', '.md', '.txt'] as const;
-export const MAX_FILE_SIZE_BYTES = 10 * 1024 * 1024; // 10 MB
+export const ALLOWED_EXTENSIONS = ['.pdf', '.png', '.jpg', '.jpeg', '.webp', '.md', '.txt', '.mp4', '.webm'] as const;
+export const MAX_FILE_SIZE_BYTES = 100 * 1024 * 1024; // 100 MB for multimedia
 
 // File Upload Validator Schema
 export const FileUploadSchema = z.object({
@@ -13,7 +13,7 @@ export const FileUploadSchema = z.object({
     }, {
       message: `File type not permitted. Allowed: ${ALLOWED_EXTENSIONS.join(', ')}`,
     }),
-  size: z.number().max(MAX_FILE_SIZE_BYTES, 'File size exceeds maximum 10 MB limit'),
+  size: z.number().max(MAX_FILE_SIZE_BYTES, 'File size exceeds maximum 100 MB limit'),
   type: z.string().refine((type) => {
     // Block executable mime types
     const blocked = ['text/html', 'image/svg+xml', 'application/x-msdownload', 'application/x-sh'];
@@ -44,8 +44,8 @@ export const LoginSchema = z.object({
 // Class and Subject Selection Schema
 export const SelectClassSubjectSchema = z.object({
   userId: z.string().optional(),
-  classLevel: z.string().min(1, 'Class selection is required'), // e.g. "class-9" or "Class 9"
-  subject: z.enum(['science', 'maths', 'english', 'hindi', 'social_science', 'sanskrit', 'SCIENCE', 'MATHEMATICS', 'SOCIAL_SCIENCE', 'ENGLISH', 'HINDI', 'SANSKRIT']),
+  classLevel: z.string().min(1, 'Class selection is required'),
+  subject: z.string().min(1, 'Subject selection is required'),
 });
 
 // Doubt Submission Schema
@@ -53,7 +53,7 @@ export const DoubtQuerySchema = z.object({
   userId: z.string().optional(),
   documentId: z.string().optional(),
   studentQuery: z.string().min(3, 'Please enter at least 3 characters for your doubt').max(1500, 'Query too long'),
-  subjectId: z.string().min(1, 'Subject is required'),
+  subjectId: z.string().min(1, 'Subject selection is required'),
   chapterId: z.string().min(1, 'Chapter selection is required'),
   inputMode: z.enum(['text', 'voice', 'image']).default('text'),
   attachedTabContext: z.string().max(2000).optional(),

@@ -5,12 +5,9 @@ import {
   UploadCloud, 
   FileCheck, 
   AlertTriangle, 
-  X, 
-  FileText, 
-  FileCode, 
-  Image as ImageIcon 
+  X 
 } from 'lucide-react';
-import { FileUploadSchema, ALLOWED_EXTENSIONS, MAX_FILE_SIZE_BYTES } from '@/lib/validation';
+import { FileUploadSchema } from '@/lib/validation';
 import { generateUUID } from '@/lib/sanitizer';
 import { DocumentTab, DocumentType } from '@/lib/types';
 
@@ -60,14 +57,13 @@ export default function SecureDocumentUploader({
 
     setUploading(true);
 
-    // Determine document type
     const lowerName = file.name.toLowerCase();
     let docType: DocumentType = 'text';
     if (lowerName.endsWith('.pdf')) docType = 'pdf';
     else if (lowerName.endsWith('.md')) docType = 'markdown';
+    else if (lowerName.endsWith('.mp4') || lowerName.endsWith('.webm')) docType = 'video';
     else if (lowerName.endsWith('.png') || lowerName.endsWith('.jpg') || lowerName.endsWith('.webp')) docType = 'image';
 
-    // If text or markdown, read content directly
     if (docType === 'markdown' || docType === 'text') {
       const reader = new FileReader();
       reader.onload = (e) => {
@@ -91,7 +87,6 @@ export default function SecureDocumentUploader({
       };
       reader.readAsText(file);
     } else {
-      // Create local Blob URL for immediate zero-latency preview
       const blobUrl = URL.createObjectURL(file);
       const newTab: DocumentTab = {
         id: generateUUID(),
@@ -133,8 +128,7 @@ export default function SecureDocumentUploader({
       aria-modal="true"
       aria-labelledby="uploader-title"
     >
-      <div className="bg-obsidian-surface border-1.5 border-structural-dark rounded-2xl max-w-lg w-full p-6 shadow-block-dark text-alabaster relative">
-        {/* Header */}
+      <div className="bg-obsidian-surface border-2 border-structural-dark rounded-2xl max-w-lg w-full p-6 shadow-black-block text-alabaster relative">
         <div className="flex items-center justify-between pb-4 border-b border-structural-dark">
           <div className="flex items-center gap-2.5">
             <div className="w-8 h-8 rounded-lg bg-royal/20 border border-royal flex items-center justify-center text-royal-light">
@@ -158,7 +152,6 @@ export default function SecureDocumentUploader({
           </button>
         </div>
 
-        {/* Dropzone */}
         <div
           onDragEnter={handleDrag}
           onDragLeave={handleDrag}
@@ -183,7 +176,7 @@ export default function SecureDocumentUploader({
             ref={fileInputRef}
             type="file"
             className="hidden"
-            accept=".pdf,.png,.jpg,.jpeg,.webp,.md,.txt"
+            accept=".pdf,.png,.jpg,.jpeg,.webp,.md,.txt,.mp4"
             onChange={handleChange}
           />
           <div className="w-12 h-12 rounded-full bg-zinc-800 flex items-center justify-center mb-3 text-zinc-400">
@@ -196,13 +189,12 @@ export default function SecureDocumentUploader({
             Supports NCERT chapter PDFs, Markdown notes, question banks, and diagrams
           </p>
           <div className="mt-3 flex items-center gap-1.5 text-[11px] text-zinc-500">
-            <span>Allowed: .pdf, .md, .txt, .png, .jpg</span>
+            <span>Allowed: .pdf, .md, .txt, .png, .jpg, .mp4</span>
             <span>•</span>
-            <span>Max 10 MB</span>
+            <span>Max 100 MB</span>
           </div>
         </div>
 
-        {/* Error Alert */}
         {errorMsg && (
           <div className="mt-4 p-3 rounded-lg bg-red-950/50 border border-red-800/80 text-red-200 text-xs flex items-center gap-2">
             <AlertTriangle className="w-4 h-4 text-red-400 flex-shrink-0" />
@@ -210,7 +202,6 @@ export default function SecureDocumentUploader({
           </div>
         )}
 
-        {/* Security Shield Notice */}
         <div className="mt-5 p-3 rounded-xl bg-obsidian border border-structural-dark flex items-center justify-between text-xs text-zinc-400">
           <div className="flex items-center gap-2">
             <FileCheck className="w-4 h-4 text-mint" />

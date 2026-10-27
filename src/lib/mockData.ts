@@ -1,4 +1,4 @@
-import { SubjectMeta, Chapter, DocumentTab, WeakTopic, CohortAnalytics } from './types';
+import { SubjectMeta, ChapterMeta, Chapter, DocumentTab, WeakTopic, CohortAnalytics } from './types';
 
 export interface ClassLevel {
   id: string; // e.g. "class-9"
@@ -19,35 +19,281 @@ export const CLASS_LEVELS: ClassLevel[] = [
   { id: 'class-12', name: 'Class 12', gradeNumber: 12, stage: 'Senior Secondary', badge: 'Board & Entrance', description: 'CBSE Class XII Boards & Competitive Mastery' },
 ];
 
+export const CLASSES = ['Class 9-H', 'Class 10', 'Class 11', 'Class 12'] as const;
+
 export const SUBJECTS: SubjectMeta[] = [
-  { id: 'science', code: 'SCIENCE', name: 'Science', hindiName: 'विज्ञान', icon: 'Atom', color: '#6D28D9', defaultChapterId: 'sci-ch8' },
-  { id: 'maths', code: 'MATHEMATICS', name: 'Mathematics', hindiName: 'गणित', icon: 'Calculator', color: '#059669', defaultChapterId: 'math-ch1' },
-  { id: 'social_science', code: 'SOCIAL_SCIENCE', name: 'Social Science', hindiName: 'सामाजिक विज्ञान', icon: 'Globe', color: '#DC2626', defaultChapterId: 'sst-ch1' },
-  { id: 'english', code: 'ENGLISH', name: 'English', hindiName: 'अंग्रेज़ी', icon: 'BookOpen', color: '#2563EB', defaultChapterId: 'eng-ch1' },
-  { id: 'hindi', code: 'HINDI', name: 'Hindi', hindiName: 'हिन्दी', icon: 'Languages', color: '#D97706', defaultChapterId: 'hin-ch1' },
-  { id: 'sanskrit', code: 'SANSKRIT', name: 'Sanskrit', hindiName: 'संस्कृत', icon: 'Scroll', color: '#7C3AED', defaultChapterId: 'san-ch1' },
+  { id: 'science', code: 'SCIENCE', name: 'Science', hindiName: 'विज्ञान', icon: '⚛️', color: '#6D28D9', defaultChapter: 'sci-ch1', defaultChapterId: 'sci-ch1' },
+  { id: 'social_science', code: 'SST', name: 'Social Science (SST)', hindiName: 'सामाजिक विज्ञान', icon: '🌍', color: '#F59E0B', defaultChapter: 'sst-ch1', defaultChapterId: 'sst-ch1' },
+  { id: 'maths', code: 'MATHEMATICS', name: 'Mathematics', hindiName: 'गणित', icon: '📐', color: '#10B981', defaultChapter: 'math-ch1', defaultChapterId: 'math-ch1' },
+  { id: 'english', code: 'ENGLISH', name: 'English', hindiName: 'अंग्रेज़ी', icon: '📖', color: '#3B82F6', defaultChapter: 'eng-ch1', defaultChapterId: 'eng-ch1' },
+  { id: 'hindi', code: 'HINDI', name: 'Hindi', hindiName: 'हिन्दी', icon: 'अ', color: '#EC4899', defaultChapter: 'hin-ch1', defaultChapterId: 'hin-ch1' },
+  { id: 'sanskrit', code: 'SANSKRIT', name: 'Sanskrit', hindiName: 'संस्कृत', icon: 'ॐ', color: '#8B5CF6', defaultChapter: 'san-ch1', defaultChapterId: 'san-ch1' },
 ];
 
-// Comprehensive multi-class chapter repository
+// Dedicated Class 9 Chapters Mapped with Exact Materials (Notes, Mindmaps, Animations)
+export const CHAPTERS_BY_SUBJECT: Record<string, ChapterMeta[]> = {
+  SCIENCE: [
+    {
+      id: 'sci-ch1',
+      number: 1,
+      title: 'Matter in Our Surroundings',
+      subjectCode: 'SCIENCE',
+      notesPdfUrl: '/materials/science/9_Science_Ch1_Notes.pdf',
+      mindMapPdfUrl: '/materials/science/9_Science_ch1_MindMaps.pdf',
+      animationVideoUrl: '/materials/science/9_science_ch1.mp4',
+      hasExtraMaterials: true,
+    },
+    {
+      id: 'sci-ch4',
+      number: 4,
+      title: 'Structure of the Atom',
+      subjectCode: 'SCIENCE',
+      notesPdfUrl: '/materials/science/9_Science_Ch4_Notes.pdf',
+      animationVideoUrl: '/materials/science/9_science_ch4.mp4',
+      hasExtraMaterials: true,
+    },
+    {
+      id: 'sci-ch5',
+      number: 5,
+      title: 'The Fundamental Unit of Life',
+      subjectCode: 'SCIENCE',
+      notesPdfUrl: '/materials/science/9_science_ch5_Notes.pdf',
+      mindMapPdfUrl: '/materials/science/9_science_ch5_MindMaps.pdf',
+      animationVideoUrl: '/materials/science/9_science_ch5.mp4',
+      hasExtraMaterials: true,
+    },
+    {
+      id: 'sci-ch6',
+      number: 6,
+      title: 'Tissues',
+      subjectCode: 'SCIENCE',
+      notesPdfUrl: '/materials/science/9_Science_Ch6_Notes.pdf',
+      mindMapPdfUrl: '/materials/science/9_science_ch6_MindMaps.pdf',
+      animationVideoUrl: '/materials/science/9_science_ch6.mp4',
+      hasExtraMaterials: true,
+    },
+    {
+      id: 'sci-ch7',
+      number: 7,
+      title: 'Diversity in Living Organisms',
+      subjectCode: 'SCIENCE',
+      notesPdfUrl: '/materials/science/9_Science_Ch7_Notes.pdf',
+      mindMapPdfUrl: '/materials/science/9_Science_ch7_MindMaps.pdf',
+      animationVideoUrl: '/materials/science/9_science_ch7_p1.mp4',
+      animationVideoUrl2: '/materials/science/9_science_ch7_p2.mp4',
+      hasExtraMaterials: true,
+    },
+    {
+      id: 'sci-ch8',
+      number: 8,
+      title: 'Motion',
+      subjectCode: 'SCIENCE',
+      notesPdfUrl: '/materials/science/9_science_ch8_Notes.pdf',
+      mindMapPdfUrl: '/materials/science/9_science_ch8_MindMaps.pdf',
+      animationVideoUrl: '/materials/science/9_science_ch8.mp4',
+      hasExtraMaterials: true,
+    },
+    {
+      id: 'sci-ch9',
+      number: 9,
+      title: 'Force and Laws of Motion',
+      subjectCode: 'SCIENCE',
+      notesPdfUrl: '/materials/science/9_science_ch9_Notes.pdf',
+      mindMapPdfUrl: '/materials/science/9_science_ch9_MindMaps.pdf',
+      animationVideoUrl: '/materials/science/9_science_ch9.mp4',
+      hasExtraMaterials: true,
+    },
+    {
+      id: 'sci-ch10',
+      number: 10,
+      title: 'Gravitation',
+      subjectCode: 'SCIENCE',
+      notesPdfUrl: '/materials/science/9_Science_Ch10_Notes.pdf',
+      mindMapPdfUrl: '/materials/science/9_Science_ch10_MindMaps.pdf',
+      animationVideoUrl: '/materials/science/9_science_ch10_p1.mp4',
+      animationVideoUrl2: '/materials/science/9_science_ch10_p2.mp4',
+      hasExtraMaterials: true,
+    },
+    {
+      id: 'sci-ch13',
+      number: 13,
+      title: 'Why Do We Fall Ill?',
+      subjectCode: 'SCIENCE',
+      notesPdfUrl: '/materials/science/9_science_ch13_Notes.pdf',
+      mindMapPdfUrl: '/materials/science/9_science_ch13_MindMaps.pdf',
+      animationVideoUrl: '/materials/science/9_science_ch13.mp4',
+      hasExtraMaterials: true,
+    },
+  ],
+  SST: [
+    {
+      id: 'sst-ch1',
+      number: 1,
+      title: 'The French Revolution (History)',
+      subjectCode: 'SST',
+      notesPdfUrl: '/materials/sst/9_sst_Ch1_Important_Questions.pdf',
+      mindMapPdfUrl: '/materials/sst/9_sst_Ch1_MindMaps.pdf',
+      hasExtraMaterials: true,
+    },
+    {
+      id: 'sst-ch2',
+      number: 2,
+      title: 'Socialism in Europe & Russian Revolution',
+      subjectCode: 'SST',
+      notesPdfUrl: '/materials/sst/9_sst_Ch2_Important_Questions.pdf',
+      mindMapPdfUrl: '/materials/sst/9_sst_Ch2_MindMaps.pdf',
+      hasExtraMaterials: true,
+    },
+    {
+      id: 'sst-ch3',
+      number: 3,
+      title: 'Nazism and the Rise of Hitler',
+      subjectCode: 'SST',
+      notesPdfUrl: '/materials/sst/9_sst_Ch3_Important_Questions.pdf',
+      mindMapPdfUrl: '/materials/sst/9_sst_ch3_MindMaps.pdf',
+      hasExtraMaterials: true,
+    },
+    {
+      id: 'sst-ch4',
+      number: 4,
+      title: 'Forest Society and Colonialism',
+      subjectCode: 'SST',
+      notesPdfUrl: '/materials/sst/9_sst_Ch4_Important_Questions.pdf',
+      mindMapPdfUrl: '/materials/sst/9_sst_ch4_MindMaps.pdf',
+      hasExtraMaterials: true,
+    },
+    {
+      id: 'sst-ch5',
+      number: 5,
+      title: 'Pastoralists in the Modern World',
+      subjectCode: 'SST',
+      notesPdfUrl: '/materials/sst/9_sst_Ch5_Important_Questions.pdf',
+      hasExtraMaterials: false,
+    },
+    {
+      id: 'sst-ch6',
+      number: 6,
+      title: 'India: Size and Location (Geography)',
+      subjectCode: 'SST',
+      notesPdfUrl: '/materials/sst/9_sst_ch6_Important_Questions.pdf',
+      hasExtraMaterials: false,
+    },
+    {
+      id: 'sst-ch7',
+      number: 7,
+      title: 'Physical Features of India (Geography)',
+      subjectCode: 'SST',
+      notesPdfUrl: '/materials/sst/9_sst_ch7_Important_Questions.pdf',
+      hasExtraMaterials: false,
+    },
+    {
+      id: 'sst-ch8',
+      number: 8,
+      title: 'Drainage (Geography)',
+      subjectCode: 'SST',
+      notesPdfUrl: '/materials/sst/9_sst_Ch8_Important_Questions.pdf',
+      hasExtraMaterials: false,
+    },
+    {
+      id: 'sst-ch9',
+      number: 9,
+      title: 'Climate (Geography)',
+      subjectCode: 'SST',
+      notesPdfUrl: '/materials/sst/9_sst_Ch9_Important_Questions.pdf',
+      hasExtraMaterials: false,
+    },
+  ],
+  MATHEMATICS: [
+    {
+      id: 'math-ch1',
+      number: 1,
+      title: 'Number Systems',
+      subjectCode: 'MATHEMATICS',
+      hasExtraMaterials: false,
+    },
+    {
+      id: 'math-ch2',
+      number: 2,
+      title: 'Polynomials',
+      subjectCode: 'MATHEMATICS',
+      hasExtraMaterials: false,
+    },
+    {
+      id: 'math-ch7',
+      number: 7,
+      title: 'Triangles',
+      subjectCode: 'MATHEMATICS',
+      hasExtraMaterials: false,
+    },
+  ],
+  ENGLISH: [
+    {
+      id: 'eng-ch1',
+      number: 1,
+      title: 'The Fun They Had',
+      subjectCode: 'ENGLISH',
+      hasExtraMaterials: false,
+    },
+    {
+      id: 'eng-ch2',
+      number: 2,
+      title: 'The Sound of Music',
+      subjectCode: 'ENGLISH',
+      hasExtraMaterials: false,
+    },
+  ],
+  HINDI: [
+    {
+      id: 'hin-ch1',
+      number: 1,
+      title: 'दो बैलों की कथा (प्रेमचंद)',
+      subjectCode: 'HINDI',
+      hasExtraMaterials: false,
+    },
+  ],
+  SANSKRIT: [
+    {
+      id: 'san-ch1',
+      number: 1,
+      title: 'भारतीवसन्तगीतिः',
+      subjectCode: 'SANSKRIT',
+      hasExtraMaterials: false,
+    },
+  ],
+};
+
+// Also support lowercase keys for backward compatibility
+CHAPTERS_BY_SUBJECT.science = CHAPTERS_BY_SUBJECT.SCIENCE;
+CHAPTERS_BY_SUBJECT.social_science = CHAPTERS_BY_SUBJECT.SST;
+CHAPTERS_BY_SUBJECT.sst = CHAPTERS_BY_SUBJECT.SST;
+CHAPTERS_BY_SUBJECT.maths = CHAPTERS_BY_SUBJECT.MATHEMATICS;
+CHAPTERS_BY_SUBJECT.english = CHAPTERS_BY_SUBJECT.ENGLISH;
+CHAPTERS_BY_SUBJECT.hindi = CHAPTERS_BY_SUBJECT.HINDI;
+CHAPTERS_BY_SUBJECT.sanskrit = CHAPTERS_BY_SUBJECT.SANSKRIT;
+
+// Multi-class chapter repository for generic viewer
 export const CLASS_CHAPTERS_MAP: Record<string, Record<string, Chapter[]>> = {
   'class-9': {
-    science: [
-      { id: 'sci-ch8', number: 8, title: 'Motion', subjectId: 'science', description: 'Distance, Displacement, Speed, Velocity, Acceleration & Graphical Derivations', formulaCount: 6 },
-      { id: 'sci-ch9', number: 9, title: 'Force & Laws of Motion', subjectId: 'science', description: 'Newton\'s Three Laws, Inertia, Momentum and Conservation of Momentum', formulaCount: 4 },
-      { id: 'sci-ch10', number: 10, title: 'Gravitation', subjectId: 'science', description: 'Universal Law of Gravitation, Free Fall, Weightlessness & Mass vs Weight', formulaCount: 5 },
-      { id: 'sci-ch1', number: 1, title: 'Matter in Our Surroundings', subjectId: 'science', description: 'States of Matter, Evaporation, Sublimation and Latent Heat', formulaCount: 2 },
-      { id: 'sci-ch5', number: 5, title: 'Fundamental Unit of Life', subjectId: 'science', description: 'Cell Structure, Plasma Membrane, Nucleus, Organelles and Mitosis', formulaCount: 0 },
-    ],
+    science: CHAPTERS_BY_SUBJECT.SCIENCE.map(c => ({
+      id: c.id,
+      number: c.number,
+      title: c.title,
+      subjectId: 'science',
+      description: `${c.title} — Key concepts, NCERT notes, formulas and illustrations.`,
+      formulaCount: 4,
+    })),
+    social_science: CHAPTERS_BY_SUBJECT.SST.map(c => ({
+      id: c.id,
+      number: c.number,
+      title: c.title,
+      subjectId: 'social_science',
+      description: `${c.title} — Comprehensive revision notes, mindmaps, and exam questions.`,
+      formulaCount: 0,
+    })),
     maths: [
       { id: 'math-ch1', number: 1, title: 'Number Systems', subjectId: 'maths', description: 'Rational and Irrational Numbers, Real Numbers on Number Line, Laws of Exponents', formulaCount: 5 },
       { id: 'math-ch2', number: 2, title: 'Polynomials', subjectId: 'maths', description: 'Zeroes of Polynomial, Remainder Theorem, Factor Theorem & Algebraic Identities', formulaCount: 8 },
       { id: 'math-ch7', number: 7, title: 'Triangles', subjectId: 'maths', description: 'Congruence Criteria (SAS, ASA, AAS, SSS, RHS) & Inequalities in Triangles', formulaCount: 3 },
-      { id: 'math-ch12', number: 12, title: 'Heron\'s Formula', subjectId: 'maths', description: 'Area of Triangle using Semi-perimeter and Application in Quadrilaterals', formulaCount: 2 },
-    ],
-    social_science: [
-      { id: 'sst-ch1', number: 1, title: 'The French Revolution', subjectId: 'social_science', description: 'Storming of Bastille, Declaration of Rights of Man, Reign of Terror', formulaCount: 0 },
-      { id: 'sst-ch2', number: 2, title: 'Socialism in Europe & Russian Revolution', subjectId: 'social_science', description: 'Lenin\'s April Theses, February Revolution & October Revolution', formulaCount: 0 },
-      { id: 'sst-ch3', number: 3, title: 'India: Size and Location', subjectId: 'social_science', description: 'Standard Meridian, Tropic of Cancer, Peninsular Plateau & Neighbors', formulaCount: 0 },
     ],
     english: [
       { id: 'eng-ch1', number: 1, title: 'The Fun They Had', subjectId: 'english', description: 'Isaac Asimov\'s vision of futuristic mechanical schools and learning', formulaCount: 0 },
@@ -55,44 +301,19 @@ export const CLASS_CHAPTERS_MAP: Record<string, Record<string, Chapter[]>> = {
     ],
     hindi: [
       { id: 'hin-ch1', number: 1, title: 'दो बैलों की कथा (Premchand)', subjectId: 'hindi', description: 'हीरा और मोती की आज़ादी और वफ़ादारी का संघर्ष', formulaCount: 0 },
-      { id: 'hin-ch2', number: 2, title: 'ल्हासा की ओर (Rahul Sankrityayan)', subjectId: 'hindi', description: 'तिब्बत यात्रा, डांडे की ऊँचाइयाँ और बौद्ध धर्म के संस्मरण', formulaCount: 0 },
     ],
     sanskrit: [
       { id: 'san-ch1', number: 1, title: 'भारतीवसन्तगीतिः', subjectId: 'sanskrit', description: 'सरस्वती वन्दना एवं वसन्त ऋतु का मधुर वर्णन', formulaCount: 0 },
-      { id: 'san-ch2', number: 2, title: 'स्वर्णकाकः', subjectId: 'sanskrit', description: 'लोभ का दुष्परिणाम एवं त्याग का सत्परिणाम', formulaCount: 0 },
     ],
   },
   'class-10': {
     science: [
       { id: 'c10-sci-ch1', number: 1, title: 'Chemical Reactions & Equations', subjectId: 'science', description: 'Combination, Decomposition, Redox, Rancidity and Balancing Equations', formulaCount: 5 },
       { id: 'c10-sci-ch6', number: 6, title: 'Life Processes', subjectId: 'science', description: 'Nutrition, Respiration, Double Circulation, Excretion & Nephron Structure', formulaCount: 0 },
-      { id: 'c10-sci-ch10', number: 10, title: 'Light: Reflection & Refraction', subjectId: 'science', description: 'Mirror Formula, Lens Maker Formula, Snell\'s Law, Magnification', formulaCount: 6 },
-      { id: 'c10-sci-ch12', number: 12, title: 'Electricity', subjectId: 'science', description: 'Ohm\'s Law, Resistance in Series/Parallel, Joule\'s Heating & Electric Power', formulaCount: 7 },
-    ],
-    maths: [
-      { id: 'c10-math-ch1', number: 1, title: 'Real Numbers', subjectId: 'maths', description: 'Fundamental Theorem of Arithmetic, Proofs of Irrationality (√2, √3, √5)', formulaCount: 2 },
-      { id: 'c10-math-ch3', number: 3, title: 'Linear Equations in Two Variables', subjectId: 'maths', description: 'Graphical Method, Substitution, Elimination, Consistency Conditions', formulaCount: 4 },
-      { id: 'c10-math-ch4', number: 4, title: 'Quadratic Equations', subjectId: 'maths', description: 'Discriminant, Quadratic Formula, Nature of Roots & Word Problems', formulaCount: 4 },
-      { id: 'c10-math-ch8', number: 8, title: 'Introduction to Trigonometry', subjectId: 'maths', description: 'Trigonometric Ratios, Standard Angles (0, 30, 45, 60, 90) & Pythagorean Identities', formulaCount: 9 },
-    ],
-    social_science: [
-      { id: 'c10-sst-ch1', number: 1, title: 'Rise of Nationalism in Europe', subjectId: 'social_science', description: 'Frédéric Sorrieu Vision, Mazzini, Garibaldi and Unification of Germany & Italy', formulaCount: 0 },
-      { id: 'c10-sst-ch2', number: 2, title: 'Nationalism in India', subjectId: 'social_science', description: 'Non-Cooperation Movement, Dandi March, Simon Commission & Poona Pact', formulaCount: 0 },
-    ],
-    english: [
-      { id: 'c10-eng-ch1', number: 1, title: 'A Letter to God (G.L. Fuentes)', subjectId: 'english', description: 'Lencho\'s unshakeable faith, hailstorm devastation, post office ironies', formulaCount: 0 },
-      { id: 'c10-eng-ch2', number: 2, title: 'Nelson Mandela: Long Walk to Freedom', subjectId: 'english', description: 'Inauguration ceremony, overcoming apartheid, twin obligations of man', formulaCount: 0 },
-    ],
-    hindi: [
-      { id: 'c10-hin-ch1', number: 1, title: 'सूरदास के पद', subjectId: 'hindi', description: 'उद्धव-गोपी संवाद, भ्रमरगीत और अनन्य प्रेम की पराकाष्ठा', formulaCount: 0 },
-    ],
-    sanskrit: [
-      { id: 'c10-san-ch1', number: 1, title: 'शुचिपर्यावरणम्', subjectId: 'sanskrit', description: 'प्रदूषण निवारण एवं प्राकृतिक जीवन की महत्ता', formulaCount: 0 },
     ],
   },
 };
 
-// Fallback generator for other classes (Classes 6, 7, 8, 11, 12)
 export function getChaptersForClassAndSubject(classId: string, subjectId: string): Chapter[] {
   const normalizedClass = classId.toLowerCase().replace(/\s+/g, '-');
   const normalizedSubject = subjectId.toLowerCase().replace(/_/g, '-');
@@ -101,7 +322,6 @@ export function getChaptersForClassAndSubject(classId: string, subjectId: string
     return CLASS_CHAPTERS_MAP[normalizedClass][normalizedSubject];
   }
 
-  // Smart fallback template per subject
   const subjectName = SUBJECTS.find(s => s.id === normalizedSubject)?.name || 'Subject';
   const gradeNum = normalizedClass.replace('class-', '');
 
@@ -110,30 +330,13 @@ export function getChaptersForClassAndSubject(classId: string, subjectId: string
       id: `${normalizedClass}-${normalizedSubject}-ch1`,
       number: 1,
       title: `${subjectName} Fundamentals & Core Principles`,
-      subjectId: normalizedSubject as any,
+      subjectId: normalizedSubject,
       description: `Comprehensive Class ${gradeNum} syllabus introduction, definitions, and CBSE conceptual pillars.`,
       formulaCount: normalizedSubject === 'maths' || normalizedSubject === 'science' ? 4 : 0,
-    },
-    {
-      id: `${normalizedClass}-${normalizedSubject}-ch2`,
-      number: 2,
-      title: `Applied Analysis & Practical Demonstrations`,
-      subjectId: normalizedSubject as any,
-      description: `In-depth breakdown of standard textbook exercises, exemplar problems, and board questions.`,
-      formulaCount: normalizedSubject === 'maths' || normalizedSubject === 'science' ? 5 : 0,
-    },
-    {
-      id: `${normalizedClass}-${normalizedSubject}-ch3`,
-      number: 3,
-      title: `Past Year Questions & Exam Mastery`,
-      subjectId: normalizedSubject as any,
-      description: `High-frequency marking scheme questions, step-marking guidelines, and quick formula sheets.`,
-      formulaCount: normalizedSubject === 'maths' || normalizedSubject === 'science' ? 3 : 0,
     },
   ];
 }
 
-// Initial Chapter tabs repository
 export const INITIAL_CHAPTER_TABS: Record<string, DocumentTab[]> = {
   'sci-ch8': [
     {
@@ -144,122 +347,11 @@ export const INITIAL_CHAPTER_TABS: Record<string, DocumentTab[]> = {
       status: 'reading',
       pinned: true,
       sizeBytes: 3450000,
-      content: `NCERT Class IX Science - Chapter 8: Motion
-
-8.1 Describing Motion:
-An object is said to be in motion when its position changes with respect to a reference point with time.
-• Distance: Total path length covered by an object (Scalar quantity, SI unit: metre).
-• Displacement: Shortest straight-line distance between initial and final positions (Vector quantity, SI unit: metre).
-
-8.2 Uniform Motion and Non-uniform Motion:
-When an object travels equal distances in equal intervals of time, it moves with uniform motion.
-
-8.5 Equations of Motion by Graphical Method:
-1. v = u + at (Velocity-time relation)
-2. s = ut + ½ at² (Position-time relation)
-3. 2as = v² - u² (Position-velocity relation)
-Where:
-u = initial velocity
-v = final velocity
-a = uniform acceleration
-t = time taken
-s = distance traveled`
-    },
-    {
-      id: 'tab-formulas-md',
-      title: 'Formula Sheet & Derivations',
-      fileName: 'Motion_Formula_Vault.md',
-      type: 'markdown',
-      status: 'ai_indexed',
-      pinned: true,
-      sizeBytes: 12400,
-      content: `# Chapter 8: Key Formulas & Derivations
-
-### 1. Speed & Velocity
-- Average Speed: $$v_{avg} = \\frac{\\text{Total Distance}}{\\text{Total Time}} = \\frac{s}{t}$$
-- Average Velocity: $$v_{avg} = \\frac{u + v}{2}$$ (for uniformly changing velocity)
-
-### 2. Acceleration
-$$a = \\frac{v - u}{t}$$
-- SI Unit: $$\\text{m/s}^2$$
-- Negative acceleration is called **retardation** or **deceleration**.
-
-### 3. The Three Big Kinematic Equations
-1. $$v = u + at$$
-2. $$s = ut + \\frac{1}{2}at^2$$
-3. $$2as = v^2 - u^2$$
-
-### 4. Uniform Circular Motion
-$$v = \\frac{2\\pi r}{t}$$
-Speed remains constant, but direction continuously changes (accelerated motion).`
-    },
-    {
-      id: 'tab-dpp-practice',
-      title: 'Daily Practice DPP (CBSE)',
-      fileName: 'Class9_Science_Motion_DPP_01.pdf',
-      type: 'pdf',
-      status: 'reading',
-      pinned: false,
-      sizeBytes: 1820000,
-      content: `CBSE Daily Practice Problem (DPP) — Motion & Acceleration
-
-Q1. A particle moves in a circular path of radius R. What is its displacement after completing half a revolution?
-Ans: The displacement is equal to the diameter of the circle, which is 2R.
-
-Q2. A car starts from rest and attains 54 km/h in 10 seconds. Calculate:
-(a) The acceleration in SI units
-(b) The distance covered in this time
-Given: u = 0, v = 54 km/h = 15 m/s, t = 10 s.
-Acceleration a = (15 - 0)/10 = 1.5 m/s².
-Distance s = ut + 0.5 * a * t² = 0 + 0.5 * 1.5 * 100 = 75 metres.`
+      content: 'NCERT Class IX Science - Chapter 8: Motion',
     },
   ],
-  'c10-sci-ch1': [
-    {
-      id: 'tab-c10-ch1-ncert',
-      title: 'NCERT Textbook (Ch 1)',
-      fileName: 'NCERT_Class10_Science_Ch1_Chemical_Reactions.pdf',
-      type: 'pdf',
-      status: 'reading',
-      pinned: true,
-      sizeBytes: 3100000,
-      content: `NCERT Class X Science - Chapter 1: Chemical Reactions & Equations
-
-1.1 Chemical Equations:
-Whenever a chemical change occurs, we can say that a chemical reaction has taken place.
-Example: Magnesium ribbon burnt in air gives Magnesium Oxide.
-2Mg(s) + O₂(g) → 2MgO(s) (Dazzling white flame + white powder).
-
-1.2 Types of Chemical Reactions:
-1. Combination Reaction: CaO(s) + H₂O(l) → Ca(OH)₂(aq) + Heat (Exothermic)
-2. Decomposition Reaction: 2FeSO₄(s) → Fe₂O₃(s) + SO₂(g) + SO₃(g) (Thermal)
-3. Displacement Reaction: Fe(s) + CuSO₄(aq) → FeSO₄(aq) + Cu(s)
-4. Double Displacement Reaction: Na₂SO₄(aq) + BaCl₂(aq) → BaSO₄(s)↓ + 2NaCl(aq)
-5. Oxidation & Reduction (Redox): CuO + H₂ → Cu + H₂O`
-    },
-    {
-      id: 'tab-c10-ch1-formulas',
-      title: 'Formula Vault & Balancing Tips',
-      fileName: 'Chemistry_Reaction_Vault.md',
-      type: 'markdown',
-      status: 'ai_indexed',
-      pinned: true,
-      sizeBytes: 9800,
-      content: `# Class 10 Chemistry: Reaction Summary
-
-### Law of Conservation of Mass
-Mass can neither be created nor destroyed in a chemical reaction. Total mass of reactants = Total mass of products.
-
-### Quick Color Identifiers:
-- Copper Sulphate: Blue ($$CuSO_4$$)
-- Ferrous Sulphate: Light Green ($$FeSO_4$$)
-- Barium Sulphate precipitate: White ($$BaSO_4$$)
-- Lead Iodide precipitate: Bright Yellow ($$PbI_2$$)`
-    }
-  ]
 };
 
-// Fallback tab generator
 export function getTabsForChapter(chapter: Chapter, classId: string): DocumentTab[] {
   if (INITIAL_CHAPTER_TABS[chapter.id]) {
     return INITIAL_CHAPTER_TABS[chapter.id];
@@ -274,67 +366,122 @@ export function getTabsForChapter(chapter: Chapter, classId: string): DocumentTa
       status: 'reading',
       pinned: true,
       sizeBytes: 2500000,
-      content: `# ${chapter.title} (Chapter ${chapter.number})
-
-### Chapter Overview
-${chapter.description}
-
-### Key Learning Objectives:
-1. Master core CBSE terminology and definitions.
-2. Step-by-step graphical & mathematical derivations.
-3. High-weightage board examination practice questions.
-
-### Recommended NCERT Exemplar Problems:
-- Review in-text questions on page 102-108.
-- Attempt exercise questions 1 through 12.
-- Focus on unit conversions and SI base units.`
+      content: `# ${chapter.title} (Chapter ${chapter.number})\n\n### Chapter Overview\n${chapter.description || 'Master core concepts and revision notes.'}`,
     },
-    {
-      id: `tab-${chapter.id}-formula`,
-      title: 'Key Formulas & Quick Sheet',
-      fileName: `${chapter.title.replace(/\s+/g, '_')}_Formula_Sheet.md`,
-      type: 'markdown',
-      status: 'ai_indexed',
-      pinned: true,
-      sizeBytes: 8400,
-      content: `# ${chapter.title} — Quick Revision Formulas
-
-### Core Equations:
-${chapter.formulaCount > 0 ? `This chapter features ${chapter.formulaCount} primary equations for board examinations.` : 'Conceptual chapter with focus on structural flow and analytical answers.'}
-
-- SI Unit verification ensures zero marks lost on numerical calculations.
-- Always write the initial formula, substitution, and final answer with units.`
-    },
-    {
-      id: `tab-${chapter.id}-dpp`,
-      title: 'Practice DPP & Past Questions',
-      fileName: `DPP_Chapter_${chapter.number}_CBSE.pdf`,
-      type: 'pdf',
-      status: 'reading',
-      pinned: false,
-      sizeBytes: 1450000,
-      content: `CBSE Chapter ${chapter.number} Practice Worksheet
-
-Section A: 1-Mark Multiple Choice Questions
-Section B: 2-Mark Short Answer Questions
-Section C: 3-Mark Derivations & Numericals
-Section D: 5-Mark Case Study Questions`
-    }
   ];
 }
 
-// Legacy exports for existing components
 export const CHAPTERS: Record<string, Chapter[]> = CLASS_CHAPTERS_MAP['class-9'];
 
+export const GOOGLE_DRIVE_VAULTS: DocumentTab[] = [
+  {
+    id: 'tab-drive-1',
+    uuid: '1-p63t_9hciCKCspwVJNNoUHsPpYVgX1e',
+    title: '📂 Drive Vault 1: Lectures & Core PDFs',
+    type: 'DRIVE',
+    badge: 'GOOGLE DRIVE VAULT 01',
+    driveFolderId: '1-p63t_9hciCKCspwVJNNoUHsPpYVgX1e',
+    driveUrl: 'https://drive.google.com/drive/folders/1-p63t_9hciCKCspwVJNNoUHsPpYVgX1e?usp=drive_link',
+    description: 'Cloud repository containing recorded lectures, syllabus presentations, and chapter PDFs.',
+    curatedItems: [
+      { name: 'Class_9_Syllabus_Master_Lectures.mp4', kind: 'VIDEO LECTURE', duration: '42:15 mins', tag: 'Learn' },
+      { name: 'Core_Chapter_Annotated_Textbook_Notes.pdf', kind: 'CHAPTER PDF', duration: '18 Pages', tag: 'Learn' },
+      { name: 'Conceptual_Derivation_Slides.pdf', kind: 'SLIDE DECK PDF', duration: '12 Slides', tag: 'Learn' },
+    ],
+    content: 'DRIVE_FOLDER_SPECIAL',
+  },
+  {
+    id: 'tab-drive-2',
+    uuid: '1KcZbtN5ij-19L8SkS6AjLqaLdwzP2sX4',
+    title: '📂 Drive Vault 2: Notes & Reference Media',
+    type: 'DRIVE',
+    badge: 'GOOGLE DRIVE VAULT 02',
+    driveFolderId: '1KcZbtN5ij-19L8SkS6AjLqaLdwzP2sX4',
+    driveUrl: 'https://drive.google.com/drive/folders/1KcZbtN5ij-19L8SkS6AjLqaLdwzP2sX4?usp=drive_link',
+    description: 'Handwritten revision notes, concept mindmaps, and visual explanations.',
+    curatedItems: [
+      { name: 'One_Shot_Revision_Lecture_Recording.mp4', kind: 'VIDEO LECTURE', duration: '55:10 mins', tag: 'Learn' },
+      { name: 'Handwritten_Topper_Notes_&_Concept_Sheets.pdf', kind: 'TOPPER NOTES PDF', duration: '14 Pages', tag: 'Learn' },
+      { name: 'High_Yield_Quick_Reference_Sheet.pdf', kind: 'CONCEPT PDF', duration: '6 Pages', tag: 'Practice' },
+    ],
+    content: 'DRIVE_FOLDER_SPECIAL',
+  },
+  {
+    id: 'tab-drive-3',
+    uuid: '1lEU75-5NTwcfQGSfUFu3_ARibYVDyHbl',
+    title: '📂 Drive Vault 3: DPPs & Video Bank',
+    type: 'DRIVE',
+    badge: 'GOOGLE DRIVE VAULT 03',
+    driveFolderId: '1lEU75-5NTwcfQGSfUFu3_ARibYVDyHbl',
+    driveUrl: 'https://drive.google.com/drive/folders/1lEU75-5NTwcfQGSfUFu3_ARibYVDyHbl?usp=drive_link',
+    description: 'Daily Practice Problems (DPPs), question banks, and solution walk-throughs.',
+    curatedItems: [
+      { name: 'DPP_01_High_Yield_Practice_Questions.pdf', kind: 'DPP PDF', duration: '25 Questions', tag: 'Practice' },
+      { name: 'DPP_02_Score_Booster_Important_Questions.pdf', kind: 'DPP PDF', duration: '30 Questions', tag: 'Practice' },
+      { name: 'Live_DPP_Doubt_Solving_Session_Recording.mp4', kind: 'VIDEO SOLUTION', duration: '38:40 mins', tag: 'Practice' },
+    ],
+    content: 'DRIVE_FOLDER_SPECIAL',
+  },
+];
+
 export const INITIAL_WEAK_TOPICS: WeakTopic[] = [
-  { id: 'wt-1', subject: 'Science', topic: 'Derivation of 2as = v² - u² by Graphical Method', chapter: 'Chapter 8: Motion', doubtCount: 42, severity: 'high', recommendedAction: 'Review velocity-time area trapezoid breakdown in Vault tab' },
-  { id: 'wt-2', subject: 'Science', topic: 'Conversion between km/h and m/s (5/18 factor)', chapter: 'Chapter 8: Motion', doubtCount: 29, severity: 'medium', recommendedAction: 'Practice 5 conversion drill problems in DPP' },
-  { id: 'wt-3', subject: 'Mathematics', topic: 'Factor Theorem for Cubic Polynomials', chapter: 'Chapter 2: Polynomials', doubtCount: 35, severity: 'high', recommendedAction: 'Solve trial factor identification method' },
+  {
+    id: 'wt-1',
+    subject: 'Science',
+    chapter: 'Ch 8: Motion',
+    topic: 'Graphical Derivation of 2as = v² - u²',
+    doubtCount: 14,
+    severity: 'high',
+    recommendedAction: 'Practice geometry area under trapezium method with Step-by-Step tutor',
+  },
+  {
+    id: 'wt-2',
+    subject: 'SST',
+    chapter: 'Ch 1: French Revolution',
+    topic: 'The Estates General & Constitution of 1791',
+    doubtCount: 11,
+    severity: 'high',
+    recommendedAction: 'Review Three Estates diagram and Declaration of Rights of Man',
+  },
+  {
+    id: 'wt-3',
+    subject: 'Science',
+    chapter: 'Ch 9: Force & Laws',
+    topic: 'Conservation of Momentum Collision Problems',
+    doubtCount: 7,
+    severity: 'medium',
+    recommendedAction: 'Check sign convention for opposite velocity vectors',
+  },
 ];
 
 export const INITIAL_ANALYTICS: CohortAnalytics[] = [
-  { chapterId: 'sci-ch8', chapterTitle: 'Motion', subject: 'Science', totalDoubts: 184, averageMasteryPct: 76, commonMisconception: 'Confusing displacement with total distance during circular motion', mostQueriedDoc: 'Motion_Formula_Vault.md' },
-  { chapterId: 'sci-ch9', chapterTitle: 'Force & Laws of Motion', subject: 'Science', totalDoubts: 120, averageMasteryPct: 81, commonMisconception: 'Believing an object requires continuous force to maintain constant velocity', mostQueriedDoc: 'Newton_Laws_Derivations.pdf' },
+  {
+    chapterId: 'sci-ch8',
+    chapterTitle: 'Ch 8: Motion',
+    subject: 'Science',
+    totalDoubts: 68,
+    averageMasteryPct: 78,
+    commonMisconception: 'Confusing displacement with total distance in circular track problems',
+    mostQueriedDoc: 'Ch 8 Notes & Video Animation',
+  },
+  {
+    chapterId: 'sst-ch1',
+    chapterTitle: 'Ch 1: French Revolution',
+    subject: 'SST',
+    totalDoubts: 54,
+    averageMasteryPct: 82,
+    commonMisconception: 'Role of National Assembly vs Jacobin Convention',
+    mostQueriedDoc: 'Ch 1 Important Questions PDF',
+  },
+  {
+    chapterId: 'sci-ch1',
+    chapterTitle: 'Ch 1: Matter in Surroundings',
+    subject: 'Science',
+    totalDoubts: 42,
+    averageMasteryPct: 85,
+    commonMisconception: 'Latent Heat of Vaporization vs Evaporation cooling effect',
+    mostQueriedDoc: 'Ch 1 MindMap & Animation',
+  },
 ];
 
 export const COHORT_ANALYTICS: CohortAnalytics[] = INITIAL_ANALYTICS;

@@ -11,13 +11,13 @@ const config: Config = {
       colors: {
         obsidian: {
           DEFAULT: '#09090B',
-          surface: '#121215',
-          elevated: '#18181B',
+          surface: '#111114',
+          card: '#18181B',
         },
         alabaster: {
           DEFAULT: '#FFFFFF',
-          muted: '#F8FAFC',
-          card: '#F4F4F5',
+          surface: '#FAFAFA',
+          muted: '#F4F4F5',
         },
         structural: {
           dark: '#27272A',
@@ -39,21 +39,16 @@ const config: Config = {
           light: '#FEF3C7',
         },
       },
+      borderWidth: {
+        '2': '2px',
+      },
       fontFamily: {
         sans: ['Plus Jakarta Sans', 'Inter', 'system-ui', 'sans-serif'],
-        serif: ['Playfair Display', 'Georgia', 'serif'],
-        heading: ['Plus Jakarta Sans', 'Space Grotesk', 'sans-serif'],
-        grotesk: ['Space Grotesk', 'sans-serif'],
-        outfit: ['Outfit', 'sans-serif'],
-        inter: ['Inter', 'sans-serif'],
-        mono: ['JetBrains Mono', 'Fira Code', 'monospace'],
-      },
-      borderWidth: {
-        '1.5': '1.5px',
+        mono: ['JetBrains Mono', 'monospace'],
       },
       boxShadow: {
-        'block-dark': '0 4px 20px -2px rgba(0, 0, 0, 0.45)',
-        'block-light': '0 4px 20px -2px rgba(0, 0, 0, 0.05)',
+        'black-block': '0 8px 30px rgba(0, 0, 0, 0.45)',
+        'white-block': '0 8px 30px rgba(0, 0, 0, 0.06)',
       },
     },
   },

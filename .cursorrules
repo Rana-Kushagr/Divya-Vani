@@ -1,9 +1,10 @@
-# Divyavani Cursor Security & Architecture Rules
-# Enforces Vibecoded Constitution Security & Double-Palette Block Rules
+# Divyavani Cursor Security & Architecture Rules (v3.0)
+# NextToppers & Extramarks EdTech UI/UX + 3 Google Drive Vaults Edition
 
 - Always validate inputs with Zod schemas.
 - Sanitize HTML/KaTeX output with DOMPurify.
-- Always use UUIDv4 for entity IDs.
+- Always use UUIDv4 for entity IDs and enforce RLS.
 - Never place API secrets in client-side code.
-- Double-Palette: #09090B Obsidian vs #FFFFFF Alabaster with 1.5px structural borders.
-- Keep focus rings visible for WCAG 2.1 AA keyboard accessibility.
+- EdTech Design System: #F8FAFC Slate-50 canvas, #FFFFFF rounded-2xl cards, #4F46E5 Royal Indigo, #F97316 Coral Orange, #10B981 Emerald.
+- Support the 3 Google Drive Chapter Vaults: 1-p63t_9hciCKCspwVJNNoUHsPpYVgX1e, 1KcZbtN5ij-19L8SkS6AjLqaLdwzP2sX4, 1lEU75-5NTwcfQGSfUFu3_ARibYVDyHbl.
+- Keep visible focus rings for WCAG 2.1 AA keyboard accessibility.
