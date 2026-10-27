@@ -9,10 +9,7 @@ import {
   Sparkles, 
   X, 
   Lightbulb,
-  CheckCircle2,
-  ScanText,
   Camera,
-  MessageSquare,
   KeyRound
 } from 'lucide-react';
 import { DoubtQuerySchema } from '@/lib/validation';
@@ -21,13 +18,25 @@ import CameraCaptureModal from './CameraCaptureModal';
 import OneOnOneVoiceAssistantModal from './OneOnOneVoiceAssistantModal';
 
 interface MultimodalDoubtComposerProps {
-  currentSubject: SubjectId;
-  currentChapterId: string;
-  chapterTitle: string;
-  activeTabTitle?: string;
-  initialQuery?: string;
-  onSolveDoubt: (query: string, attachTabContext: boolean, imageBase64?: string) => void;
-  isLoading: boolean;
+  readonly currentSubject: SubjectId;
+  readonly currentChapterId: string;
+  readonly chapterTitle: string;
+  readonly activeTabTitle?: string;
+  readonly initialQuery?: string;
+  readonly onSolveDoubt: (query: string, attachTabContext: boolean, imageBase64?: string) => void;
+  readonly isLoading: boolean;
+}
+
+function getInputMode(isRecording: boolean, hasImage: boolean): 'voice' | 'image' | 'text' {
+  if (isRecording) return 'voice';
+  if (hasImage) return 'image';
+  return 'text';
+}
+
+function getComposerPlaceholder(isRecording: boolean, hasImage: boolean): string {
+  if (isRecording) return 'Listening to your question in English / Hinglish...';
+  if (hasImage) return 'Add any additional questions about the photo, or tap Solve Question...';
+  return 'Ask any doubt from this chapter, speak aloud, or snap a photo of a textbook question...';
 }
 
 export default function MultimodalDoubtComposer({
@@ -195,7 +204,7 @@ export default function MultimodalDoubtComposer({
       studentQuery: promptText,
       subjectId: currentSubject,
       chapterId: currentChapterId,
-      inputMode: isRecording ? 'voice' : selectedImageBase64 ? 'image' : 'text',
+      inputMode: getInputMode(isRecording, Boolean(selectedImageBase64)),
       attachedTabContext: attachTabContext ? activeTabTitle : undefined,
       imageBase64: selectedImageBase64 || undefined,
       apiKey: userApiKey || undefined,
@@ -359,7 +368,7 @@ export default function MultimodalDoubtComposer({
               <span className="w-2 h-2 rounded-full bg-rose-500 animate-ping mr-1" />
               {waveformBars.map((h, i) => (
                 <div
-                  key={i}
+                  key={`composer-bar-${i}`}
                   className="w-0.5 bg-mint rounded-full transition-all duration-100"
                   style={{ height: `${h}px` }}
                 />

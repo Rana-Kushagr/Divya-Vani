@@ -11,10 +11,7 @@ import {
   Send, 
   User, 
   Bot, 
-  RotateCcw,
-  Play,
-  Square,
-  HelpCircle
+  Square
 } from 'lucide-react';
 import MathRenderer from './MathRenderer';
 
@@ -27,11 +24,82 @@ interface ChatMessage {
 }
 
 interface OneOnOneVoiceAssistantModalProps {
-  isOpen: boolean;
-  onClose: () => void;
-  currentSubject: string;
-  currentChapter: string;
-  userApiKey?: string;
+  readonly isOpen: boolean;
+  readonly onClose: () => void;
+  readonly currentSubject: string;
+  readonly currentChapter: string;
+  readonly userApiKey?: string;
+}
+
+interface ChatMessageBubbleProps {
+  readonly msg: ChatMessage;
+  readonly onSpeak: (text: string) => void;
+}
+
+function getStatusBadge(isAiSpeaking: boolean, isListening: boolean): string {
+  if (isAiSpeaking) return 'Speaking...';
+  if (isListening) return 'Listening...';
+  return 'Ready';
+}
+
+function getStatusBanner(isListening: boolean, isAiSpeaking: boolean): string {
+  if (isListening) return '🎧 Hearing your voice...';
+  if (isAiSpeaking) return '🗣️ Explaining solution...';
+  return '🎙️ Tap microphone to talk 1v1';
+}
+
+function getWaveBarColor(isAiSpeaking: boolean, isListening: boolean): string {
+  if (isAiSpeaking) return 'bg-mint';
+  if (isListening) return 'bg-royal-light';
+  return 'bg-zinc-700';
+}
+
+function ChatMessageBubble({ msg, onSpeak }: ChatMessageBubbleProps) {
+  const isStudent = msg.sender === 'student';
+  return (
+    <div
+      className={`flex items-start gap-3 ${
+        isStudent ? 'flex-row-reverse' : 'flex-row'
+      }`}
+    >
+      <div
+        className={`w-8 h-8 rounded-xl flex items-center justify-center shrink-0 text-xs font-bold ${
+          isStudent
+            ? 'bg-royal text-white'
+            : 'bg-gradient-to-tr from-mint to-emerald-500 text-obsidian shadow'
+        }`}
+      >
+        {isStudent ? <User className="w-4 h-4" /> : <Bot className="w-4 h-4" />}
+      </div>
+
+      <div
+        className={`max-w-[85%] rounded-2xl p-4 text-xs leading-relaxed ${
+          isStudent
+            ? 'bg-royal text-white rounded-tr-none shadow-md'
+            : 'bg-obsidian border border-structural-dark text-alabaster rounded-tl-none shadow-md'
+        }`}
+      >
+        <div className="whitespace-pre-wrap">
+          <MathRenderer content={msg.text} />
+        </div>
+
+        <div className="mt-2 pt-1 border-t border-white/10 flex items-center justify-between text-[10px] text-zinc-400">
+          <span>{msg.timestamp}</span>
+          {!isStudent && (
+            <button
+              type="button"
+              onClick={() => onSpeak(msg.spokenText || msg.text)}
+              className="hover:text-mint flex items-center gap-1 text-[10px] font-semibold transition"
+              title="Read aloud"
+            >
+              <Volume2 className="w-3 h-3" />
+              <span>Listen</span>
+            </button>
+          )}
+        </div>
+      </div>
+    </div>
+  );
 }
 
 export default function OneOnOneVoiceAssistantModal({
@@ -263,7 +331,7 @@ export default function OneOnOneVoiceAssistantModal({
               <div className="flex items-center gap-2">
                 <h3 className="font-bold text-sm text-alabaster">Divya Vani 1v1 AI Study Buddy</h3>
                 <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-mint/20 text-mint border border-mint/40">
-                  {isAiSpeaking ? 'Speaking...' : isListening ? 'Listening...' : 'Ready'}
+                  {getStatusBadge(isAiSpeaking, isListening)}
                 </span>
               </div>
               <p className="text-[11px] text-zinc-400">
@@ -275,6 +343,7 @@ export default function OneOnOneVoiceAssistantModal({
           <div className="flex items-center gap-2">
             {/* Audio Speech Toggle */}
             <button
+              type="button"
               onClick={() => {
                 if (isAiSpeaking) stopSpeaking();
                 setSpeechEnabled(!speechEnabled);
@@ -292,6 +361,7 @@ export default function OneOnOneVoiceAssistantModal({
             {/* Stop current speaking */}
             {isAiSpeaking && (
               <button
+                type="button"
                 onClick={stopSpeaking}
                 className="p-2 rounded-xl border border-rose-500/40 bg-rose-500/20 text-rose-300 hover:bg-rose-500/30 transition text-xs flex items-center gap-1 font-bold"
                 title="Stop talking"
@@ -302,6 +372,7 @@ export default function OneOnOneVoiceAssistantModal({
 
             {/* Close Modal */}
             <button
+              type="button"
               onClick={() => {
                 stopSpeaking();
                 if (isListening && recognitionRef.current) recognitionRef.current.stop();
@@ -319,7 +390,7 @@ export default function OneOnOneVoiceAssistantModal({
         <div className="bg-gradient-to-r from-obsidian via-zinc-950 to-obsidian border-b border-structural-dark py-3 px-6 flex items-center justify-between">
           <div className="flex items-center gap-2">
             <span className="text-[11px] font-mono font-medium text-zinc-400">
-              {isListening ? '🎧 Hearing your voice...' : isAiSpeaking ? '🗣️ Explaining solution...' : '🎙️ Tap microphone to talk 1v1'}
+              {getStatusBanner(isListening, isAiSpeaking)}
             </span>
           </div>
 
@@ -327,14 +398,8 @@ export default function OneOnOneVoiceAssistantModal({
           <div className="flex items-center gap-1.5 h-8">
             {waveHeights.map((h, i) => (
               <div
-                key={i}
-                className={`w-1 rounded-full transition-all duration-100 ${
-                  isAiSpeaking
-                    ? 'bg-mint'
-                    : isListening
-                    ? 'bg-royal-light'
-                    : 'bg-zinc-700'
-                }`}
+                key={`wave-bar-${i}`}
+                className={`w-1 rounded-full transition-all duration-100 ${getWaveBarColor(isAiSpeaking, isListening)}`}
                 style={{ height: `${h}px` }}
               />
             ))}
@@ -344,48 +409,11 @@ export default function OneOnOneVoiceAssistantModal({
         {/* Chat History Messages Canvas */}
         <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-obsidian-surface/60">
           {messages.map((msg) => (
-            <div
+            <ChatMessageBubble
               key={msg.id}
-              className={`flex items-start gap-3 ${
-                msg.sender === 'student' ? 'flex-row-reverse' : 'flex-row'
-              }`}
-            >
-              <div
-                className={`w-8 h-8 rounded-xl flex items-center justify-center shrink-0 text-xs font-bold ${
-                  msg.sender === 'student'
-                    ? 'bg-royal text-white'
-                    : 'bg-gradient-to-tr from-mint to-emerald-500 text-obsidian shadow'
-                }`}
-              >
-                {msg.sender === 'student' ? <User className="w-4 h-4" /> : <Bot className="w-4 h-4" />}
-              </div>
-
-              <div
-                className={`max-w-[85%] rounded-2xl p-4 text-xs leading-relaxed ${
-                  msg.sender === 'student'
-                    ? 'bg-royal text-white rounded-tr-none shadow-md'
-                    : 'bg-obsidian border border-structural-dark text-alabaster rounded-tl-none shadow-md'
-                }`}
-              >
-                <div className="whitespace-pre-wrap">
-                  <MathRenderer content={msg.text} />
-                </div>
-
-                <div className="mt-2 pt-1 border-t border-white/10 flex items-center justify-between text-[10px] text-zinc-400">
-                  <span>{msg.timestamp}</span>
-                  {msg.sender === 'assistant' && (
-                    <button
-                      onClick={() => speakText(msg.spokenText || msg.text)}
-                      className="hover:text-mint flex items-center gap-1 text-[10px] font-semibold transition"
-                      title="Read aloud"
-                    >
-                      <Volume2 className="w-3 h-3" />
-                      <span>Listen</span>
-                    </button>
-                  )}
-                </div>
-              </div>
-            </div>
+              msg={msg}
+              onSpeak={speakText}
+            />
           ))}
 
           {isLoading && (
@@ -415,7 +443,9 @@ export default function OneOnOneVoiceAssistantModal({
             <button
               key={prompt}
               type="button"
-              onClick={() => handleSendMessage(prompt)}
+              onClick={() => {
+                void handleSendMessage(prompt);
+              }}
               className="shrink-0 px-2.5 py-1 rounded-full bg-zinc-900 border border-zinc-800 text-zinc-300 hover:text-white hover:border-royal text-[11px] font-medium transition"
             >
               {prompt}
@@ -443,7 +473,7 @@ export default function OneOnOneVoiceAssistantModal({
           <form
             onSubmit={(e) => {
               e.preventDefault();
-              handleSendMessage();
+              void handleSendMessage();
             }}
             className="flex-1 flex items-center gap-2"
           >

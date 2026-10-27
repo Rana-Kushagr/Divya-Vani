@@ -12,9 +12,9 @@ import { generateUUID } from '@/lib/sanitizer';
 import { DocumentTab, DocumentType } from '@/lib/types';
 
 interface SecureDocumentUploaderProps {
-  isOpen: boolean;
-  onClose: () => void;
-  onUploadSuccess: (newTab: DocumentTab) => void;
+  readonly isOpen: boolean;
+  readonly onClose: () => void;
+  readonly onUploadSuccess: (newTab: DocumentTab) => void;
 }
 
 export default function SecureDocumentUploader({
@@ -39,19 +39,18 @@ export default function SecureDocumentUploader({
     }
   };
 
-  const processFile = (file: File) => {
+  const processFile = async (file: File) => {
     setErrorMsg(null);
 
-    // Validate with Zod schema
-    const validation = FileUploadSchema.safeParse({
+    // Zod validation
+    const validationResult = FileUploadSchema.safeParse({
       name: file.name,
       size: file.size,
-      type: file.type || 'application/octet-stream',
+      type: file.type,
     });
 
-    if (!validation.success) {
-      const firstError = validation.error.errors[0]?.message || 'File validation failed';
-      setErrorMsg(firstError);
+    if (!validationResult.success) {
+      setErrorMsg(validationResult.error.errors[0]?.message || 'Invalid file format or size exceeds security limits.');
       return;
     }
 
@@ -65,9 +64,8 @@ export default function SecureDocumentUploader({
     else if (lowerName.endsWith('.png') || lowerName.endsWith('.jpg') || lowerName.endsWith('.webp')) docType = 'image';
 
     if (docType === 'markdown' || docType === 'text') {
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        const textContent = (e.target?.result as string) || '';
+      try {
+        const textContent = await file.text();
         const newTab: DocumentTab = {
           id: generateUUID(),
           title: file.name.replace(/\.[^/.]+$/, ''),
@@ -80,12 +78,10 @@ export default function SecureDocumentUploader({
         setUploading(false);
         onUploadSuccess(newTab);
         onClose();
-      };
-      reader.onerror = () => {
+      } catch (_err) {
         setErrorMsg('Error reading file contents');
         setUploading(false);
-      };
-      reader.readAsText(file);
+      }
     } else {
       const blobUrl = URL.createObjectURL(file);
       const newTab: DocumentTab = {
@@ -110,21 +106,22 @@ export default function SecureDocumentUploader({
     e.stopPropagation();
     setDragActive(false);
 
-    if (e.dataTransfer.files && e.dataTransfer.files[0]) {
-      processFile(e.dataTransfer.files[0]);
+    const droppedFile = e.dataTransfer.files?.[0];
+    if (droppedFile) {
+      void processFile(droppedFile);
     }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files && e.target.files[0]) {
-      processFile(e.target.files[0]);
+    const selectedFile = e.target.files?.[0];
+    if (selectedFile) {
+      void processFile(selectedFile);
     }
   };
 
   return (
     <div 
       className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-obsidian/80 backdrop-blur-sm animate-in fade-in"
-      role="dialog"
       aria-modal="true"
       aria-labelledby="uploader-title"
     >
@@ -144,6 +141,7 @@ export default function SecureDocumentUploader({
             </div>
           </div>
           <button
+            type="button"
             onClick={onClose}
             className="text-zinc-400 hover:text-alabaster p-1.5 rounded-lg hover:bg-zinc-800 transition-colors"
             aria-label="Close modal"
@@ -152,21 +150,14 @@ export default function SecureDocumentUploader({
           </button>
         </div>
 
-        <div
+        <button
+          type="button"
           onDragEnter={handleDrag}
           onDragLeave={handleDrag}
           onDragOver={handleDrag}
           onDrop={handleDrop}
-          role="button"
-          tabIndex={0}
-          onKeyDown={(e) => {
-            if (e.key === 'Enter' || e.key === ' ') {
-              e.preventDefault();
-              fileInputRef.current?.click();
-            }
-          }}
           onClick={() => fileInputRef.current?.click()}
-          className={`mt-5 border-2 border-dashed rounded-xl p-8 flex flex-col items-center justify-center text-center cursor-pointer transition-all ${
+          className={`w-full mt-5 border-2 border-dashed rounded-xl p-8 flex flex-col items-center justify-center text-center cursor-pointer transition-all ${
             dragActive
               ? 'border-royal bg-royal/10 scale-[0.99]'
               : 'border-zinc-700 bg-obsidian hover:border-zinc-500'
@@ -193,7 +184,7 @@ export default function SecureDocumentUploader({
             <span>•</span>
             <span>Max 100 MB</span>
           </div>
-        </div>
+        </button>
 
         {errorMsg && (
           <div className="mt-4 p-3 rounded-lg bg-red-950/50 border border-red-800/80 text-red-200 text-xs flex items-center gap-2">

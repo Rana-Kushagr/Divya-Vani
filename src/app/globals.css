@@ -85,16 +85,26 @@
   }
 }
 
-.animate-float-subtle {
-  animation: floatBubble 3.2s ease-in-out infinite;
+@media (prefers-reduced-motion: no-preference) {
+  .animate-float-subtle {
+    animation: floatBubble 3.2s ease-in-out infinite;
+  }
+
+  .animate-glow-ring {
+    animation: pulseGlowRing 2.6s infinite;
+  }
+
+  .animate-radar-ring {
+    animation: subtleRadar 2.2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
 }
 
-.animate-glow-ring {
-  animation: pulseGlowRing 2.6s infinite;
-}
-
-.animate-radar-ring {
-  animation: subtleRadar 2.2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+@media (prefers-reduced-motion: reduce) {
+  .animate-float-subtle,
+  .animate-glow-ring,
+  .animate-radar-ring {
+    animation: none;
+  }
 }
 
 /* Print Optimization for Revision Cheat Sheet */

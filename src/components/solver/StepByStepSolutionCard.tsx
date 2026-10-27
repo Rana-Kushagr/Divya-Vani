@@ -14,14 +14,13 @@ import {
   ChevronDown, 
   ChevronUp,
   Volume2,
-  Square
 } from 'lucide-react';
 import { SocraticSolution } from '@/lib/types';
 import MathRenderer from './MathRenderer';
 
 interface StepByStepSolutionCardProps {
-  solution: SocraticSolution;
-  onSaveToRevision?: (sol: SocraticSolution) => void;
+  readonly solution: SocraticSolution;
+  readonly onSaveToRevision?: (sol: SocraticSolution) => void;
 }
 
 export default function StepByStepSolutionCard({
@@ -80,7 +79,8 @@ export default function StepByStepSolutionCard({
       setIsSpeaking(false);
     } else {
       window.speechSynthesis.cancel();
-      const spoken = `${solution.conceptLink.topic}. Formula: ${solution.formulaSpotlight.name}. ${solution.derivationSteps.map((s) => `${s.title}: ${s.explanation}`).join('. ')}`;
+      const stepSummaries = solution.derivationSteps.map((s) => s.title + ': ' + s.explanation).join('. ');
+      const spoken = `${solution.conceptLink.topic}. Formula: ${solution.formulaSpotlight.name}. ${stepSummaries}`;
       const clean = spoken.replace(/[*#_`$]/g, '').slice(0, 450);
       const u = new SpeechSynthesisUtterance(clean);
       u.rate = 1.0;

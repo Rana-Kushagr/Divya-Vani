@@ -1,7 +1,6 @@
 'use client';
 
 import React, { useState } from 'react';
-import Link from 'next/link';
 import { 
   Sparkles, 
   Atom, 
@@ -26,9 +25,15 @@ import StepByStepSolutionCard from '@/components/solver/StepByStepSolutionCard';
 import FloatingDoubtBubble from '@/components/solver/FloatingDoubtBubble';
 import SmartLectureListener from '@/components/solver/SmartLectureListener';
 
-import { ClassLevel, SubjectId, ChapterMeta, SocraticSolution } from '@/lib/types';
+import { ClassLevel, SubjectId, SocraticSolution } from '@/lib/types';
 import { CLASSES, SUBJECTS, CHAPTERS_BY_SUBJECT, GOOGLE_DRIVE_VAULTS } from '@/lib/mockData';
 import { solveSocraticDoubt } from '@/lib/aiSimulation';
+
+function getVaultIndex(tab: string): number {
+  if (tab === 'DRIVE1') return 0;
+  if (tab === 'DRIVE2') return 1;
+  return 2;
+}
 
 export default function WorkspacePage() {
   // Step 1: Class Selection (Default Class 9-H)
@@ -330,13 +335,13 @@ export default function WorkspacePage() {
                 chapter={currentChapter}
                 onAskAI={(ctx) => {
                   setComposerQuery(ctx);
-                  handleSolveDoubt(ctx, true);
+                  void handleSolveDoubt(ctx, true);
                 }}
               />
             ) : (
               /* GOOGLE DRIVE EMBEDDED VAULT */
               (() => {
-                const vIdx = activeMaterialTab === 'DRIVE1' ? 0 : activeMaterialTab === 'DRIVE2' ? 1 : 2;
+                const vIdx = getVaultIndex(activeMaterialTab);
                 const activeVault = GOOGLE_DRIVE_VAULTS[vIdx];
                 const embedSrc = `https://drive.google.com/embeddedfolderview?id=${encodeURIComponent(activeVault.driveFolderId || '')}#${driveEmbedMode}`;
 
@@ -428,7 +433,9 @@ export default function WorkspacePage() {
           const el = document.getElementById('doubt-solver-section');
           if (el) el.scrollIntoView({ behavior: 'smooth' });
         }}
-        onQuickDoubtSubmit={(q, img) => handleSolveDoubt(q, true, img)}
+        onQuickDoubtSubmit={(q, img) => {
+          void handleSolveDoubt(q, true, img);
+        }}
       />
 
       {/* Cookie Consent Banner */}

@@ -7,19 +7,17 @@ import OneOnOneVoiceAssistantModal from './OneOnOneVoiceAssistantModal';
 export type BubbleConsentState = 'ask' | 'stay' | 'hidden';
 
 export interface FloatingDoubtBubbleProps {
-  classLevel?: string | number;
-  subjectName?: string;
-  chapterTitle?: string;
-  onOpenCameraModal?: () => void;
-  onOpenVoiceModal?: () => void;
-  onOpenDoubtSection?: () => void;
+  readonly classLevel?: string | number;
+  readonly subjectName?: string;
+  readonly chapterTitle?: string;
+  readonly activeTabTitle?: string;
+  readonly onOpenCameraModal?: () => void;
+  readonly onOpenVoiceModal?: () => void;
+  readonly onOpenDoubtSection?: () => void;
   // Compatibility with previous props
-  currentSubject?: string;
-  currentChapter?: string;
-  activeTabTitle?: string;
-  onQuickDoubtSubmit?: (query: string, imageBase64?: string) => void;
-  listenerActive?: boolean;
-  onToggleListener?: () => void;
+  readonly currentSubject?: string;
+  readonly currentChapter?: string;
+  readonly onQuickDoubtSubmit?: (query: string, imageBase64?: string) => void;
 }
 
 const CONSENT_STORAGE_KEY = 'divyavani_floating_bubble_consent_v1';
@@ -28,7 +26,7 @@ const CONSENT_STORAGE_KEY = 'divyavani_floating_bubble_consent_v1';
    CUSTOM HIGH-FIDELITY VECTOR ICONS (No lucide-react used)
    ========================================================================= */
 
-function SparklesGlyph({ className = "w-4 h-4" }: { className?: string }) {
+function SparklesGlyph({ className = "w-4 h-4" }: { readonly className?: string }) {
   return (
     <svg viewBox="0 0 24 24" fill="none" className={className} aria-hidden="true">
       <defs>
@@ -48,7 +46,7 @@ function SparklesGlyph({ className = "w-4 h-4" }: { className?: string }) {
   );
 }
 
-function CameraGlyph({ className = "w-4 h-4" }: { className?: string }) {
+function CameraGlyph({ className = "w-4 h-4" }: { readonly className?: string }) {
   return (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className} aria-hidden="true">
       <path d="M14.5 4h-5L7.5 7H4a2 2 0 00-2 2v10a2 2 0 002 2h16a2 2 0 002-2V9a2 2 0 00-2-2h-3.5L14.5 4z" />
@@ -58,7 +56,7 @@ function CameraGlyph({ className = "w-4 h-4" }: { className?: string }) {
   );
 }
 
-function MicGlyph({ className = "w-4 h-4" }: { className?: string }) {
+function MicGlyph({ className = "w-4 h-4" }: { readonly className?: string }) {
   return (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className} aria-hidden="true">
       <rect x="9" y="3" width="6" height="11" rx="3" stroke="currentColor" strokeWidth="2" />
@@ -69,7 +67,7 @@ function MicGlyph({ className = "w-4 h-4" }: { className?: string }) {
   );
 }
 
-function SendGlyph({ className = "w-4 h-4" }: { className?: string }) {
+function SendGlyph({ className = "w-4 h-4" }: { readonly className?: string }) {
   return (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className} aria-hidden="true">
       <path d="M22 2L11 13" />
@@ -78,7 +76,7 @@ function SendGlyph({ className = "w-4 h-4" }: { className?: string }) {
   );
 }
 
-function MessageSquareGlyph({ className = "w-4 h-4" }: { className?: string }) {
+function MessageSquareGlyph({ className = "w-4 h-4" }: { readonly className?: string }) {
   return (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className} aria-hidden="true">
       <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" />
@@ -89,7 +87,7 @@ function MessageSquareGlyph({ className = "w-4 h-4" }: { className?: string }) {
   );
 }
 
-function CheckGlyph({ className = "w-3.5 h-3.5" }: { className?: string }) {
+function CheckGlyph({ className = "w-3.5 h-3.5" }: { readonly className?: string }) {
   return (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className={className} aria-hidden="true">
       <polyline points="20 6 9 17 4 12" />
@@ -97,7 +95,7 @@ function CheckGlyph({ className = "w-3.5 h-3.5" }: { className?: string }) {
   );
 }
 
-function CloseGlyph({ className = "w-4 h-4" }: { className?: string }) {
+function CloseGlyph({ className = "w-4 h-4" }: { readonly className?: string }) {
   return (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" className={className} aria-hidden="true">
       <line x1="18" y1="6" x2="6" y2="18" />
@@ -106,7 +104,7 @@ function CloseGlyph({ className = "w-4 h-4" }: { className?: string }) {
   );
 }
 
-function ShieldGlyph({ className = "w-3 h-3" }: { className?: string }) {
+function ShieldGlyph({ className = "w-3 h-3" }: { readonly className?: string }) {
   return (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className} aria-hidden="true">
       <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
@@ -123,6 +121,7 @@ export default function FloatingDoubtBubble({
   classLevel = '9-H',
   subjectName = 'Science',
   chapterTitle = 'Chapter 8: Motion',
+  activeTabTitle,
   onOpenCameraModal,
   onOpenVoiceModal,
   onOpenDoubtSection,
@@ -140,7 +139,7 @@ export default function FloatingDoubtBubble({
 
   // Normalize prop values
   const effectiveSubject = subjectName || currentSubject || 'Science';
-  const effectiveChapter = chapterTitle || currentChapter || 'Chapter 8: Motion';
+  const effectiveChapter = activeTabTitle || chapterTitle || currentChapter || 'Chapter 8: Motion';
 
   useEffect(() => {
     setMounted(true);

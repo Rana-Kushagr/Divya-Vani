@@ -7,18 +7,89 @@ import {
   Play, 
   Sparkles, 
   Download, 
-  Maximize2, 
   ZoomIn, 
-  ZoomOut, 
-  Volume2, 
-  Layers, 
-  ExternalLink 
+  ZoomOut
 } from 'lucide-react';
 import { ChapterMeta, MaterialSubView } from '@/lib/types';
 
 interface ChapterNotesHubProps {
-  chapter: ChapterMeta;
-  onAskAI: (context: string) => void;
+  readonly chapter: ChapterMeta;
+  readonly onAskAI: (context: string) => void;
+}
+
+interface ActiveMaterialViewerProps {
+  readonly activeSubView: MaterialSubView;
+  readonly activeVideoUrl?: string;
+  readonly chapter: ChapterMeta;
+}
+
+function getSubViewTitle(view: MaterialSubView): string {
+  if (view === 'ANIMATION') return '🎬 Concept Animated Video';
+  if (view === 'MINDMAP') return '🧠 Visual Concept MindMap';
+  return '📄 Chapter Revision Notes';
+}
+
+function ActiveMaterialViewer({ activeSubView, activeVideoUrl, chapter }: ActiveMaterialViewerProps) {
+  if (activeSubView === 'ANIMATION' && activeVideoUrl) {
+    return (
+      <div className="h-full bg-obsidian flex flex-col items-center justify-center p-4 animate-in fade-in zoom-in-95 duration-300">
+        <div className="w-full max-w-3xl aspect-video rounded-2xl overflow-hidden shadow-black-block border-2 border-structural-dark bg-black relative">
+          <video
+            key={activeVideoUrl}
+            src={activeVideoUrl}
+            controls
+            autoPlay
+            className="w-full h-full object-contain"
+          >
+            <track kind="captions" />
+            Your browser does not support the video tag.
+          </video>
+        </div>
+        <div className="mt-3 flex items-center justify-between w-full max-w-3xl px-2 text-xs text-zinc-400">
+          <div className="flex items-center gap-2">
+            <span className="w-2 h-2 rounded-full bg-mint animate-ping" />
+            <span className="font-semibold text-alabaster">
+              Dedicated Concept Visualizer • Ch {chapter.number}: {chapter.title}
+            </span>
+          </div>
+          <a
+            href={activeVideoUrl}
+            download
+            className="flex items-center gap-1 text-royal-light hover:underline text-[11px]"
+          >
+            <Download className="w-3.5 h-3.5" />
+            <span>Save Video</span>
+          </a>
+        </div>
+      </div>
+    );
+  }
+
+  if (activeSubView === 'MINDMAP' && chapter.mindMapPdfUrl) {
+    return (
+      <div className="h-full w-full flex flex-col animate-in fade-in duration-300">
+        <div className="flex-1 p-2 bg-zinc-100 flex items-center justify-center overflow-auto">
+          <iframe
+            src={`${chapter.mindMapPdfUrl}#view=FitH`}
+            title={`${chapter.title} MindMap`}
+            className="w-full h-full min-h-[540px] rounded-xl border border-structural-light bg-white shadow-sm"
+          />
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="h-full w-full flex flex-col animate-in fade-in duration-300">
+      <div className="flex-1 p-2 bg-zinc-100 flex items-center justify-center overflow-auto">
+        <iframe
+          src={`${chapter.notesPdfUrl || '/materials/science/9_Science_Ch1_Notes.pdf'}#view=FitH`}
+          title={`${chapter.title} Notes`}
+          className="w-full h-full min-h-[540px] rounded-xl border border-structural-light bg-white shadow-sm"
+        />
+      </div>
+    </div>
+  );
 }
 
 export default function ChapterNotesHub({
@@ -126,15 +197,12 @@ export default function ChapterNotesHub({
       <div className="bg-alabaster-surface px-4 py-2 border-b border-structural-light flex items-center justify-between text-xs text-obsidian">
         <div className="flex items-center gap-2">
           <span className="font-semibold text-xs text-zinc-700">
-            {activeSubView === 'ANIMATION'
-              ? '🎬 Concept Animated Video'
-              : activeSubView === 'MINDMAP'
-              ? '🧠 Visual Concept MindMap'
-              : '📄 Chapter Revision Notes'}
+            {getSubViewTitle(activeSubView)}
           </span>
           {chapter.animationVideoUrl2 && activeSubView === 'ANIMATION' && (
             <div className="flex items-center gap-1 ml-2">
               <button
+                type="button"
                 onClick={() => setActiveVideoPart(1)}
                 className={`px-2 py-0.5 rounded text-[11px] font-bold ${
                   activeVideoPart === 1 ? 'bg-royal text-white' : 'bg-zinc-200 text-zinc-700'
@@ -143,6 +211,7 @@ export default function ChapterNotesHub({
                 Part 1
               </button>
               <button
+                type="button"
                 onClick={() => setActiveVideoPart(2)}
                 className={`px-2 py-0.5 rounded text-[11px] font-bold ${
                   activeVideoPart === 2 ? 'bg-royal text-white' : 'bg-zinc-200 text-zinc-700'
@@ -157,6 +226,7 @@ export default function ChapterNotesHub({
         <div className="flex items-center gap-2">
           {/* Ask AI Context Trigger */}
           <button
+            type="button"
             onClick={() => onAskAI(`From Ch ${chapter.number} (${chapter.title}): Explain the core concepts of this ${activeSubView.toLowerCase()} step-by-step.`)}
             className="flex items-center gap-1 px-3 py-1 rounded-lg bg-royal hover:bg-royal-hover text-white text-xs font-bold transition-all shadow-sm"
           >
@@ -167,6 +237,7 @@ export default function ChapterNotesHub({
           {activeSubView !== 'ANIMATION' && (
             <div className="flex items-center border border-structural-light rounded-md bg-white overflow-hidden">
               <button
+                type="button"
                 onClick={() => setZoomLevel((z) => Math.max(70, z - 10))}
                 className="p-1 hover:bg-zinc-100 text-zinc-600"
                 title="Zoom Out"
@@ -177,6 +248,7 @@ export default function ChapterNotesHub({
                 {zoomLevel}%
               </span>
               <button
+                type="button"
                 onClick={() => setZoomLevel((z) => Math.min(150, z + 10))}
                 className="p-1 hover:bg-zinc-100 text-zinc-600"
                 title="Zoom In"
@@ -190,60 +262,11 @@ export default function ChapterNotesHub({
 
       {/* Main Material Canvas */}
       <div className="flex-1 bg-white overflow-hidden relative min-h-[500px]">
-        {/* VIEW 1: ANIMATION PLAYER (THEATRE MODE) */}
-        {activeSubView === 'ANIMATION' && activeVideoUrl ? (
-          <div className="h-full bg-obsidian flex flex-col items-center justify-center p-4 animate-in fade-in zoom-in-95 duration-300">
-            <div className="w-full max-w-3xl aspect-video rounded-2xl overflow-hidden shadow-black-block border-2 border-structural-dark bg-black relative">
-              <video
-                key={activeVideoUrl}
-                src={activeVideoUrl}
-                controls
-                autoPlay
-                className="w-full h-full object-contain"
-              >
-                Your browser does not support the video tag.
-              </video>
-            </div>
-            <div className="mt-3 flex items-center justify-between w-full max-w-3xl px-2 text-xs text-zinc-400">
-              <div className="flex items-center gap-2">
-                <span className="w-2 h-2 rounded-full bg-mint animate-ping" />
-                <span className="font-semibold text-alabaster">
-                  Dedicated Concept Visualizer • Ch {chapter.number}: {chapter.title}
-                </span>
-              </div>
-              <a
-                href={activeVideoUrl}
-                download
-                className="flex items-center gap-1 text-royal-light hover:underline text-[11px]"
-              >
-                <Download className="w-3.5 h-3.5" />
-                <span>Save Video</span>
-              </a>
-            </div>
-          </div>
-        ) : activeSubView === 'MINDMAP' && chapter.mindMapPdfUrl ? (
-          /* VIEW 2: MINDMAP VIEWER */
-          <div className="h-full w-full flex flex-col animate-in fade-in duration-300">
-            <div className="flex-1 p-2 bg-zinc-100 flex items-center justify-center overflow-auto">
-              <iframe
-                src={`${chapter.mindMapPdfUrl}#view=FitH`}
-                title={`${chapter.title} MindMap`}
-                className="w-full h-full min-h-[540px] rounded-xl border border-structural-light bg-white shadow-sm"
-              />
-            </div>
-          </div>
-        ) : (
-          /* VIEW 3: NOTES PDF VIEWER */
-          <div className="h-full w-full flex flex-col animate-in fade-in duration-300">
-            <div className="flex-1 p-2 bg-zinc-100 flex items-center justify-center overflow-auto">
-              <iframe
-                src={`${chapter.notesPdfUrl || '/materials/science/9_Science_Ch1_Notes.pdf'}#view=FitH`}
-                title={`${chapter.title} Notes`}
-                className="w-full h-full min-h-[540px] rounded-xl border border-structural-light bg-white shadow-sm"
-              />
-            </div>
-          </div>
-        )}
+        <ActiveMaterialViewer
+          activeSubView={activeSubView}
+          activeVideoUrl={activeVideoUrl}
+          chapter={chapter}
+        />
       </div>
 
     </div>

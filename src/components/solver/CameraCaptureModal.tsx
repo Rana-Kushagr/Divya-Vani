@@ -4,9 +4,9 @@ import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { Camera, X, RotateCw, Check, AlertCircle, Sparkles, Image as ImageIcon } from 'lucide-react';
 
 interface CameraCaptureModalProps {
-  isOpen: boolean;
-  onClose: () => void;
-  onCapture: (base64Image: string, fileName: string) => void;
+  readonly isOpen: boolean;
+  readonly onClose: () => void;
+  readonly onCapture: (base64Image: string, fileName: string) => void;
 }
 
 export default function CameraCaptureModal({
@@ -34,7 +34,7 @@ export default function CameraCaptureModal({
     }
 
     try {
-      if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+      if (!navigator.mediaDevices?.getUserMedia) {
         throw new Error('Camera access is not supported by your browser.');
       }
 
@@ -66,7 +66,7 @@ export default function CameraCaptureModal({
 
   useEffect(() => {
     if (isOpen && !capturedImage) {
-      startCamera();
+      void startCamera();
     } else if (!isOpen && stream) {
       stream.getTracks().forEach((t) => t.stop());
       setStream(null);
@@ -104,7 +104,7 @@ export default function CameraCaptureModal({
 
   const handleRetake = () => {
     setCapturedImage(null);
-    startCamera();
+    void startCamera();
   };
 
   const handleConfirm = () => {
@@ -131,6 +131,70 @@ export default function CameraCaptureModal({
     reader.readAsDataURL(file);
   };
 
+  const renderViewfinderContent = () => {
+    if (capturedImage) {
+      return (
+        <div className="relative w-full h-full flex items-center justify-center">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={capturedImage}
+            alt="Captured question"
+            className="max-h-[380px] w-auto object-contain rounded-lg"
+          />
+          <div className="absolute top-3 left-3 bg-mint/90 text-obsidian text-[11px] font-bold px-2.5 py-1 rounded-full flex items-center gap-1 shadow">
+            <Check className="w-3.5 h-3.5" />
+            <span>Photo Captured!</span>
+          </div>
+        </div>
+      );
+    }
+
+    if (cameraError) {
+      return (
+        <div className="p-6 text-center max-w-sm">
+          <AlertCircle className="w-10 h-10 text-amber mx-auto mb-3" />
+          <p className="text-xs text-zinc-300 mb-4">{cameraError}</p>
+          <button
+            type="button"
+            onClick={() => fileInputRef.current?.click()}
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-royal text-white font-semibold text-xs hover:bg-royal-hover transition shadow"
+          >
+            <ImageIcon className="w-4 h-4" />
+            <span>Upload Question Photo Instead</span>
+          </button>
+        </div>
+      );
+    }
+
+    return (
+      <div className="relative w-full h-full flex items-center justify-center">
+        <video
+          ref={videoRef}
+          playsInline
+          muted
+          className="w-full h-full object-cover max-h-[420px]"
+        />
+
+        {/* Viewfinder Overlay Targeting Box */}
+        <div className="absolute inset-8 border-2 border-dashed border-royal/70 rounded-2xl pointer-events-none flex flex-col justify-between p-3">
+          <div className="flex justify-between text-[10px] font-mono font-bold text-mint uppercase tracking-wider bg-black/60 px-2 py-0.5 rounded self-start">
+            <span>Target Zone</span>
+          </div>
+          <div className="text-[10px] text-zinc-300 text-center bg-black/60 py-1 px-3 rounded-full self-center">
+            Align textbook question or derivation here
+          </div>
+        </div>
+
+        {isInitializing && (
+          <div className="absolute inset-0 bg-black/70 flex items-center justify-center text-xs text-zinc-300">
+            <Sparkles className="w-4 h-4 text-royal animate-spin mr-2" />
+            Starting Camera...
+          </div>
+        )}
+      </div>
+    );
+  };
+
   if (!isOpen) return null;
 
   return (
@@ -149,6 +213,7 @@ export default function CameraCaptureModal({
             </div>
           </div>
           <button
+            type="button"
             onClick={onClose}
             className="p-1.5 rounded-lg text-zinc-400 hover:text-white hover:bg-zinc-800 transition"
           >
@@ -158,62 +223,7 @@ export default function CameraCaptureModal({
 
         {/* Viewfinder Canvas */}
         <div className="relative bg-black flex-1 min-h-[340px] flex items-center justify-center overflow-hidden">
-          {capturedImage ? (
-            /* Captured Preview */
-            <div className="relative w-full h-full flex items-center justify-center">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={capturedImage}
-                alt="Captured question"
-                className="max-h-[380px] w-auto object-contain rounded-lg"
-              />
-              <div className="absolute top-3 left-3 bg-mint/90 text-obsidian text-[11px] font-bold px-2.5 py-1 rounded-full flex items-center gap-1 shadow">
-                <Check className="w-3.5 h-3.5" />
-                <span>Photo Captured!</span>
-              </div>
-            </div>
-          ) : cameraError ? (
-            /* Error & Fallback upload */
-            <div className="p-6 text-center max-w-sm">
-              <AlertCircle className="w-10 h-10 text-amber mx-auto mb-3" />
-              <p className="text-xs text-zinc-300 mb-4">{cameraError}</p>
-              <button
-                type="button"
-                onClick={() => fileInputRef.current?.click()}
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-royal text-white font-semibold text-xs hover:bg-royal-hover transition shadow"
-              >
-                <ImageIcon className="w-4 h-4" />
-                <span>Upload Question Photo Instead</span>
-              </button>
-            </div>
-          ) : (
-            /* Live Camera Stream */
-            <div className="relative w-full h-full flex items-center justify-center">
-              <video
-                ref={videoRef}
-                playsInline
-                muted
-                className="w-full h-full object-cover max-h-[420px]"
-              />
-
-              {/* Viewfinder Overlay Targeting Box */}
-              <div className="absolute inset-8 border-2 border-dashed border-royal/70 rounded-2xl pointer-events-none flex flex-col justify-between p-3">
-                <div className="flex justify-between text-[10px] font-mono font-bold text-mint uppercase tracking-wider bg-black/60 px-2 py-0.5 rounded self-start">
-                  <span>Target Zone</span>
-                </div>
-                <div className="text-[10px] text-zinc-300 text-center bg-black/60 py-1 px-3 rounded-full self-center">
-                  Align textbook question or derivation here
-                </div>
-              </div>
-
-              {isInitializing && (
-                <div className="absolute inset-0 bg-black/70 flex items-center justify-center text-xs text-zinc-300">
-                  <Sparkles className="w-4 h-4 text-royal animate-spin mr-2" />
-                  Starting Camera...
-                </div>
-              )}
-            </div>
-          )}
+          {renderViewfinderContent()}
 
           {/* Hidden Canvas for Frame Capture */}
           <canvas ref={canvasRef} className="hidden" />

@@ -44,7 +44,7 @@ export async function getAssistantResponse(req: AssistantRequest): Promise<Assis
         attachedContext,
       });
 
-      if (geminiResult && geminiResult.message) {
+      if (geminiResult?.message) {
         return {
           success: true,
           message: geminiResult.message,
@@ -69,7 +69,7 @@ export async function getAssistantResponse(req: AssistantRequest): Promise<Assis
       attachedContext,
     });
 
-    if (freeAiResult && freeAiResult.message) {
+    if (freeAiResult?.message) {
       // Build structured socratic solution from the response
       const structuredSolution = parseTextIntoSocraticSolution(
         freeAiResult.message,
@@ -94,11 +94,17 @@ export async function getAssistantResponse(req: AssistantRequest): Promise<Assis
   // TIER 3: ZERO-FAILURE BUILT-IN PEDAGOGICAL SOCRATIC ENGINE
   // -------------------------------------------------------------
   const offlineSolution = solveSocraticDoubt(query, chapterTitle, attachedContext);
-  const speechSummary = `Hello! For ${chapterTitle}: The key concept is ${offlineSolution.formulaSpotlight.name}. ${offlineSolution.derivationSteps[0]?.explanation || 'Let us break this down step-by-step.'} Final answer: ${offlineSolution.derivationSteps[offlineSolution.derivationSteps.length - 1]?.title || 'Derivation complete'}.`;
+  const firstExplanation = offlineSolution.derivationSteps[0]?.explanation || 'Let us break this down step-by-step.';
+  const lastTitle = offlineSolution.derivationSteps.at(-1)?.title || 'Derivation complete';
+  const speechSummary = `Hello! For ${chapterTitle}: The key concept is ${offlineSolution.formulaSpotlight.name}. ${firstExplanation} Final answer: ${lastTitle}.`;
+
+  const formattedSteps = offlineSolution.derivationSteps
+    .map((s) => 'Step ' + s.stepNumber + ': ' + s.title + '\n' + s.explanation)
+    .join('\n\n');
 
   return {
     success: true,
-    message: `${offlineSolution.conceptLink.topic}\n\n${offlineSolution.derivationSteps.map((s) => `Step ${s.stepNumber}: ${s.title}\n${s.explanation}`).join('\n\n')}`,
+    message: `${offlineSolution.conceptLink.topic}\n\n${formattedSteps}`,
     solution: offlineSolution,
     spokenText: speechSummary,
     source: 'socratic-engine',
@@ -137,7 +143,7 @@ Your Mission:
   // Add Image Part if present
   if (imageBase64) {
     const cleanBase64 = imageBase64.replace(/^data:image\/[a-z]+;base64,/, '');
-    const mimeMatch = imageBase64.match(/^data:(image\/[a-z]+);base64,/);
+    const mimeMatch = /^data:(image\/[a-z]+);base64,/.exec(imageBase64);
     const mimeType = mimeMatch ? mimeMatch[1] : 'image/jpeg';
 
     parts.push({
@@ -194,12 +200,13 @@ async function callFreePollinationsApi(params: {
 }) {
   const { query, subjectId, chapterTitle, attachedContext } = params;
 
+  const docContextPrompt = attachedContext ? 'Document Context: ' + attachedContext : '';
   const messages = [
     {
       role: 'system',
       content: `You are Divya Vani, an AI personal tutor for CBSE students (Subject: ${subjectId}, Chapter: ${chapterTitle}).
-Explain concepts step-by-step. Include formulas in LaTeX $$...$$. Be encouraging, clear, and concise.
-${attachedContext ? `Document Context: ${attachedContext}` : ''}`,
+Explain concepts step-by-step. Include formulas in LaTeX $...$. Be encouraging, clear, and concise.
+${docContextPrompt}`,
     },
     {
       role: 'user',
@@ -252,7 +259,7 @@ export function parseTextIntoSocraticSolution(
 ): SocraticSolution {
   // Extract formulas if any $$...$$ or \[...\]
   const mathMatches = text.match(/\$\$([^$]+)\$\$/g) || text.match(/\\\[([^\]]+)\\\]/g) || [];
-  const primaryFormula = mathMatches[0]?.replace(/\$\$|\\\[|\\\]/g, '').trim() || 'F = ma \\quad \\text{or} \\quad v = u + at';
+  const primaryFormula = mathMatches[0]?.replace(/\$\$|\\\[|\\\]/g, '').trim() || String.raw`F = ma \quad \text{or} \quad v = u + at`;
 
   // Split into paragraphs / steps
   const paragraphs = text
@@ -321,8 +328,8 @@ export function cleanSpokenText(text: string): string {
     .replace(/\$([^$]+)\$/g, ' $1 ')
     .replace(/\\\[([^\]]+)\\\]/g, ' formula: $1 ')
     .replace(/\\\(([^)]+)\\\)/g, ' $1 ')
-    .replace(/\*\*/g, '')
-    .replace(/\*/g, '')
+    .replaceAll('**', '')
+    .replaceAll('*', '')
     .replace(/#{1,6}\s?/g, '')
     .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1')
     .replace(/```[^`]*```/g, '')
