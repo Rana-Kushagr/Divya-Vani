@@ -50,6 +50,53 @@
   animation: waveAnim 0.8s ease-in-out infinite;
 }
 
+
+/* Floating Bubble Keyframe Animations */
+@keyframes floatBubble {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+@keyframes pulseGlowRing {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(109, 40, 217, 0.5), 0 8px 24px -4px rgba(0, 0, 0, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 10px rgba(109, 40, 217, 0), 0 16px 32px -4px rgba(109, 40, 217, 0.35);
+  }
+}
+
+@keyframes subtleRadar {
+  0% {
+    transform: scale(0.95);
+    opacity: 0.8;
+  }
+  50% {
+    transform: scale(1.15);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(0.95);
+    opacity: 0;
+  }
+}
+
+.animate-float-subtle {
+  animation: floatBubble 3.2s ease-in-out infinite;
+}
+
+.animate-glow-ring {
+  animation: pulseGlowRing 2.6s infinite;
+}
+
+.animate-radar-ring {
+  animation: subtleRadar 2.2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
 /* Print Optimization for Revision Cheat Sheet */
 @media print {
   body {

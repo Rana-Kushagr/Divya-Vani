@@ -1166,9 +1166,13 @@ export default function LearnWorkspaceClient({ routeParams, initialModule = 'HUB
       <LegalFooter />
             {/* 24/7 AI Personal Assistant Bubble (Slide 4 of PPT) */}
       <FloatingDoubtBubble
-        currentSubject={currentSubject}
-        currentChapter={activeChapter?.title ? `Ch ${activeChapter.number}: ${activeChapter.title}` : 'Active Chapter'}
+        classLevel={currentClass.replace('class-', '')}
+        subjectName={currentSubject}
+        chapterTitle={activeChapter?.title ? `Ch ${activeChapter.number}: ${activeChapter.title}` : 'Active Chapter'}
         activeTabTitle={activeModule}
+        onOpenDoubtSection={() => {
+          router.push(`/learn/${currentClass}/${currentSubject}?module=HUB`);
+        }}
         onQuickDoubtSubmit={(query) => {
           console.log('Floating doubt submitted:', query);
         }}

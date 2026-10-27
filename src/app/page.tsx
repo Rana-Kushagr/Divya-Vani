@@ -384,7 +384,7 @@ export default function WorkspacePage() {
           </section>
 
           {/* RIGHT COLUMN (5 COLS): SOCRATIC AI DOUBT SOLVER */}
-          <section className="lg:col-span-5 flex flex-col gap-3">
+          <section id="doubt-solver-section" className="lg:col-span-5 flex flex-col gap-3 scroll-mt-20">
             <div className="flex items-center justify-between px-1">
               <h2 className="text-sm font-bold text-alabaster tracking-tight flex items-center gap-2">
                 <Sparkles className="w-4 h-4 text-mint" />
@@ -420,11 +420,14 @@ export default function WorkspacePage() {
 
       {/* Persistent Floating Doubt Bubble at bottom-6 right-6 */}
       <FloatingDoubtBubble
+        classLevel={selectedClass}
+        subjectName={selectedSubject}
+        chapterTitle={`Ch ${currentChapter.number}: ${currentChapter.title}`}
         activeTabTitle={`Ch ${currentChapter.number}: ${currentChapter.title}`}
-        currentSubject={selectedSubject}
-        currentChapter={`Ch ${currentChapter.number}: ${currentChapter.title}`}
-        listenerActive={listenerActive}
-        onToggleListener={() => setListenerActive(!listenerActive)}
+        onOpenDoubtSection={() => {
+          const el = document.getElementById('doubt-solver-section');
+          if (el) el.scrollIntoView({ behavior: 'smooth' });
+        }}
         onQuickDoubtSubmit={(q, img) => handleSolveDoubt(q, true, img)}
       />
 
