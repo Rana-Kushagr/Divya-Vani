@@ -65,18 +65,47 @@ export default function WorkspacePage() {
 
   const [listenerActive, setListenerActive] = useState(false);
 
-  // Triggering doubt resolution
-  const handleSolveDoubt = (query: string, attachContext: boolean) => {
+  // Triggering doubt resolution with multi-tier AI backend
+  const handleSolveDoubt = async (query: string, attachContext: boolean, imageBase64?: string) => {
     setIsLoading(true);
-    setTimeout(() => {
-      const sol = solveSocraticDoubt(
+    try {
+      const savedKey = typeof window !== 'undefined' ? localStorage.getItem('divyavani_gemini_key') || undefined : undefined;
+      const res = await fetch('/api/doubts/solve', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          studentQuery: query,
+          subjectId: selectedSubject,
+          chapterId: `Ch ${currentChapter.number}: ${currentChapter.title}`,
+          attachedTabContext: attachContext ? `Ch ${currentChapter.number} Notes` : undefined,
+          inputMode: imageBase64 ? 'image' : 'text',
+          imageBase64,
+          apiKey: savedKey,
+        }),
+      });
+
+      const data = await res.json();
+      if (data.solution) {
+        setActiveSolution(data.solution);
+      } else {
+        const fallback = solveSocraticDoubt(
+          query,
+          `Ch ${currentChapter.number}: ${currentChapter.title}`,
+          attachContext ? `Ch ${currentChapter.number} Notes` : undefined
+        );
+        setActiveSolution(fallback);
+      }
+    } catch (err) {
+      console.warn('API doubt solve error, using local Socratic engine:', err);
+      const fallback = solveSocraticDoubt(
         query,
         `Ch ${currentChapter.number}: ${currentChapter.title}`,
         attachContext ? `Ch ${currentChapter.number} Notes` : undefined
       );
-      setActiveSolution(sol);
+      setActiveSolution(fallback);
+    } finally {
       setIsLoading(false);
-    }, 400);
+    }
   };
 
   // Helper for subject icons
@@ -392,7 +421,11 @@ export default function WorkspacePage() {
       {/* Persistent Floating Doubt Bubble at bottom-6 right-6 */}
       <FloatingDoubtBubble
         activeTabTitle={`Ch ${currentChapter.number}: ${currentChapter.title}`}
-        onQuickDoubtSubmit={(q) => handleSolveDoubt(q, true)}
+        currentSubject={selectedSubject}
+        currentChapter={`Ch ${currentChapter.number}: ${currentChapter.title}`}
+        listenerActive={listenerActive}
+        onToggleListener={() => setListenerActive(!listenerActive)}
+        onQuickDoubtSubmit={(q, img) => handleSolveDoubt(q, true, img)}
       />
 
       {/* Cookie Consent Banner */}

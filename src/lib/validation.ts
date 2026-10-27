@@ -52,12 +52,13 @@ export const SelectClassSubjectSchema = z.object({
 export const DoubtQuerySchema = z.object({
   userId: z.string().optional(),
   documentId: z.string().optional(),
-  studentQuery: z.string().min(3, 'Please enter at least 3 characters for your doubt').max(1500, 'Query too long'),
+  studentQuery: z.string().min(1, 'Please enter your doubt or capture a photo').max(1500, 'Query too long'),
   subjectId: z.string().min(1, 'Subject selection is required'),
   chapterId: z.string().min(1, 'Chapter selection is required'),
   inputMode: z.enum(['text', 'voice', 'image']).default('text'),
   attachedTabContext: z.string().max(2000).optional(),
   imageBase64: z.string().optional(),
+  apiKey: z.string().optional(),
 });
 
 // Cookie Consent Schema

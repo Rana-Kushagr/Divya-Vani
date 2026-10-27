@@ -12,7 +12,9 @@ import {
   Bookmark, 
   Check, 
   ChevronDown, 
-  ChevronUp 
+  ChevronUp,
+  Volume2,
+  Square
 } from 'lucide-react';
 import { SocraticSolution } from '@/lib/types';
 import MathRenderer from './MathRenderer';
@@ -29,10 +31,12 @@ export default function StepByStepSolutionCard({
   const [selectedOption, setSelectedOption] = useState<number | null>(null);
   const [quizSubmitted, setQuizSubmitted] = useState(false);
   const [saved, setSaved] = useState(false);
+  const [isSpeaking, setIsSpeaking] = useState(false);
   const [expandedSteps, setExpandedSteps] = useState<Record<number, boolean>>({
     1: true,
     2: true,
     3: true,
+    4: true,
   });
 
   const toggleStep = (stepNumber: number) => {
@@ -69,6 +73,24 @@ export default function StepByStepSolutionCard({
     setTimeout(() => setSaved(false), 2500);
   };
 
+  const toggleSpeak = () => {
+    if (typeof window === 'undefined') return;
+    if (isSpeaking) {
+      window.speechSynthesis.cancel();
+      setIsSpeaking(false);
+    } else {
+      window.speechSynthesis.cancel();
+      const spoken = `${solution.conceptLink.topic}. Formula: ${solution.formulaSpotlight.name}. ${solution.derivationSteps.map((s) => `${s.title}: ${s.explanation}`).join('. ')}`;
+      const clean = spoken.replace(/[*#_`$]/g, '').slice(0, 450);
+      const u = new SpeechSynthesisUtterance(clean);
+      u.rate = 1.0;
+      u.onend = () => setIsSpeaking(false);
+      u.onerror = () => setIsSpeaking(false);
+      setIsSpeaking(true);
+      window.speechSynthesis.speak(u);
+    }
+  };
+
   return (
     <div className="space-y-4 animate-in fade-in duration-300">
       
@@ -86,6 +108,21 @@ export default function StepByStepSolutionCard({
           </div>
           
           <div className="flex items-center gap-2">
+            {/* Audio Voice Speech Button */}
+            <button
+              type="button"
+              onClick={toggleSpeak}
+              className={`flex items-center gap-1 text-xs font-semibold px-2.5 py-1 rounded-md border transition-colors ${
+                isSpeaking
+                  ? 'bg-rose-500/20 text-rose-300 border-rose-500/50'
+                  : 'bg-obsidian border-structural-dark hover:border-mint text-zinc-300 hover:text-alabaster'
+              }`}
+              title={isSpeaking ? 'Stop speech' : 'Listen to solution'}
+            >
+              <Volume2 className={`w-3.5 h-3.5 ${isSpeaking ? 'text-mint animate-pulse' : 'text-royal'}`} />
+              <span>{isSpeaking ? 'Stop' : 'Listen'}</span>
+            </button>
+
             <span className="text-zinc-500 text-xs">{solution.timestamp}</span>
             <button
               onClick={handleSave}

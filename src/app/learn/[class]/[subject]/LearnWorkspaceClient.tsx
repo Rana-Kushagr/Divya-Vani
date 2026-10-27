@@ -31,6 +31,7 @@ import {
 import DivyaVaniLogo from '@/components/layout/DivyaVaniLogo';
 import MathRenderer from '@/components/solver/MathRenderer';
 import CookieConsentBanner from '@/components/legal/CookieConsentBanner';
+import FloatingDoubtBubble from '@/components/solver/FloatingDoubtBubble';
 import LegalFooter from '@/components/layout/LegalFooter';
 
 export type ActiveStudyModule = 
@@ -1163,6 +1164,15 @@ export default function LearnWorkspaceClient({ routeParams, initialModule = 'HUB
 
       {/* Footer */}
       <LegalFooter />
+            {/* 24/7 AI Personal Assistant Bubble (Slide 4 of PPT) */}
+      <FloatingDoubtBubble
+        currentSubject={currentSubject}
+        currentChapter={activeChapter?.title ? `Ch ${activeChapter.number}: ${activeChapter.title}` : 'Active Chapter'}
+        activeTabTitle={activeModule}
+        onQuickDoubtSubmit={(query) => {
+          console.log('Floating doubt submitted:', query);
+        }}
+      />
       <CookieConsentBanner />
 
     </div>

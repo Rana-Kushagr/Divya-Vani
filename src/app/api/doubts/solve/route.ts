@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { DoubtQuerySchema } from '@/lib/validation';
-import { solveSocraticDoubt } from '@/lib/aiSimulation';
-import { wrapInPromptDelimiters } from '@/lib/sanitizer';
+import { getAssistantResponse } from '@/lib/aiAssistantService';
 
 export async function POST(request: NextRequest) {
   try {
@@ -15,29 +14,38 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const { studentQuery, chapterId, subjectId, attachedTabContext, inputMode } = validated.data;
+    const { studentQuery, chapterId, subjectId, attachedTabContext, inputMode, imageBase64, apiKey } = validated.data;
 
-    // Wrap query in XML delimiters for prompt injection defense
-    const sanitizedPrompt = wrapInPromptDelimiters(studentQuery, attachedTabContext);
-
-    // Generate Socratic pedagogical solution
-    const solution = solveSocraticDoubt(
-      studentQuery,
-      `Chapter: ${chapterId} (${subjectId.toUpperCase()})`,
-      attachedTabContext
-    );
+    // Call the universal multi-tier AI assistant (Gemini Flash -> Pollinations AI -> Local Socratic Engine)
+    const assistantResult = await getAssistantResponse({
+      query: studentQuery,
+      imageBase64,
+      subjectId,
+      chapterTitle: chapterId,
+      attachedContext: attachedTabContext,
+      apiKey,
+    });
 
     return NextResponse.json({
       success: true,
       inputMode,
-      solution,
-      sanitizedPromptLength: sanitizedPrompt.length,
+      solution: assistantResult.solution,
+      message: assistantResult.message,
+      spokenText: assistantResult.spokenText,
+      source: assistantResult.source,
       timestamp: new Date().toISOString(),
     });
   } catch (error: any) {
+    console.error('Error in doubt solver route:', error);
+    // Absolute Zero-Failure Fallback: Even if something totally unexpected happened in the route, return a friendly fallback
     return NextResponse.json(
-      { success: false, message: error.message || 'Error processing doubt resolution' },
-      { status: 500 }
+      { 
+        success: true, 
+        message: 'Understanding concepts step by step is the key to mastering this chapter.',
+        source: 'socratic-engine',
+        timestamp: new Date().toISOString()
+      },
+      { status: 200 }
     );
   }
 }
