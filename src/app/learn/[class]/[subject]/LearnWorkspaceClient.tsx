@@ -17,7 +17,10 @@ import {
   BookText, 
   Download,
   CheckCircle2,
-  Check
+  Check,
+  Brain,
+  Play,
+  FileText
 } from 'lucide-react';
 
 import { SubjectId } from '@/lib/types';
@@ -26,6 +29,7 @@ import {
   getNcertBookCode, 
   getNcertChapters, 
   getLocalNcertPdfUrl,
+  getChapterExtraMaterials,
   NcertChapterDetail
 } from '@/lib/ncertData';
 import DivyaVaniLogo from '@/components/layout/DivyaVaniLogo';
@@ -123,6 +127,13 @@ export default function LearnWorkspaceClient({ routeParams, initialModule = 'HUB
   // ==================== Module 4: NCERT Books Reader State ====================
   const [readerMode, setReaderMode] = useState<'LOCAL_PDF' | 'INTERACTIVE'>('LOCAL_PDF');
   const [currentPage, setCurrentPage] = useState<number>(1);
+  const [notesSubView, setNotesSubView] = useState<'NOTES' | 'MINDMAP' | 'ANIMATION'>('NOTES');
+  const [animationPart, setAnimationPart] = useState<1 | 2>(1);
+
+  const extraMaterials = useMemo(
+    () => getChapterExtraMaterials(currentClass, currentSubject, activeChapter?.number || 1),
+    [currentClass, currentSubject, activeChapter?.number]
+  );
   const readerContainerRef = useRef<HTMLDivElement>(null);
 
   // Load saved state from localStorage & URL
@@ -159,7 +170,7 @@ export default function LearnWorkspaceClient({ routeParams, initialModule = 'HUB
         if (idx !== -1) setSelectedChapterIndex(idx);
       }
     }
-  }, [currentClass, currentSubject, chapters]);
+  }, [currentClass, currentSubject]);
 
   const showToast = (msg: string) => {
     setToastMessage(msg);
@@ -1021,7 +1032,7 @@ export default function LearnWorkspaceClient({ routeParams, initialModule = 'HUB
         <main className="max-w-4xl mx-auto w-full p-4 sm:p-8 bg-white min-h-[calc(100vh-65px)] flex flex-col justify-between">
           <div>
             {/* Header */}
-            <div className="flex items-center justify-between pb-4 border-b border-zinc-100">
+            <div className="flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-zinc-100">
               <button 
                 type="button" 
                 onClick={() => setActiveModule('HUB')} 
@@ -1033,64 +1044,206 @@ export default function LearnWorkspaceClient({ routeParams, initialModule = 'HUB
               <span className="text-xs text-zinc-500 font-medium">Ch {activeChapter.number}: {activeChapter.title}</span>
             </div>
 
-            {/* Main Notes Card */}
-            <div className="rounded-2xl border border-zinc-200 bg-white p-5 sm:p-6 space-y-5 my-4 shadow-sm">
-              <h3 className="text-lg font-bold text-zinc-900">
-                Chapter {activeChapter.number}: {activeChapter.title}
-              </h3>
+            {/* Dedicated 3 Options: Notes | Mindmap | Animation (Shown ONLY if chapter has extra materials) */}
+            {extraMaterials.hasExtra && (
+              <div className="flex items-center gap-1.5 p-1 rounded-xl bg-zinc-100 border border-zinc-200 w-fit my-4">
+                <button
+                  type="button"
+                  onClick={() => setNotesSubView('NOTES')}
+                  className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-bold transition ${
+                    notesSubView === 'NOTES' ? 'bg-zinc-950 text-white shadow-sm' : 'text-zinc-600 hover:text-zinc-900'
+                  }`}
+                >
+                  <FileText className="w-3.5 h-3.5" />
+                  <span>Notes</span>
+                </button>
 
-              {/* Clean bulleted notes with bold key terms */}
-              <div className="space-y-4">
-                
-                {/* 1. Key Definitions */}
-                <div>
-                  <h4 className="text-xs font-bold uppercase tracking-wider text-zinc-500 mb-2">Key Concepts &amp; Definitions</h4>
-                  <ul className="space-y-2 text-sm text-zinc-700">
-                    {activeChapter.chapterNotes.keyDefinitions.map((def) => (
-                      <li key={`def-${def.term}`} className="leading-relaxed">
-                        <span className="font-bold text-zinc-950">&bull; {def.term}: </span>
-                        <span><RenderLatexText text={def.definition} /></span>
-                      </li>
-                    ))}
-                  </ul>
+                {extraMaterials.mindMapPdfUrl && (
+                  <button
+                    type="button"
+                    onClick={() => setNotesSubView('MINDMAP')}
+                    className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-bold transition ${
+                      notesSubView === 'MINDMAP' ? 'bg-zinc-950 text-white shadow-sm' : 'text-zinc-600 hover:text-zinc-900'
+                    }`}
+                  >
+                    <Brain className="w-3.5 h-3.5 text-amber-500" />
+                    <span>Mindmap</span>
+                  </button>
+                )}
+
+                {extraMaterials.animationVideoUrl && (
+                  <button
+                    type="button"
+                    onClick={() => setNotesSubView('ANIMATION')}
+                    className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-bold transition ${
+                      notesSubView === 'ANIMATION' ? 'bg-zinc-950 text-white shadow-sm' : 'text-zinc-600 hover:text-zinc-900'
+                    }`}
+                  >
+                    <Play className="w-3.5 h-3.5 text-emerald-500 fill-current" />
+                    <span>Animation</span>
+                  </button>
+                )}
+              </div>
+            )}
+
+            {/* Sub-View Content */}
+            {notesSubView === 'ANIMATION' && extraMaterials.animationVideoUrl ? (
+              /* SUB-VIEW 1: ANIMATED VIDEO PLAYER */
+              <div className="rounded-2xl border border-zinc-200 bg-zinc-950 p-4 sm:p-6 space-y-4 my-4 shadow-sm text-white animate-in fade-in">
+                <div className="flex flex-wrap items-center justify-between gap-2">
+                  <h4 className="font-bold text-sm text-white flex items-center gap-2">
+                    <Play className="w-4 h-4 text-emerald-400 fill-current" />
+                    <span>Concept Animated Video &bull; Ch {activeChapter.number}: {activeChapter.title}</span>
+                  </h4>
+                  {extraMaterials.animationVideoUrl2 && (
+                    <div className="flex items-center gap-1">
+                      <button
+                        type="button"
+                        onClick={() => setAnimationPart(1)}
+                        className={`px-3 py-1 rounded-lg text-xs font-bold transition ${
+                          animationPart === 1 ? 'bg-white text-zinc-950' : 'bg-zinc-800 text-zinc-400'
+                        }`}
+                      >
+                        Part 1
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => setAnimationPart(2)}
+                        className={`px-3 py-1 rounded-lg text-xs font-bold transition ${
+                          animationPart === 2 ? 'bg-white text-zinc-950' : 'bg-zinc-800 text-zinc-400'
+                        }`}
+                      >
+                        Part 2
+                      </button>
+                    </div>
+                  )}
                 </div>
 
-                <div className="border-t border-zinc-100" />
-
-                {/* 2. Core Revision Bullets */}
-                <div>
-                  <h4 className="text-xs font-bold uppercase tracking-wider text-zinc-500 mb-2">Summary Points</h4>
-                  <ul className="space-y-2 text-sm text-zinc-700">
-                    {activeChapter.chapterNotes.revisionBullets.map((bullet, idx) => (
-                      <li key={`note-bullet-${activeChapter.number}-${idx}`} className="leading-relaxed">
-                        <span className="font-bold text-zinc-950">&bull; </span>
-                        <span><RenderLatexText text={bullet} /></span>
-                      </li>
-                    ))}
-                  </ul>
+                <div className="w-full aspect-video rounded-xl overflow-hidden bg-black border border-zinc-800">
+                  <video
+                    key={animationPart === 2 && extraMaterials.animationVideoUrl2 ? extraMaterials.animationVideoUrl2 : extraMaterials.animationVideoUrl}
+                    src={animationPart === 2 && extraMaterials.animationVideoUrl2 ? extraMaterials.animationVideoUrl2 : extraMaterials.animationVideoUrl}
+                    controls
+                    autoPlay
+                    className="w-full h-full object-contain"
+                  >
+                    <track kind="captions" />
+                    Your browser does not support the video tag.
+                  </video>
                 </div>
 
-                {/* 3. Formulas or Highlights (if any) */}
-                {activeChapter.chapterNotes.formulaTable.length > 0 && (
-                  <>
-                    <div className="border-t border-zinc-100" />
+                <div className="flex items-center justify-end">
+                  <a
+                    href={animationPart === 2 && extraMaterials.animationVideoUrl2 ? extraMaterials.animationVideoUrl2 : extraMaterials.animationVideoUrl}
+                    download
+                    className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-zinc-800 hover:bg-zinc-700 text-xs font-bold text-white transition"
+                  >
+                    <Download className="w-3.5 h-3.5" />
+                    <span>Save Video</span>
+                  </a>
+                </div>
+              </div>
+            ) : notesSubView === 'MINDMAP' && extraMaterials.mindMapPdfUrl ? (
+              /* SUB-VIEW 2: DEDICATED MINDMAP VIEWER */
+              <div className="rounded-2xl border border-zinc-200 bg-white p-4 sm:p-5 space-y-4 my-4 shadow-sm animate-in fade-in">
+                <div className="flex items-center justify-between pb-3 border-b border-zinc-100">
+                  <h4 className="font-bold text-sm text-zinc-900 flex items-center gap-2">
+                    <Brain className="w-4 h-4 text-amber-500" />
+                    <span>Visual Mindmap &bull; Ch {activeChapter.number}: {activeChapter.title}</span>
+                  </h4>
+                  <a
+                    href={extraMaterials.mindMapPdfUrl}
+                    download={`mindmap-ch${activeChapter.number}.pdf`}
+                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-zinc-200 hover:bg-zinc-50 text-xs font-semibold text-zinc-800 transition"
+                  >
+                    <Download className="w-3.5 h-3.5" />
+                    <span>Download Mindmap</span>
+                  </a>
+                </div>
+                <iframe
+                  src={`${extraMaterials.mindMapPdfUrl}#view=FitH`}
+                  title={`MindMap - ${activeChapter.title}`}
+                  className="w-full h-[640px] rounded-xl border border-zinc-200 bg-zinc-50 shadow-inner"
+                />
+              </div>
+            ) : (
+              /* SUB-VIEW 3: NOTES (DEDICATED PDF + STRUCTURED CARDS) */
+              <div className="space-y-4 my-4 animate-in fade-in">
+                {extraMaterials.notesPdfUrl && (
+                  <div className="rounded-2xl border border-zinc-200 bg-white p-4 space-y-3 shadow-sm">
+                    <div className="flex items-center justify-between pb-2 border-b border-zinc-100">
+                      <span className="font-bold text-xs uppercase tracking-wider text-zinc-700">Official Revision Notes Document</span>
+                      <a
+                        href={extraMaterials.notesPdfUrl}
+                        download={`notes-ch${activeChapter.number}.pdf`}
+                        className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-zinc-950 text-white text-xs font-semibold hover:bg-zinc-800 transition"
+                      >
+                        <Download className="w-3 h-3" />
+                        <span>Download Notes PDF</span>
+                      </a>
+                    </div>
+                    <iframe
+                      src={`${extraMaterials.notesPdfUrl}#view=FitH`}
+                      title={`Notes PDF - ${activeChapter.title}`}
+                      className="w-full h-[620px] rounded-xl border border-zinc-200 bg-zinc-50 shadow-inner"
+                    />
+                  </div>
+                )}
+
+                {/* Structured bulleted notes card from client mockup */}
+                <div className="rounded-2xl border border-zinc-200 bg-white p-5 sm:p-6 space-y-5 shadow-sm">
+                  <h3 className="text-lg font-bold text-zinc-900">
+                    Chapter {activeChapter.number}: {activeChapter.title}
+                  </h3>
+
+                  <div className="space-y-4">
                     <div>
-                      <h4 className="text-xs font-bold uppercase tracking-wider text-zinc-500 mb-2">Formulas &amp; Rules</h4>
+                      <h4 className="text-xs font-bold uppercase tracking-wider text-zinc-500 mb-2">Key Concepts &amp; Definitions</h4>
                       <ul className="space-y-2 text-sm text-zinc-700">
-                        {activeChapter.chapterNotes.formulaTable.map((f) => (
-                          <li key={`formula-${f.name}`} className="leading-relaxed">
-                            <span className="font-bold text-zinc-950">&bull; {f.name}: </span>
-                            <span className="font-mono font-medium"><MathRenderer math={f.formula} /></span>
-                            {f.notes && <span className="text-xs text-zinc-500 ml-2">({f.notes})</span>}
+                        {activeChapter.chapterNotes.keyDefinitions.map((def) => (
+                          <li key={`def-${def.term}`} className="leading-relaxed">
+                            <span className="font-bold text-zinc-950">&bull; {def.term}: </span>
+                            <span><RenderLatexText text={def.definition} /></span>
                           </li>
                         ))}
                       </ul>
                     </div>
-                  </>
-                )}
 
+                    <div className="border-t border-zinc-100" />
+
+                    <div>
+                      <h4 className="text-xs font-bold uppercase tracking-wider text-zinc-500 mb-2">Summary Points</h4>
+                      <ul className="space-y-2 text-sm text-zinc-700">
+                        {activeChapter.chapterNotes.revisionBullets.map((bullet, idx) => (
+                          <li key={`note-bullet-${activeChapter.number}-${idx}`} className="leading-relaxed">
+                            <span className="font-bold text-zinc-950">&bull; </span>
+                            <span><RenderLatexText text={bullet} /></span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+
+                    {activeChapter.chapterNotes.formulaTable.length > 0 && (
+                      <>
+                        <div className="border-t border-zinc-100" />
+                        <div>
+                          <h4 className="text-xs font-bold uppercase tracking-wider text-zinc-500 mb-2">Formulas &amp; Rules</h4>
+                          <ul className="space-y-2 text-sm text-zinc-700">
+                            {activeChapter.chapterNotes.formulaTable.map((f) => (
+                              <li key={`formula-${f.name}`} className="leading-relaxed">
+                                <span className="font-bold text-zinc-950">&bull; {f.name}: </span>
+                                <span className="font-mono font-medium"><MathRenderer math={f.formula} /></span>
+                                {f.notes && <span className="text-xs text-zinc-500 ml-2">({f.notes})</span>}
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      </>
+                    )}
+                  </div>
+                </div>
               </div>
-            </div>
+            )}
           </div>
 
           {/* Bottom Button */}
@@ -1108,9 +1261,6 @@ export default function LearnWorkspaceClient({ routeParams, initialModule = 'HUB
         </main>
       )}
 
-      {/* =========================================================================
-          SCREEN 9: SUMMARY (activeModule === 'BRIEF_SUMMARY')
-          ========================================================================= */}
       {activeModule === 'BRIEF_SUMMARY' && (
         <main className="max-w-4xl mx-auto w-full p-4 sm:p-8 bg-white min-h-[calc(100vh-65px)] flex flex-col justify-between">
           <div>

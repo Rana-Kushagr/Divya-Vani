@@ -7,8 +7,8 @@
 
 @layer base {
   body {
-    background-color: #09090B;
-    color: #FAFAFA;
+    background-color: #FFFFFF;
+    color: #18181B;
     font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
     -webkit-font-smoothing: antialiased;
     overflow-x: hidden;

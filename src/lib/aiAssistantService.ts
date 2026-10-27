@@ -96,7 +96,7 @@ export async function getAssistantResponse(req: AssistantRequest): Promise<Assis
   const offlineSolution = solveSocraticDoubt(query, chapterTitle, attachedContext);
   const firstExplanation = offlineSolution.derivationSteps[0]?.explanation || 'Let us break this down step-by-step.';
   const lastTitle = offlineSolution.derivationSteps.at(-1)?.title || 'Derivation complete';
-  const speechSummary = `Hello! For ${chapterTitle}: The key concept is ${offlineSolution.formulaSpotlight.name}. ${firstExplanation} Final answer: ${lastTitle}.`;
+  const speechSummary = `Hello! I am Divya bot. For ${chapterTitle}: The key concept is ${offlineSolution.formulaSpotlight.name}. ${firstExplanation} Final answer: ${lastTitle}.`;
 
   const formattedSteps = offlineSolution.derivationSteps
     .map((s) => 'Step ' + s.stepNumber + ': ' + s.title + '\n' + s.explanation)
@@ -127,7 +127,7 @@ async function callGeminiApi(params: {
   const parts: any[] = [];
 
   // Add system instruction prompt
-  const systemPrompt = `You are Divya Vani, a friendly, encouraging, and pedagogically sound personal AI study companion co-created by Vanshika, Divyanshi & Kushagr Rana for CBSE Class 6-12 students.
+  const systemPrompt = `You are Divya bot, a friendly, encouraging, and pedagogically sound personal AI study companion co-created by Vanshika, Divyanshi & Kushagr Rana for CBSE Class 6-12 students.
 Current Subject: ${subjectId}
 Current Chapter: ${chapterTitle}
 ${attachedContext ? `Context from student's active document: ${attachedContext}` : ''}
@@ -204,7 +204,7 @@ async function callFreePollinationsApi(params: {
   const messages = [
     {
       role: 'system',
-      content: `You are Divya Vani, an AI personal tutor for CBSE students (Subject: ${subjectId}, Chapter: ${chapterTitle}).
+      content: `You are Divya bot, an AI personal tutor for CBSE students (Subject: ${subjectId}, Chapter: ${chapterTitle}).
 Explain concepts step-by-step. Include formulas in LaTeX $...$. Be encouraging, clear, and concise.
 ${docContextPrompt}`,
     },
@@ -293,7 +293,7 @@ export function parseTextIntoSocraticSolution(
       formulaLatex: primaryFormula,
       name: `${subjectId} Pedagogical Formula Spotlight`,
       law: 'Fundamental Theorem / Principle',
-      notes: 'Step-by-step derivation verified by Divya Vani AI Assistant.',
+      notes: 'Step-by-step derivation verified by Divya bot AI Assistant.',
     },
     derivationSteps: steps.length > 0 ? steps : [
       {

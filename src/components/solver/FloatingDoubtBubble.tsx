@@ -322,7 +322,7 @@ export default function FloatingDoubtBubble({
                   </div>
                   <div>
                     <div className="flex items-center gap-1.5">
-                      <p className="text-xs font-black text-zinc-950">Divya Vani AI Assistant</p>
+                      <p className="text-xs font-black text-zinc-950">Divya bot (24/7 AI Tutor)</p>
                       <span className="w-2 h-2 rounded-full bg-mint animate-pulse" />
                     </div>
                     <p className="text-[11px] font-semibold text-zinc-500 truncate max-w-[210px]">
@@ -445,14 +445,14 @@ export default function FloatingDoubtBubble({
               type="button"
               onClick={() => setIsExpanded((prev) => !prev)}
               className="relative bg-zinc-950 hover:bg-zinc-800 text-white border-2 border-white/20 rounded-full pl-4 pr-5 py-3 shadow-2xl flex items-center gap-3 transition-all duration-300 transform hover:scale-105 active:scale-95 animate-float-subtle animate-glow-ring"
-              aria-label="Ask Divya Vani AI Doubt"
+              aria-label="Ask Divya bot Doubt"
             >
               <div className="relative w-7 h-7 rounded-full bg-royal flex items-center justify-center shadow-inner">
                 <MessageSquareGlyph className="w-3.5 h-3.5 text-white" />
                 <span className="absolute -top-0.5 -right-0.5 w-2 h-2 rounded-full bg-mint" />
               </div>
               <div className="text-left">
-                <span className="text-xs font-black tracking-tight block">Ask Doubt</span>
+                <span className="text-xs font-black tracking-tight block">Ask Divya bot</span>
                 <span className="text-[9px] font-bold text-mint block -mt-0.5">24/7 AI Tutor</span>
               </div>
             </button>

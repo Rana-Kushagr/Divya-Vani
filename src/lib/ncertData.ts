@@ -43,6 +43,125 @@ export function getLocalNcertPdfUrl(
 }
 
 // Interfaces for 6 Core Modules
+export interface ChapterExtraMaterials {
+  notesPdfUrl?: string;
+  notesTitle?: string;
+  mindMapPdfUrl?: string;
+  animationVideoUrl?: string;
+  animationVideoUrl2?: string;
+  hasExtra: boolean;
+}
+
+export function getChapterExtraMaterials(
+  classLevel: string | number,
+  subject: string,
+  chapterNumber: number
+): ChapterExtraMaterials {
+  const rawClass = String(classLevel).trim().toLowerCase().replace(/\s+/g, '-');
+  const normClass = rawClass.startsWith('class-') ? rawClass : 'class-' + rawClass.replace(/^class/, '');
+  const normSub = String(subject).trim().toLowerCase().replaceAll('_', '-');
+
+  const basePath =
+    typeof window !== 'undefined' && window.location.pathname.startsWith('/Divya-Vani')
+      ? '/Divya-Vani'
+      : process.env.NEXT_PUBLIC_BASE_PATH || '';
+
+  if (normClass === 'class-9' && (normSub === 'science' || normSub === 'sci')) {
+    const scienceMap: Record<number, Partial<ChapterExtraMaterials>> = {
+      1: {
+        notesPdfUrl: basePath + '/materials/science/9_Science_Ch1_Notes.pdf',
+        mindMapPdfUrl: basePath + '/materials/science/9_Science_ch1_MindMaps.pdf',
+        animationVideoUrl: basePath + '/materials/science/9_science_ch1.mp4',
+      },
+      4: {
+        notesPdfUrl: basePath + '/materials/science/9_Science_Ch4_Notes.pdf',
+        animationVideoUrl: basePath + '/materials/science/9_science_ch4.mp4',
+      },
+      5: {
+        notesPdfUrl: basePath + '/materials/science/9_science_ch5_Notes.pdf',
+        mindMapPdfUrl: basePath + '/materials/science/9_science_ch5_MindMaps.pdf',
+        animationVideoUrl: basePath + '/materials/science/9_science_ch5.mp4',
+      },
+      6: {
+        notesPdfUrl: basePath + '/materials/science/9_Science_Ch6_Notes.pdf',
+        mindMapPdfUrl: basePath + '/materials/science/9_science_ch6_MindMaps.pdf',
+        animationVideoUrl: basePath + '/materials/science/9_science_ch6.mp4',
+      },
+      7: {
+        notesPdfUrl: basePath + '/materials/science/9_Science_Ch7_Notes.pdf',
+        mindMapPdfUrl: basePath + '/materials/science/9_Science_ch7_MindMaps.pdf',
+        animationVideoUrl: basePath + '/materials/science/9_science_ch7_p1.mp4',
+        animationVideoUrl2: basePath + '/materials/science/9_science_ch7_p2.mp4',
+      },
+      8: {
+        notesPdfUrl: basePath + '/materials/science/9_science_ch8_Notes.pdf',
+        mindMapPdfUrl: basePath + '/materials/science/9_science_ch8_MindMaps.pdf',
+        animationVideoUrl: basePath + '/materials/science/9_science_ch8.mp4',
+      },
+      9: {
+        notesPdfUrl: basePath + '/materials/science/9_science_ch9_Notes.pdf',
+        mindMapPdfUrl: basePath + '/materials/science/9_science_ch9_MindMaps.pdf',
+        animationVideoUrl: basePath + '/materials/science/9_science_ch9.mp4',
+      },
+      10: {
+        notesPdfUrl: basePath + '/materials/science/9_Science_Ch10_Notes.pdf',
+        mindMapPdfUrl: basePath + '/materials/science/9_Science_ch10_MindMaps.pdf',
+        animationVideoUrl: basePath + '/materials/science/9_science_ch10_p1.mp4',
+        animationVideoUrl2: basePath + '/materials/science/9_science_ch10_p2.mp4',
+      },
+      13: {
+        notesPdfUrl: basePath + '/materials/science/9_science_ch13_Notes.pdf',
+        mindMapPdfUrl: basePath + '/materials/science/9_science_ch13_MindMaps.pdf',
+        animationVideoUrl: basePath + '/materials/science/9_science_ch13.mp4',
+      },
+    };
+
+    const found = scienceMap[chapterNumber];
+    if (found) {
+      return {
+        ...found,
+        hasExtra: Boolean(found.mindMapPdfUrl || found.animationVideoUrl),
+      };
+    }
+  }
+
+  if (normClass === 'class-9' && (normSub === 'social-science' || normSub === 'sst')) {
+    const sstMap: Record<number, Partial<ChapterExtraMaterials>> = {
+      1: {
+        notesPdfUrl: basePath + '/materials/sst/9_sst_Ch1_Important_Questions.pdf',
+        mindMapPdfUrl: basePath + '/materials/sst/9_sst_Ch1_MindMaps.pdf',
+      },
+      2: {
+        notesPdfUrl: basePath + '/materials/sst/9_sst_Ch2_Important_Questions.pdf',
+        mindMapPdfUrl: basePath + '/materials/sst/9_sst_Ch2_MindMaps.pdf',
+      },
+      3: {
+        notesPdfUrl: basePath + '/materials/sst/9_sst_Ch3_Important_Questions.pdf',
+        mindMapPdfUrl: basePath + '/materials/sst/9_sst_ch3_MindMaps.pdf',
+      },
+      4: {
+        notesPdfUrl: basePath + '/materials/sst/9_sst_Ch4_Important_Questions.pdf',
+        mindMapPdfUrl: basePath + '/materials/sst/9_sst_ch4_MindMaps.pdf',
+      },
+      5: { notesPdfUrl: basePath + '/materials/sst/9_sst_Ch5_Important_Questions.pdf' },
+      6: { notesPdfUrl: basePath + '/materials/sst/9_sst_ch6_Important_Questions.pdf' },
+      7: { notesPdfUrl: basePath + '/materials/sst/9_sst_ch7_Important_Questions.pdf' },
+      8: { notesPdfUrl: basePath + '/materials/sst/9_sst_Ch8_Important_Questions.pdf' },
+      9: { notesPdfUrl: basePath + '/materials/sst/9_sst_Ch9_Important_Questions.pdf' },
+    };
+
+    const found = sstMap[chapterNumber];
+    if (found) {
+      return {
+        ...found,
+        hasExtra: Boolean(found.mindMapPdfUrl),
+      };
+    }
+  }
+
+  return { hasExtra: false };
+}
+
 export interface TextbookPage {
   pageNumber: number;
   sectionTitle: string;

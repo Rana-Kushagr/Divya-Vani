@@ -14,6 +14,7 @@ import {
   Square
 } from 'lucide-react';
 import MathRenderer from './MathRenderer';
+import { getAssistantResponse } from '@/lib/aiAssistantService';
 
 interface ChatMessage {
   id: string;
@@ -113,8 +114,8 @@ export default function OneOnOneVoiceAssistantModal({
     {
       id: 'welcome-msg',
       sender: 'assistant',
-      text: `Hello! I am Divya Vani, your personal 1v1 AI study companion. Ask me any doubt from ${currentChapter || 'your syllabus'} or speak aloud anytime!`,
-      spokenText: `Hello! I am Divya Vani, your personal AI study companion. Ask me any doubt or speak aloud anytime!`,
+      text: `Hello! I am Divya bot, your personal 1v1 AI study companion. Ask me any doubt from ${currentChapter || 'your syllabus'} or speak aloud anytime!`,
+      spokenText: `Hello! I am Divya bot, your personal AI study companion. Ask me any doubt or speak aloud anytime!`,
       timestamp: 'Just now',
     },
   ]);
@@ -267,20 +268,33 @@ export default function OneOnOneVoiceAssistantModal({
     setIsLoading(true);
 
     try {
-      const res = await fetch('/api/assistant/chat', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          message: query,
+      let replyText = '';
+      let spoken = '';
+
+      try {
+        const assistantResult = await getAssistantResponse({
+          query,
           subjectId: currentSubject,
           chapterTitle: currentChapter,
           apiKey: userApiKey,
-        }),
-      });
-
-      const data = await res.json();
-      const replyText = data.reply || data.message || 'I understand your question! Let us explore the core concept together.';
-      const spoken = data.spokenText || replyText;
+        });
+        replyText = assistantResult.message;
+        spoken = assistantResult.spokenText || replyText;
+      } catch (_clientErr) {
+        const res = await fetch('/api/assistant/chat', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            message: query,
+            subjectId: currentSubject,
+            chapterTitle: currentChapter,
+            apiKey: userApiKey,
+          }),
+        });
+        const data = await res.json();
+        replyText = data.reply || data.message || 'I understand your question! Let us explore the core concept together.';
+        spoken = data.spokenText || replyText;
+      }
 
       const assistantMsg: ChatMessage = {
         id: `ast-${Date.now()}`,
@@ -329,7 +343,7 @@ export default function OneOnOneVoiceAssistantModal({
             </div>
             <div>
               <div className="flex items-center gap-2">
-                <h3 className="font-bold text-sm text-alabaster">Divya Vani 1v1 AI Study Buddy</h3>
+                <h3 className="font-bold text-sm text-alabaster">Divya bot 1v1 AI Study Companion</h3>
                 <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-mint/20 text-mint border border-mint/40">
                   {getStatusBadge(isAiSpeaking, isListening)}
                 </span>
@@ -423,7 +437,7 @@ export default function OneOnOneVoiceAssistantModal({
               </div>
               <div className="bg-obsidian border border-structural-dark rounded-2xl rounded-tl-none p-3.5 text-xs text-zinc-300 flex items-center gap-2 shadow">
                 <span className="w-2 h-2 rounded-full bg-mint animate-pulse" />
-                <span>Divya Vani is analyzing and preparing step-by-step guidance...</span>
+                <span>Divya bot is analyzing and preparing step-by-step guidance...</span>
               </div>
             </div>
           )}
